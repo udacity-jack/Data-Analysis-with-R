@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ 
+<meta charset="utf-8">
+<title> Loading Data and Basic Formatting in R</title>
+<meta name="description" content="FlowingData">
+<meta name="author" content="Nathan Yau">
+<meta name="generator" content="WordPress 4.1.1">  
+<link rel="stylesheet" href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/style.css" type="text/css" media="screen">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://flowingdata.com/feed">
+<link rel="pingback" href="http://flowingdata.com/xmlrpc.php">
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+ 
+<link rel="stylesheet" href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/skeleton.css">
+<link rel="stylesheet" href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/layout.css">
+<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+ 
+<link rel="shortcut icon" href="http://flowingdata.com/wp-content/themes/fd-modern-5-1/images/favicon.ico">
+<link rel="apple-touch-icon" href="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/images/apple-touch-icon-114x114.png">
+<script src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/gpt.js" type="text/javascript" async=""></script><script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function() {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') + 
+    '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+    })();
+    </script>
+<script type="text/javascript">
+    googletag.cmd.push(function() {
+    googletag.defineSlot('/2462688/Bottom_Post', [300, 250], 'div-gpt-ad-1413175755662-0').addService(googletag.pubads());
+    googletag.defineSlot('/2462688/Sidebar_bottom', [300, 250], 'div-gpt-ad-1413175755662-1').addService(googletag.pubads());
+    googletag.defineSlot('/2462688/Sidebar_rectangle', [300, 250], 'div-gpt-ad-1413175755662-2').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+    });
+    </script>
+<link rel="stylesheet" id="yarppWidgetCss-css" href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/jetpack.css" type="text/css" media="all">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://flowingdata.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://flowingdata.com/wp-includes/wlwmanifest.xml">
+<link rel="prev" title="Automated Tinder and the Eigenface" href="http://flowingdata.com/2015/02/18/automated-tinder/">
+<link rel="next" title="Impact of vaccines throughout history" href="http://flowingdata.com/2015/02/19/impact-of-vaccines-throughout-history/">
+<meta name="generator" content="WordPress 4.1.1">
+<link rel="canonical" href="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/">
+<link rel="shortlink" href="http://flowingdata.com/?p=39118">
+<link rel="icon" href="http://flowingdata.com/wp-content/uploads/2014/10/logo-lone-square-600-5451c585_site_icon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon-precomposed" href="http://flowingdata.com/wp-content/uploads/2014/10/logo-lone-square-600-5451c585_site_icon-128x128.png">
+<meta name="msapplication-TileImage" content="http://flowingdata.com/wp-content/uploads/2014/10/logo-lone-square-600-5451c585_site_icon-128x128.png">
+<style type="text/css">img#wpstats{display:none}</style>
+ 
+<meta property="og:type" content="article">
+<meta property="og:title" content="Loading Data and Basic Formatting in R">
+<meta property="og:url" content="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/">
+<meta property="og:description" content="It might not be sexy, but you have to load your data and get it in the right format before you can visualize it. Here are the basics, which might be all you need.">
+<meta property="article:published_time" content="2015-02-18T14:06:04+00:00">
+<meta property="article:modified_time" content="2015-02-18T06:19:35+00:00">
+<meta property="article:author" content="http://flowingdata.com/author/nathany/">
+<meta property="og:site_name" content="FlowingData">
+<meta property="og:image" content="http://flowingdata.com/wp-content/uploads/2015/02/Data-snippet.png">
+<meta name="twitter:site" content="@flowingdata">
+<meta name="twitter:image:src" content="http://flowingdata.com/wp-content/uploads/2015/02/Data-snippet.png?w=640">
+<meta name="twitter:card" content="summary_large_image">
+<link href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/shCore.css" type="text/css" rel="stylesheet"><link href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/shThemeDefault.css" type="text/css" rel="stylesheet"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="stylesheet" id="custom-css-css" type="text/css" href="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/a.css">
+<script src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/pubads_impl_57.js" type="text/javascript" async=""></script></head>
+<body>
+<div id="main-wrapper">
+<a name="top"></a>
+<div id="header-wrapper">
+<div id="header" class="container">
+<div id="logo" class="four columns alpha">
+<a href="http://flowingdata.com/">
+<img src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/logo-v2d.png">
+</a>
+</div>
+<div id="nav" class="eight columns omega">
+<ul>
+<li><a href="https://flowingdata.com/membership">Membership</a></li>
+<li><a href="http://flowingdata.com/category/tutorials/">Tutorials</a></li>
+<li><a href="http://flowingdata.com/learning/#book-section">Books</a></li>
+<li><a href="http://flowingdata.com/category/projects/">Projects</a></li>
+<li><a href="http://shop.flowingdata.com/">Shop</a></li>
+</ul>
+</div>
+<div id="login" class="four columns omega">
+<ul>
+<li><a href="https://flowingdata.com/wp-login.php">Log in</a></li>
+<li>|</li>
+<li><a href="https://flowingdata.com/membership/" class="highlight">Join Now</a></li>
+</ul>
+</div>
+</div> 
+</div> 
+<div id="content-wrapper" class="container">
+<div id="single-long-post" class="container archive-post">
+<h1>Loading Data and Basic Formatting in R</h1>
+<div class="meta-bar">
+Posted to <a href="http://flowingdata.com/category/tutorials/" rel="category tag">Tutorials</a> &nbsp;|&nbsp; Tags: <a href="http://flowingdata.com/tag/r/" rel="tag">R</a> </div> 
+<div id="top-stuff" class="row">
+<div class="six columns alpha">
+<div class="author">
+By <strong><a href="http://flowingdata.com/about-nathan" title="Visit Nathan Yau’s website" rel="author external">Nathan Yau</a></strong>
+</div> 
+<div id="lead-in-excerpt">It might not be sexy, but you have to load 
+your data and get it in the right format before you can visualize it. 
+Here are the basics, which might be all you need.</div>
+<div id="tut-meta">
+<div class="button-link"><a href="http://projects.flowingdata.com/tut/201502-loading-data-tutorial.zip">Download Source</a></div>
+<div class="clr"></div>
+</div> 
+</div>
+<div class="nine columns offset-by-one omega">
+<img src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/Data-snippet-620x303.png" class="attachment-medium wp-post-image" alt="Data snippet" height="303" width="620"> </div>
+<div class="clr"></div>
+</div> 
+<div class="entry eleven columns alpha">
+<p>Oftentimes, the bulk of the work that goes into a visualization isn't
+ visual at all. That is, the drawing of shapes and colors can be 
+relatively quick, and you might spend most of your time getting the data
+ in the format that you need (or just getting data in general). </p>
+<p>This can be especially frustrating when you have your data, you know 
+what you want to make, but you're stuck in the middle. This tutorial 
+covers the basics of getting your data into R so that you can move on to
+ more interesting things.<br>
+<span id="more-39118"></span></p>
+<h3>Setup</h3>
+<p>Since this is in R, you need to install the free statistical computing language on your computer. <a href="http://www.r-project.org/">Go to the R site</a>, click on CRAN in the left sidebar (under the section titled <em>Download, Packages</em>), select an area near you, and download the version of R for your system. It's a one-click install.</p>
+<p>That's it.</p>
+<p><span class="tip">You can either use the <code>setwd()</code> 
+function or you can change your working directory via the Misc &gt; 
+Change Working Directory... menu. You can also use absolute paths 
+instead, but I like to save myself some typing.</span>Now open the R console, and set your working directory to the wherever you saved the download of this tutorial to. </p>
+<h3>Loading CSV file</h3>
+<p>Okay, the data of this tutorial is in the data folder. It's 
+state-level data from the United States Census Bureau's American 
+Community Survey. It shows income averages for various demographics. 
+There are several files in the folder, but the one you're interested in 
+is at "data/ACS_13_5YR_S1903/ACS_13_5YR_S1903.csv". That's the actual 
+data file. The others are metadata.</p>
+<p>Pass the location to the <code>read.csv()</code> function in R.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_222380"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_222380_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_222380" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">income &lt;- </code><code class="functions">read.csv</code><code class="plain">(</code><code class="string">"data/ACS_13_5YR_S1903/ACS_13_5YR_S1903.csv"</code><code class="plain">)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p><span class="tip">Enter <code>dim(income)</code> for the dimensions of the newly stored data frame.</span>The file, with 52 rows and 123 columns, is now stored in the <code>income</code>
+ variable. This loads the data with default settings, and R tries to 
+guess what type of data you have, but sometimes it doesn't do well. So 
+it's a good idea to specify some things. </p>
+<p>For example, if you look at the second column of the actual CSV file,
+ GEO.id2, the codes are all of length two. However, when you look at the
+ first two columns of the data frame (<code>income[,c(1,2)]</code>), you can see that <code>read.csv()</code>
+ removed leading zeros. That's because R treated the column of data as 
+numeric instead of a character. You can specify this with the <code>colClasses</code> argument.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_790875"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_790875_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_790875" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Be more specific.</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income &lt;- </code><code class="functions">read.csv</code><code class="plain">(</code><code class="string">"data/ACS_13_5YR_S1903/ACS_13_5YR_S1903.csv"</code><code class="plain">, </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">stringsAsFactors=</code><code class="keyword">FALSE</code><code class="plain">, sep=</code><code class="string">","</code><code class="plain">, colClasses=</code><code class="functions">c</code><code class="plain">(</code><code class="string">"GEO.id2"</code><code class="plain">=</code><code class="string">"character"</code><code class="plain">))</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>Notice that <code>stringsAsFactors</code> is set to <code>FALSE</code>. Just do this always.</p>
+<p>Also the separator (<code>sep</code>) is explicitly set to a comma to
+ indicate that fields are comma-delimited. If you data is tab-delimited,
+ set the value accordingly.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_331689"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_331689_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_331689" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Tab-delimited</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income &lt;- </code><code class="functions">read.csv</code><code class="plain">(</code><code class="string">"data/ACS_13_5YR_S1903/ACS_13_5YR_S1903.tsv"</code><code class="plain">, </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">stringsAsFactors=</code><code class="keyword">FALSE</code><code class="plain">, sep=</code><code class="string">"\t"</code><code class="plain">, colClasses=</code><code class="functions">c</code><code class="plain">(</code><code class="string">"GEO.id2"</code><code class="plain">=</code><code class="string">"character"</code><code class="plain">))</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>If you have an internet connection, you can load data via URL. Just 
+enter a URL where you would normally enter the directory path. The rest 
+is the same.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_738092"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_738092_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_738092" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Load from URL</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income &lt;- </code><code class="functions">read.csv</code><code class="plain">(</code><code class="string">"http://datasets.flowingdata.com/tuts/2015/load-data/ACS_13_5YR_S1903.csv"</code><code class="plain">, </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">stringsAsFactors=</code><code class="keyword">FALSE</code><code class="plain">, sep=</code><code class="string">","</code><code class="plain">, colClasses=</code><code class="functions">c</code><code class="plain">(</code><code class="string">"GEO.id2"</code><code class="plain">=</code><code class="string">"character"</code><code class="plain">))</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<h3>Data at a glance</h3>
+<p>The next thing you should always do after loading data is to make 
+sure it loaded as expected. R provides a variety of functions to look at
+ different parts of your data. </p>
+<p><span class="tip">This particular dataset has 52 rows and 123 columns, so a call to <code>head()</code> shows quite a bit here.</span>Enter the following to see the first handful of rows.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_711652"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_711652_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_711652" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">head</code><code class="plain">(income)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p><img src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/01-First-few-lines-620x486.png" alt="First few lines" class="alignnone size-medium wp-image-39121" height="486" width="620"></p>
+<p>The <code>dim()</code> function tells you the dimensions of the data frame.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_90253"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_90253_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_90253" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">dim</code><code class="plain">(income)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>The return value is the following, where the first value is number of rows and the second is number of columns:</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_489907"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_489907_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_489907" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">[1]&nbsp; 52 123</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>Check out the column names (all 152 of them).</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_12349"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_12349_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_12349" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">names</code><code class="plain">(income)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>And check out the structure of each column. Hopefully all is as 
+expected. In this case, all numeric except the first two columns which 
+are ids that indicate geographic areas.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_156595"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_156595_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_156595" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">str</code><code class="plain">(income)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>Finally, for a quick summary of each column that shows minimum, maximum, missing values, and the stuff in between, use <code>summary()</code>.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_552901"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_552901_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_552901" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Quick summary</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="functions">summary</code><code class="plain">(income)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p><img src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/02-Summary-620x486.png" alt="02-Summary" class="alignnone size-medium wp-image-39122" height="486" width="620"></p>
+<h3>Subsetting</h3>
+<p><span class="tip">We know it's the first seven columns because there's a metadata file that describes each column in the <code>data</code> folder of the tutorial download.</span>Maybe
+ you just want to look at income estimates for the total population for 
+now. This is the first seven columns (with the first two indicating 
+region). Here's how you subset to get a data frame with just seven 
+columns instead of the original 153.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_997237"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_997237_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_997237" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Just the first columns</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income_total &lt;- income[,1:7]</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">head</code><code class="plain">(income_total)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="functions">dim</code><code class="plain">(income_total)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>The new dimensions are 52 rows and 7 columns, as expected.</p>
+<p>You can also subset based on values using <code>subset()</code>. Maybe you only want to look at states in the upper quartile.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_986208"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_986208_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_986208" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Based on value</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income_upper &lt;- </code><code class="functions">subset</code><code class="plain">(income_total, HC02_EST_VC02 &gt;= 58985)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>You can also remove rows with missing values in any of the fields using <code>na.omit()</code>.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_77618"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_77618_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_77618" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Extract missing data (in thise case, returns empty)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income_without_na &lt;- </code><code class="functions">na.omit</code><code class="plain">(income)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>In this case, you get an empty data frame, because every state has at
+ least one missing value amongst the 153 fields. In contrast, if you ran
+ the function with <code>income_total</code>, you'd just get the same data frame, because no values are missing for the first seven columns.</p>
+<h3>Editing</h3>
+<p>With the data you want, it's possible you'll want to edit your data 
+somehow. Maybe you want to compute new values based on existing ones, or
+ in this case, you can rename the ambiguous columns to something more 
+meaningful.</p>
+<p>Here's how to change column names with <code>names()</code>. If you just call <code>names()</code>,
+ the function returns the existing column names, but if you assign it a 
+vector of names, as shown below, you get a rename. There should be the 
+same number of names in the vector as there are columns.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_481938"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_481938_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_481938" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Change column names</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="functions">names</code><code class="plain">(income_total) &lt;- </code><code class="functions">c</code><code class="plain">(</code><code class="string">"id"</code><code class="plain">, </code><code class="string">"FIPS"</code><code class="plain">, </code><code class="string">"name"</code><code class="plain">, </code><code class="string">"households"</code><code class="plain">, </code><code class="string">"households_moe"</code><code class="plain">, </code><code class="string">"med_income"</code><code class="plain">, </code><code class="string">"med_income_moe"</code><code class="plain">)</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">head</code><code class="plain">(income_total)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>That's better and much easier to remember.</p>
+<p><img src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/03-Headers-620x486.png" alt="Headers" class="alignnone size-medium wp-image-39123" height="486" width="620"></p>
+<p>To access a specific column, use the dollar sign (<code>$</code>) after the data frame variable, followed by the name of the column. For example, if you want just the <code>med_income</code> column, enter <code>income_total$med_income</code>.
+ Similarly, you can add columns by using the dollar sign to specify a 
+column name and then provide a vector of values. If the column exists, 
+the existing values are changed to the new ones and if the column name 
+does not exist, a new column is created.</p>
+<p>For example, in <code>income_total</code>, you have median and margin
+ of error. Maybe you want to add a column for minimum and another for 
+maximum. That's the median income column plus and minus the margin of 
+error.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_572398"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_572398_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_572398" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># New columns</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income_total$med_min &lt;- income_total$med_income - income_total$med_income_moe</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">income_total$med_max &lt;- income_total$med_income + income_total$med_income_moe</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p><img src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/04-New-columns-620x486.png" alt="New columns" class="alignnone size-medium wp-image-39124" height="486" width="620"></p>
+<p>Want to convert units to the thousands? Divide a column by 1,000.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_527366"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_527366_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_527366" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Convert existing column</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income_total$med_min &lt;- income_total$med_min / 1000</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">income_total$med_max &lt;- income_total$med_max / 1000</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>When you divide a vector by a single number, the operation is 
+performed on each element of that vector. Same with other basic 
+operations.</p>
+<h3>Merge with other datasets</h3>
+<p>So far you've loaded a single dataset, subsetted it, and added to an 
+existing data frame. These are really common tasks you should know how 
+to do in R. You should also know how to merge multiple datasets into 
+one. For example, let's say you have income data from 2008 and 2013, 
+both for the state level.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_387057"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_387057_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_387057" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Load two datasets</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income2008 &lt;- </code><code class="functions">read.csv</code><code class="plain">(</code><code class="string">"data/ACS_08_3YR_S1903/ACS_08_3YR_S1903.csv"</code><code class="plain">, </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">stringsAsFactors=</code><code class="keyword">FALSE</code><code class="plain">, sep=</code><code class="string">","</code><code class="plain">, colClasses=</code><code class="functions">c</code><code class="plain">(</code><code class="string">"GEO.id2"</code><code class="plain">=</code><code class="string">"character"</code><code class="plain">))</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income2013 &lt;- </code><code class="functions">read.csv</code><code class="plain">(</code><code class="string">"data/ACS_13_5YR_S1903/ACS_13_5YR_S1903.csv"</code><code class="plain">, </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">stringsAsFactors=</code><code class="keyword">FALSE</code><code class="plain">, sep=</code><code class="string">","</code><code class="plain">, colClasses=</code><code class="functions">c</code><code class="plain">(</code><code class="string">"GEO.id2"</code><code class="plain">=</code><code class="string">"character"</code><code class="plain">))</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>And let's just grab three columns each from 2008 and 2013: the state 
+id, median income for the total population, and the margin of error.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_295124"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_295124_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_295124" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Subset</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income2008p &lt;- income2008[,</code><code class="functions">c</code><code class="plain">(</code><code class="string">"GEO.id2"</code><code class="plain">, </code><code class="string">"HC02_EST_VC02"</code><code class="plain">, </code><code class="string">"HC02_MOE_VC02"</code><code class="plain">)]</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">income2013p &lt;- income2013[,</code><code class="functions">c</code><code class="plain">(</code><code class="string">"GEO.id2"</code><code class="plain">, </code><code class="string">"HC02_EST_VC02"</code><code class="plain">, </code><code class="string">"HC02_MOE_VC02"</code><code class="plain">)]</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>To make it easier to manage, give the columns names that are more 
+useful. Remember, that these tutorials are going to mash together soon, 
+so it's good to use differing names for the estimate columns. For the 
+id, which is actually a FIPS (Federal Information Processing Standards) 
+code, we make it the same in both datasets. </p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_506646"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_506646_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_506646" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Rename headers</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="functions">names</code><code class="plain">(income2008p) &lt;- </code><code class="functions">c</code><code class="plain">(</code><code class="string">"FIPS"</code><code class="plain">, </code><code class="string">"med2008"</code><code class="plain">, </code><code class="string">"moe2008"</code><code class="plain">)</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">names</code><code class="plain">(income2013p) &lt;- </code><code class="functions">c</code><code class="plain">(</code><code class="string">"FIPS"</code><code class="plain">, </code><code class="string">"med2013"</code><code class="plain">, </code><code class="string">"moe2013"</code><code class="plain">)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>Here's a glance at the two data frames before merging:</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_676895"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_676895_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_676895" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">&gt; head(income2008p)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="plain">FIPS med2008 moe2008</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">1&nbsp;&nbsp; 01&nbsp;&nbsp; 42131&nbsp;&nbsp;&nbsp;&nbsp; 275</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">2&nbsp;&nbsp; 02&nbsp;&nbsp; 66293&nbsp;&nbsp;&nbsp; 1129</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">3&nbsp;&nbsp; 04&nbsp;&nbsp; 51124&nbsp;&nbsp;&nbsp;&nbsp; 309</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">4&nbsp;&nbsp; 05&nbsp;&nbsp; 39127&nbsp;&nbsp;&nbsp;&nbsp; 349</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">5&nbsp;&nbsp; 06&nbsp;&nbsp; 61154&nbsp;&nbsp;&nbsp;&nbsp; 173</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">6&nbsp;&nbsp; 08&nbsp;&nbsp; 56574&nbsp;&nbsp;&nbsp;&nbsp; 345</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">&gt; head(income2013p)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="plain">FIPS med2013 moe2013</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">1&nbsp;&nbsp; 01&nbsp;&nbsp; 43253&nbsp;&nbsp;&nbsp;&nbsp; 241</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">2&nbsp;&nbsp; 02&nbsp;&nbsp; 70760&nbsp;&nbsp;&nbsp;&nbsp; 732</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">3&nbsp;&nbsp; 04&nbsp;&nbsp; 49774&nbsp;&nbsp;&nbsp;&nbsp; 253</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">4&nbsp;&nbsp; 05&nbsp;&nbsp; 40768&nbsp;&nbsp;&nbsp;&nbsp; 330</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">5&nbsp;&nbsp; 06&nbsp;&nbsp; 61094&nbsp;&nbsp;&nbsp;&nbsp; 157</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">6&nbsp;&nbsp; 08&nbsp;&nbsp; 58433&nbsp;&nbsp;&nbsp;&nbsp; 314</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>Now use the <code>merge()</code> function to bring this together. </p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_577389"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_577389_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_577389" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="comments"># Combine</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">income0813 &lt;- </code><code class="functions">merge</code><code class="plain">(income2008p, income2013p, by=</code><code class="string">"FIPS"</code><code class="plain">)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<p>You can read the line above as merge <code>income2008p</code> and <code>income2013p</code> by the FIPS column and store it in <code>income0813</code>. Here's the five-column data frame you get:</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_74201"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_74201_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_74201" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">&gt; head(income0813)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="plain">FIPS med2008 moe2008 med2013 moe2013</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">1&nbsp;&nbsp; 01&nbsp;&nbsp; 42131&nbsp;&nbsp;&nbsp;&nbsp; 275&nbsp;&nbsp; 43253&nbsp;&nbsp;&nbsp;&nbsp; 241</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">2&nbsp;&nbsp; 02&nbsp;&nbsp; 66293&nbsp;&nbsp;&nbsp; 1129&nbsp;&nbsp; 70760&nbsp;&nbsp;&nbsp;&nbsp; 732</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">3&nbsp;&nbsp; 04&nbsp;&nbsp; 51124&nbsp;&nbsp;&nbsp;&nbsp; 309&nbsp;&nbsp; 49774&nbsp;&nbsp;&nbsp;&nbsp; 253</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">4&nbsp;&nbsp; 05&nbsp;&nbsp; 39127&nbsp;&nbsp;&nbsp;&nbsp; 349&nbsp;&nbsp; 40768&nbsp;&nbsp;&nbsp;&nbsp; 330</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="content"><code class="plain">5&nbsp;&nbsp; 06&nbsp;&nbsp; 61154&nbsp;&nbsp;&nbsp;&nbsp; 173&nbsp;&nbsp; 61094&nbsp;&nbsp;&nbsp;&nbsp; 157</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="plain">6&nbsp;&nbsp; 08&nbsp;&nbsp; 56574&nbsp;&nbsp;&nbsp;&nbsp; 345&nbsp;&nbsp; 58433&nbsp;&nbsp;&nbsp;&nbsp; 314</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<h3>Save data as a file</h3>
+<p>Finally, you can save any data frame as a CSV file to use later on in a different program. Use the function <code>write.table()</code>. Specify the data frame, file destination, and the separator. Row names are used by default, but I typically set it to false.</p>
+<div class="syntaxhighlighter nogutter  " id="highlighter_104233"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_104233_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_104233" menu="false" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="functions">write.table</code><code class="plain">(income_total, </code><code class="string">"data/income-totals.csv"</code><code class="plain">, </code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">row.names=</code><code class="keyword">FALSE</code><code class="plain">, sep=</code><code class="string">","</code><code class="plain">)</code></td></tr></tbody></table></div></div></div>
+<p></p>
+<h3>Wrapping up</h3>
+<p>To recap, you:</p>
+<ol>
+<li>Loaded data from CSV files</li>
+<li>Subsetted data frames</li>
+<li>Edited data to make it easier to manage</li>
+<li>Merged multiple datasets</li>
+</ol>
+<p>These are basic operations in R that will give you what you need most
+ of the time. Assuming I already have a CSV file to load, I typically 
+don't have to do anything more advanced than this as far as data loading
+ and formatting is concerned.</p>
+<p>That said, there's still plenty more you can and will occasionally 
+need. For example, your data might not be a delimited text file. Maybe 
+it's a shapefile, in which case <a href="http://flowingdata.com/2014/11/20/mapping-data-in-shapefile-format-with-r/">you have to handle it differently</a>. The <a href="http://cran.r-project.org/web/packages/xlsx/index.html">xlsx package</a> lets you load Excel files. <a href="http://cran.r-project.org/web/packages/SASxport/index.html">SASxport</a> for SAS. There are a lot of R packages.</p>
+<p>There are also packages to help with formatting, mainly <a href="https://github.com/hadley/dplyr">dplyr</a> and <a href="https://github.com/hadley/tidyr">tidyr</a>. You can install all of them via the package installer in R.</p>
+<p><a href="http://flowingdata.com/category/tutorials/">Now you can do some visualizing</a>.</p>
+</div> 
+<div class="clr"></div>
+<div class="share"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><div class="sd-content"><ul><li class="share-email share-service-visible"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/?share=email&amp;nb=1" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-39118" class="share-twitter sd-button share-icon no-text" href="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter"><span><span class="share-count">125</span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)<span class="share-count">125</span></span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-39118" class="share-facebook sd-button share-icon no-text" href="http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/?share=facebook&amp;nb=1" target="_blank" title="Share on Facebook"><span><span class="share-count">108</span></span><span class="sharing-screen-reader-text">Share on Facebook (Opens in new window)<span class="share-count">108</span></span></a></li><li class="share-end"></li></ul></div></div></div></div>
+<div class="author-info">
+<div class="profile-pic two columns alpha"><img alt="" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/a61decc5c78c05770cb107e4c5cbbb33.png" class="avatar avatar-100 photo" height="100" width="100"></div>
+<div class="bio fourteen columns omega">
+<h3>About the Author</h3>
+<p>Nathan Yau is a statistician who works primarily with visualization. 
+He earned his PhD in statistics from UCLA, is the author of two 
+best-selling books — <em>Data Points</em> and <em>Visualize This</em> — and runs FlowingData. Introvert. Likes food. Likes beer. Follow him @<a href="http://twitter.com/flowingdata">flowingdata</a>.</p>
+</div>
+<div class="clr"></div>
+</div>
+<div id="join-now" class="container">
+<p style="font-size:1.2em;margin:0 auto 25px auto;line-height:1.5em;">Become a member. Instant access to tutorials and resources. Support FlowingData.</p>
+<a href="https://flowingdata.com/membership-sign-up/" class="action-button">JOIN NOW</a>
+</div>
+<div id="unsubscribed" class="container row">
+<div class="eight columns alpha">
+<h3>Membership</h3>
+<p>This is for people who want to learn to make and design data 
+graphics. Your support goes directly to FlowingData, an independently 
+run site. <a href="https://flowingdata.com/membership-sign-up/">Join now for instant access</a>.</p>
+</div>
+<div class="eight columns omega">
+<h3>What you get</h3>
+<ul>
+<li>Instant access to tutorials on how to make and design data graphics</li>
+<li>Source code and files to use with your own data</li>
+<li>Hand-picked links and resources from around the web</li>
+</ul>
+</div>
+<div class="clr"></div>
+</div> 
+<div class="clr"></div>
+<div class="eleven columns alpha offset-by-two">
+<span id="comments"></span>
+</div>
+</div> 
+<div class="clr"></div>
+</div> 
+<div id="footer-wrapper">
+<div id="footer" class="container">
+<ul id="final-links">
+<li><a href="http://flowingdata.com/about">About</a></li>
+<li><a href="http://flowingdata.com/contact">Contact</a></li>
+<li><a href="http://flowingdata.com/sponsorship">Sponsorship</a></li>
+<li><a href="http://twitter.com/flowingdata">Twitter</a></li>
+<li><a href="http://facebook.com/flowingdata">Facebook</a></li>
+<li><a href="http://eepurl.com/icL0o">Newsletter</a></li>
+<li><a href="http://flowingdata.com/feed">RSS</a></li>
+</ul>
+<div id="bottom">Copyright © 2007-Present FlowingData. All rights reserved. Be cool.</div>
+<div id="bottom-logo"><a href="http://flowingdata.com/"><img src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/logo-lone-v2d.png"></a></div>
+</div> 
+</div> 
+<span id="bruteprotect_uptime_check_string" style="display:none;">7ads6x98y</span>
+ 
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-865100-4");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/flowingdata.com\/2015\/02\/18\/loading-data-and-basic-formatting-in-r\/":39118}	</script>
+
+<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/shCore.js"></script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/shBrushR.js"></script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/shBrushPlain.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://flowingdata.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shCore.css?ver=2.1.364";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://flowingdata.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shThemeDefault.css?ver=2.1.364";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://flowingdata.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = true;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/comment-reply.js"></script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/jquery.js"></script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/jquery-migrate.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/sharing.js"></script>
+<script src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/e-201510.js" type="text/javascript"></script>
+<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.3.2',blog:'1938889',post:'39118',tz:'-8'});
+	var load_cmc = function(){linktracker_init(1938889,39118,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><iframe style="visibility: hidden; display: none;" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/container.html"></iframe>
+
+ 
+ 
+ 
+ 
+ </div><img id="wpstats" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/g.gif"><div id="sharing_email" style="display: none;">
+<form action="/2015/02/18/loading-data-and-basic-formatting-in-r/" method="post">
+<label for="target_email">Send to Email Address</label>
+<input name="target_email" id="target_email" type="email">
+<label for="source_name">Your Name</label>
+<input name="source_name" id="source_name" type="text">
+<label for="source_email">Your Email Address</label>
+<input name="source_email" id="source_email" type="email">
+<img style="float: right; display: none" class="loading" src="Loading%20Data%20and%20Basic%20Formatting%20in%20R_files/loading.gif" alt="loading" height="16" width="16">
+<input value="Send Email" class="sharing_send" type="submit">
+<a href="#cancel" class="sharing_cancel">Cancel</a>
+<div class="errors errors-1" style="display: none;">
+Post was not sent - check your email addresses! </div>
+<div class="errors errors-2" style="display: none;">
+Email check failed, please try again </div>
+<div class="errors errors-3" style="display: none;">
+Sorry, your blog cannot share posts by email. </div>
+</form>
+</div></body></html>

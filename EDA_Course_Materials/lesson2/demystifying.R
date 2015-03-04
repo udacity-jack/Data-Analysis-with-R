@@ -6,10 +6,14 @@
 # You need to highlight all of the lines of the code and then
 # run it. You should see "udacious" appear in the workspace.
 
+getwd()
+#setwd("Your path")
+
 udacious <- c("Chris Saden", "Lauren Castellano",
               "Sarah Spikes","Dean Eckles",
               "Andy Brown", "Moira Burke",
               "Kunal Chawla")
+udacious
 
 # You should see something like "chr[1:7]" in the 'Environment'
 # or 'Workspace' tab. This is because you created a 'vector' with
@@ -55,7 +59,8 @@ numbers
 udacious <- c("Chris Saden", "Lauren Castellano",
               "Sarah Spikes","Dean Eckles",
               "Andy Brown", "Moira Burke",
-              "Kunal Chawla", YOUR_NAME)
+              "Kunal Chawla", "Jack")
+udacious
 
 # Notice how R updates 'udacious' in the workspace.
 # It should now say something like 'chr[1:8]'.
@@ -125,7 +130,7 @@ udacious[mystery == 11]
 # Run this next command to load the mtcars data.
 
 data(mtcars)
-
+head(mtcars)
 
 # You should see mtcars appear in the 'Environment' tab with
 # <Promise> listed next to it. 
@@ -254,8 +259,20 @@ mtcars$mpg
 
 # Enter this number for the quiz on the Udacity website.
 # https://www.udacity.com/course/viewer#!/c-ud651/l-729069797/e-804129314/m-830829287
-
+?mean
 mean(mtcars$mpg)
 
+#############################
+reddit <- read.csv('reddit.csv')
+str(reddit)
 
+table(reddit$employment.status)
 
+levels(reddit$age.range)
+levels(reddit$income.range)
+
+library(ggplot2)
+
+# from the following plot, you can see that "under 18" is not in the right order. That's why we need the ordered factor
+qplot(data=reddit, x=age.range)
+qplot(data=reddit, x=income.range)
