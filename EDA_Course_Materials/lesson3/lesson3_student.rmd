@@ -1,46 +1,59 @@
+---
+output: html_document
+---
 Lesson 3
 ========================================================
 
-***
-
+getwd()
+setwd('/Users/Jack/Dropbox/R/udacity-github/EDA_Course_Materials/lesson3')
+getwd()
 ### What to Do First?
 Notes:
+```{r}
+getwd()
+setwd('/Users/Jack/Dropbox/R/udacity-github/EDA_Course_Materials/lesson3')
+getwd()
+```
 
-***
+
 
 ### Pseudo-Facebook User Data
 Notes:
 
 ```{r Pseudo-Facebook User Data}
-
+list.files()
+pf <-read.csv('pseudo_facebook.tsv', sep='\t')
+names(pf)
 ```
 
-***
+ 
 
 ### Histogram of Users' Birthdays
 Notes:
 
 ```{r Histogram of Users\' Birthdays}
-install.packages('ggplot2')
+#install.packages('ggplot2')
 library(ggplot2)
+#names(pf)
+
 ```
 
-***
+ 
 
 #### What are some things that you notice about this histogram?
 Response:
 
-***
+ 
 
 ### Moira's Investigation
 Notes:
 
-***
+ 
 
 ### Estimating Your Audience Size
 Notes:
 
-***
+ 
 
 #### Think about a time when you posted a specific message or shared a photo on Facebook. What was it?
 Response:
@@ -51,12 +64,12 @@ Response:
 #### Think about what percent of your friends on Facebook see any posts or comments that you make in a month. What percent do you think that is?
 Response:
 
-***
+ 
 
 ### Perceived Audience Size
 Notes:
 
-***
+ 
 ### Faceting
 Notes:
 
@@ -67,19 +80,19 @@ Notes:
 #### Let’s take another look at our plot. What stands out to you here?
 Response:
 
-***
+ 
 
 ### Be Skeptical - Outliers and Anomalies
 Notes:
 
-***
+ 
 
 ### Moira's Outlier
 Notes:
 #### Which case do you think applies to Moira’s outlier?
 Response:
 
-***
+ 
 
 ### Friend Count
 Notes:
@@ -93,7 +106,7 @@ Notes:
 #### How is this plot similar to Moira's first plot?
 Response:
 
-***
+ 
 
 ### Limiting the Axes
 Notes:
@@ -105,21 +118,21 @@ Notes:
 ### Exploring with Bin Width
 Notes:
 
-***
+ 
 
 ### Adjusting the Bin Width
 Notes:
 
 ### Faceting Friend Count
-```{r Faceting Friend Count}
-# What code would you add to create a facet the histogram by gender?
-# Add it to the code below.
-qplot(x = friend_count, data = pf, binwidth = 10) +
-  scale_x_continuous(limits = c(0, 1000),
-                     breaks = seq(0, 1000, 50))
-```
+###```{r Faceting Friend Count}
+### What code would you add to create a facet the histogram by gender?
+### Add it to the code below.
+###qplot(x = friend_count, data = pf, binwidth = 10) +
+###  scale_x_continuous(limits = c(0, 1000),
+###                     breaks = seq(0, 1000, 50))
+###```
 
-***
+ 
 
 ### Omitting NA Values
 Notes:
@@ -128,7 +141,7 @@ Notes:
 
 ```
 
-***
+ 
 
 ### Statistics 'by' Gender
 Notes:
@@ -146,7 +159,7 @@ Response:
 #### Why would the median be a better measure than the mean?
 Response:
 
-***
+ 
 
 ### Tenure
 Notes:
@@ -155,7 +168,7 @@ Notes:
 
 ```
 
-***
+ 
 
 #### How would you create a histogram of tenure by year?
 
@@ -163,7 +176,7 @@ Notes:
 
 ```
 
-***
+ 
 
 ### Labeling Plots
 Notes:
@@ -172,7 +185,7 @@ Notes:
 
 ```
 
-***
+ 
 
 ### User Ages
 Notes:
@@ -184,22 +197,22 @@ Notes:
 #### What do you notice?
 Response:
 
-***
+ 
 
 ### The Spread of Memes
 Notes:
 
-***
+ 
 
 ### Lada's Money Bag Meme
 Notes:
 
-***
+ 
 
 ### Transforming Data
 Notes:
 
-***
+ 
 
 ### Add a Scaling Layer
 Notes:
@@ -208,7 +221,7 @@ Notes:
 
 ```
 
-***
+ 
 
 
 ### Frequency Polygons
@@ -217,7 +230,7 @@ Notes:
 
 ```
 
-***
+ 
 
 ### Likes on the Web
 Notes:
@@ -227,7 +240,7 @@ Notes:
 ```
 
 
-***
+ 
 
 ### Box Plots
 Notes:
@@ -242,7 +255,7 @@ Notes:
 
 ```
 
-***
+ 
 
 ### Box Plots, Quartiles, and Friendships
 Notes:
@@ -261,7 +274,7 @@ Response:
 
 Response:
 
-***
+ 
 
 ### Getting Logical
 Notes:
@@ -272,12 +285,12 @@ Notes:
 
 Response:
 
-***
+ 
 
 ### Analyzing One Variable
 Reflection:
 
-***
+ 
 
 Click **KnitHTML** to see all of your hard work and to have an html
 page of this lesson, your answers, and your notes!
