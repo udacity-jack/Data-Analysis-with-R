@@ -1,0 +1,1160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>R-bloggers | R news and tutorials contributed by (573) R bloggers</title>
+
+<script async="" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/cbgapi.js"></script><script src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/ga.js" async="" type="text/javascript"></script><script src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/cloudflare.js" async=""></script><script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"a7555ce3823d540c169eabb487ba3972",petok:"125c9fb1c1857e04dd98395fe47abb2a067dc4e7-1425455105-1800",zone:"r-bloggers.com",rocket:"0",apps:{}}];CloudFlare.push({"apps":{"ape":"c778ecc50d65b01af4b27ecc03bc8458"}});!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=919620257c/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
+//]]>
+</script>
+<link rel="stylesheet" href="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/style.css" type="text/css" media="screen">
+
+<style type="text/css">
+
+body { width: 1024px; }
+
+#mainwrapper { width: 1004px; }
+
+#sidebar { width: 180px; }
+
+#sidebar .side-widget { width: 160px; }
+
+
+#secondsidebar { width: 300px; }
+
+#secondsidebar .side-widget { width: 300px; }
+
+
+#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 456px; }
+
+#leftcontent img, .wp-caption { max-width: 456px; }
+
+#leftcontent .wp-caption img, #leftcontent .gallery-thumb img { max-width: 444px; }
+
+<!-- fix for IE & Safari -->
+
+.threepost embed { width: 132.24px !important; }
+
+.twopost embed { width: 209.76px !important; }
+
+<!-- end fix for Safari -->
+
+</style>
+
+	<link rel="pingback" href="http://www.r-bloggers.com/xmlrpc.php">
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="http://www.r-bloggers.com/wp-content/themes/magazine-basic/iestyles.css" />
+<![endif]-->
+
+<!-- All in One SEO Pack 2.2.5.1 by Michael Torbert of Semper Fi Web Design[290,362] -->
+<link rel="next" href="http://www.r-bloggers.com/page/2/">
+
+<link rel="canonical" href="http://www.r-bloggers.com/">
+<!-- /all in one seo pack -->
+<link rel="alternate" type="application/rss+xml" title="R-bloggers » Feed" href="http://www.r-bloggers.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="R-bloggers » Comments Feed" href="http://www.r-bloggers.com/comments/feed/">
+<link rel="stylesheet" id="wpt-twitter-feed-css" href="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/twitter-feed.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack-top-posts-widget-css" href="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/style_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/jetpack.css" type="text/css" media="all">
+<link rel="stylesheet" id="codebox-css" href="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/codebox.css" type="text/css" media="screen">
+<!-- This site uses the Google Analytics by Yoast plugin v5.3 - Universal disabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
+<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-419807-53']);
+	_gaq.push(['_gat._forceSSL']);
+	_gaq.push(['_trackPageview']);
+
+	(function () {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+
+</script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style>
+<!-- / Google Analytics by Yoast -->
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/jquery.js"></script>
+<script type="text/javascript">try{jQuery.noConflict();}catch(e){};</script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/jquery-migrate.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/codebox.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.r-bloggers.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.r-bloggers.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 3.9.2">
+<link rel="shortlink" href="http://wp.me/Mm6L">
+<!-- This site is powered by Tweet, Like, Plusone and Share Plugin - http://techxt.com/tweet-like-google-1-and-share-plugin-wordpress/ -->
+		<meta property="og:type" content="article">
+	  	<meta property="og:title" content="R-bloggers">
+		<meta property="og:url" content="http://www.r-bloggers.com">
+		<meta property="og:description" content="R news and tutorials contributed by (573) R bloggers">
+		<meta property="og:site_name" content="R-bloggers">
+		<!--[if lt IE 9]>
+	  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+			<style type="text/css">div.socialicons{float:left;display:block;margin-right: 10px;line-height: 1;}div.socialiconsv{line-height: 1;}div.socialicons p{margin-bottom: 0px !important;margin-top: 0px !important;padding-bottom: 0px !important;padding-top: 0px !important;}div.social4iv{background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #aaa;border-radius: 3px 3px 3px 3px;box-shadow: 3px 3px 3px #DDDDDD;padding: 3px;position: fixed;text-align: center;top: 55px;width: 68px;display:none;}div.socialiconsv{padding-bottom: 5px;}</style>
+<style type="text/css">img#wpstats{display:none}</style><link href="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shCore.css" type="text/css" rel="stylesheet"><link href="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shThemeDefault.css" type="text/css" rel="stylesheet"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<script src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/secureAnonymousFramework.js"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+
+<body data-twttr-rendered="true" class="home blog">
+<!-- begin header -->
+<div id="header">
+		    	    	<a href="http://www.r-bloggers.com/" class="headerimage"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/R_02.png" alt="R-bloggers" class="aligncenter"></a>
+        <div id="description" class="aligncenter">
+        R news and tutorials contributed by (573) R bloggers    </div>     
+    <div class="main-navigation"><ul id="menu-top-nav" class="sf-menu sf-js-enabled sf-shadow"><li id="menu-item-48314" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-48314"><a href="http://www.r-bloggers.com/">Home</a></li>
+<li id="menu-item-92333" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92333"><a href="http://www.r-bloggers.com/about/">About</a></li>
+<li id="menu-item-50111" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50111"><a href="http://feeds.feedburner.com/RBloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://feeds.feedburner.com/RBloggers', 'RSS']);">RSS</a></li>
+<li id="menu-item-48313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48313"><a href="http://www.r-bloggers.com/add-your-blog/">add your blog!</a></li>
+<li id="menu-item-75513" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-75513"><a class="sf-with-ul" href="http://www.r-users.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.r-users.com/', 'R jobs']);">R jobs<span class="sf-sub-indicator">�</span><span class="sf-sub-indicator">�</span><span class="sf-sub-indicator">�</span></a>
+<ul style="display: none; float: none; width: 12em; visibility: hidden;" class="sub-menu">
+	<li style="float: left; width: 100%; white-space: normal;" id="menu-item-76945" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76945"><a style="float: none; width: auto;" href="http://www.r-users.com/submit-job/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.r-users.com/submit-job/', 'Submit a new job (it’s free)']);">Submit a new job (it’s free)</a></li>
+	<li style="float: left; width: 100%; white-space: normal;" id="menu-item-76946" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76946"><a style="float: none; width: auto;" href="http://www.r-users.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.r-users.com/', 'Browse latest jobs (also free)']);">Browse latest jobs (also free)</a></li>
+</ul>
+</li>
+<li id="menu-item-48311" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48311"><a href="http://www.r-bloggers.com/contact-us/">Contact us</a></li>
+</ul></div>
+</div>
+<!-- end header -->
+
+
+<div id="mainwrapper">
+<!-- begin sidebar -->
+    <div id="sidebar">
+		<div class="side-widget"><h2>Welcome!</h2>			<div class="textwidget"><iframe allowtransparency="true" scrolling="no" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/follow_button.html" style="width:164px; height:30px;" frameborder="0"></iframe>
+
+
+Here you will find daily <strong>news and tutorials about R</strong>, contributed by over 573 bloggers. 
+<br>
+There are many ways to <strong>follow us - </strong>
+<br>
+<a href="http://feedburner.google.com/fb/a/mailverify?uri=RBloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://feedburner.google.com/fb/a/mailverify?uri=RBloggers', 'By e-mail:']);">By e-mail:</a>
+
+<form style="border:1px solid #ccc;padding:3px;text-align:center;" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=RBloggers', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+<input style="width:110px" onclick="if (this.value == 'Your e-mail here') this.value = '';" value="Your e-mail here" name="email" type="text">
+<input value="RBloggers" name="uri" type="hidden"><input name="loc" value="en_US" type="hidden"><input value="Subscribe" type="submit">
+<a href="http://feeds.feedburner.com/RBloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://feeds.feedburner.com/RBloggers', '']);"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/RBloggers.gif" style="border:0" alt="" height="26" width="88"></a>
+</form>
+
+
+
+<a href="https://www.facebook.com/rbloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.facebook.com/rbloggers', 'On Facebook:']);">On Facebook:</a>
+<iframe src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/likebox.html" scrolling="no" style="border:none; overflow:hidden; width:160px; height:298px;" allowtransparency="true" frameborder="0"></iframe>
+
+
+<br>
+<strong>If you are an R blogger yourself</strong> you are invited to <a href="http://www.r-bloggers.com/add-your-blog/">add your own R content feed to this site</a> (<strong>Non-English</strong> R bloggers should add themselves- <a href="http://www.r-bloggers.com/lang/add-your-blog">here</a>)</div>
+		</div><div class="side-widget"><h2><a class="rsswidget" href="http://feeds.feedburner.com/R-usersLetsWorkTogetherJobs" title="Syndicate this content"><img style="border:0" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/rss.png" alt="RSS" height="14" width="14"></a> <a class="rsswidget" href="http://www.r-users.com/" title="A job board for people and companies looking to hire R users">Jobs for R-users</a></h2><ul><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/R-usersLetsWorkTogetherJobs/%7E3/j7YYpxbCelY/" title="The Department of Economics and Social Sciences at the University of Trier is seeking a Data Generation Research Assistant &nbsp;to commence as soon as possible. Remuneration follows the German public service pay scale E 13 TV-L. The job offer is in part-time (26h / week) and tenable for 2 years, however,&nbsp;an extension is possible. Duties […] The post Data Generat">Data Generation Research Assistant</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/R-usersLetsWorkTogetherJobs/%7E3/-30pa6u6wVg/" title="We are looking for a short term contractor to provide design and development of a small supply chain promotional event forecast. &nbsp;While the project starts small, we are looking to build a relationship with an individual to both grow the initial application as well as create a working environment for other incremental projects on an […] The post Contract Deve">Contract Developer for Supply Chain Appliation</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/R-usersLetsWorkTogetherJobs/%7E3/UIiNgo6fgPs/" title="Join trivago and help shape the future of the world’s largest online hotel search. Work with the latest technology and with colleagues from over 60 countries. We believe in personal development through flexible, self-directed work and cross-functional opportunities. Enjoy a working environment that encourages new ideas, fun and challenging the status quo! Du">Algorithm Engineer / Data Scientist at trivago</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/R-usersLetsWorkTogetherJobs/%7E3/Ds9Gd6ypkvo/" title="Drive your career and work with top technical talent who are always striving to stay ahead of the curve. With opportunities to work on a mixture of technologies and projects you’ll be involved in calling the shots on the next great opportunity. Bring your “A” game and join ViaSat’s new Israel office where innovation leads […] The post Machine Learning Data S">Machine Learning Data Scientist</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/R-usersLetsWorkTogetherJobs/%7E3/QVEpHmlasX4/" title="Booking.com is looking for data savvy professionals to join our team of data scientists. You will be working with stakeholders throughout the company to generate understanding, strategy and suggest actions based on data. If you consider yourself to be that unique hybrid of data hacker, business analyst, communicator and mentor that maintains a strong custome">Data Scientist – General (Booking.com)</a></li></ul></div><div class="side-widget"><form method="get" id="searchform" action="http://www.r-bloggers.com/">
+<div>
+<input class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == 'Search &amp; Hit Enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search &amp; Hit Enter';}" type="text">
+<input id="searchsubmit" type="hidden">
+</div>
+</form></div><div class="side-widget"><h2>Popular Searches</h2>
+<ul>
+<li><a href="http://www.r-bloggers.com/search/heatmap">heatmap</a></li>
+<li><a href="http://www.r-bloggers.com/search/web%20scraping">web scraping</a></li>
+<li><a href="http://www.r-bloggers.com/search/hadoop">hadoop</a></li>
+<li><a href="http://www.r-bloggers.com/search/twitter">twitter</a></li>
+<li><a href="http://www.r-bloggers.com/search/shiny">shiny</a></li>
+<li><a href="http://www.r-bloggers.com/search/boxplot">boxplot</a></li>
+<li><a href="http://www.r-bloggers.com/search/maps">maps</a></li>
+<li><a href="http://www.r-bloggers.com/search/ggplot2">ggplot2</a></li>
+<li><a href="http://www.r-bloggers.com/search/finance">finance</a></li>
+<li><a href="http://www.r-bloggers.com/search/animation">animation</a></li>
+<li><a href="http://www.r-bloggers.com/search/ggplot">ggplot</a></li>
+<li><a href="http://www.r-bloggers.com/search/trading">trading</a></li>
+<li><a href="http://www.r-bloggers.com/search/latex">latex</a></li>
+<li><a href="http://www.r-bloggers.com/search/PCA">PCA</a></li>
+<li><a href="http://www.r-bloggers.com/search/time%20series">time series</a></li>
+<li><a href="http://www.r-bloggers.com/search/googlevis">googlevis</a></li>
+<li><a href="http://www.r-bloggers.com/search/excel">excel</a></li>
+<li><a href="http://www.r-bloggers.com/search/how%20to%20import%20image%20file%20to%20R">how to import image file to R</a></li>
+<li><a href="http://www.r-bloggers.com/search/eclipse">eclipse</a></li>
+<li><a href="http://www.r-bloggers.com/search/quantmod">quantmod</a></li>
+<li><a href="http://www.r-bloggers.com/search/knitr">knitr</a></li>
+<li><a href="http://www.r-bloggers.com/search/rstudio">rstudio</a></li>
+<li><a href="http://www.r-bloggers.com/search/market%20research">market research</a></li>
+<li><a href="http://www.r-bloggers.com/search/tutorial">tutorial</a></li>
+<li><a href="http://www.r-bloggers.com/search/rattle">rattle</a></li>
+<li><a href="http://www.r-bloggers.com/search/rcmdr">rcmdr</a></li>
+<li><a href="http://www.r-bloggers.com/search/ecdf">ecdf</a></li>
+<li><a href="http://www.r-bloggers.com/search/coplot">coplot</a></li>
+<li><a href="http://www.r-bloggers.com/search/gis">gis</a></li>
+<li><a href="http://www.r-bloggers.com/search/SWEAVE">SWEAVE</a></li>
+</ul>
+
+</div>		<div class="side-widget">		<h2>Recent Posts</h2>		<ul>
+					<li>
+				<a href="http://www.r-bloggers.com/jasp/">JASP</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/a-linear-congruential-generator-lcg-in-r/">A Linear Congruential Generator (LCG) in R</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/plotly-graphs-with-dominos-new-r-notebook/">Plotly Graphs with Domino’s New R Notebook</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/google-summer-of-code-2015/">Google Summer of Code 2015</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/next-kolner-r-user-meeting-friday-6-march-2014/">Next Kölner R User Meeting: Friday, 6 March 2014</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/supervised-classification-logistic-and-multinomial/">Supervised Classification, Logistic and Multinomial</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/scheduler-receives-big-update/">scheduleR receives big update</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/computerworlds-r-for-beginners-hands-on-guide/">ComputerWorld’s R for Beginners Hands-On Guide</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/at-the-aps-observer-a-profile-of-jasp/">At the APS Observer: a profile of JASP</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/experiments-in-time-series-clustering/">Experiments in Time Series Clustering</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/so-what-can-text-analysis-do-for-you/">So What Can Text Analysis Do for You?</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/electric-power-system-simulations-using-r/">Electric Power System simulations using R</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/silhouettes/">Silhouettes</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/r-markdown-tutorial-by-rstudio-and-datacamp/">R Markdown Tutorial by RStudio and DataCamp</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/using-tables-for-statistics-on-large-vectors/">Using Tables for Statistics on Large Vectors</a>
+						</li>
+				</ul>
+		</div><div class="side-widget"><h2>Other sites</h2>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.r-users.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.r-users.com/', 'Jobs for R-users']);" rel="nofollow">Jobs for R-users</a></li>
+<li><a href="http://statil.org/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://statil.org/', 'Statistics of Israel']);" rel="nofollow" title="25,000 data sets of time series from the Israeli Central Bureau of Statistics ">Statistics of Israel</a></li>
+<li><a href="http://www.proc-x.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.proc-x.com/', 'SAS blogs']);" rel="nofollow" title="SAS news gathered from bloggers">SAS blogs</a></li>
+
+	</ul>
+</div>
+<div class="side-widget"><h2>Archives</h2>		<ul>
+	<li><a href="http://www.r-bloggers.com/2015/03/">March 2015</a>&nbsp;(17)</li>
+	<li><a href="http://www.r-bloggers.com/2015/02/">February 2015</a>&nbsp;(188)</li>
+	<li><a href="http://www.r-bloggers.com/2015/01/">January 2015</a>&nbsp;(217)</li>
+	<li><a href="http://www.r-bloggers.com/2014/12/">December 2014</a>&nbsp;(217)</li>
+	<li><a href="http://www.r-bloggers.com/2014/11/">November 2014</a>&nbsp;(207)</li>
+	<li><a href="http://www.r-bloggers.com/2014/10/">October 2014</a>&nbsp;(204)</li>
+	<li><a href="http://www.r-bloggers.com/2014/09/">September 2014</a>&nbsp;(247)</li>
+	<li><a href="http://www.r-bloggers.com/2014/08/">August 2014</a>&nbsp;(205)</li>
+	<li><a href="http://www.r-bloggers.com/2014/07/">July 2014</a>&nbsp;(226)</li>
+	<li><a href="http://www.r-bloggers.com/2014/06/">June 2014</a>&nbsp;(235)</li>
+	<li><a href="http://www.r-bloggers.com/2014/05/">May 2014</a>&nbsp;(242)</li>
+	<li><a href="http://www.r-bloggers.com/2014/04/">April 2014</a>&nbsp;(266)</li>
+	<li><a href="http://www.r-bloggers.com/2014/03/">March 2014</a>&nbsp;(285)</li>
+	<li><a href="http://www.r-bloggers.com/2014/02/">February 2014</a>&nbsp;(265)</li>
+	<li><a href="http://www.r-bloggers.com/2014/01/">January 2014</a>&nbsp;(263)</li>
+	<li><a href="http://www.r-bloggers.com/2013/12/">December 2013</a>&nbsp;(271)</li>
+	<li><a href="http://www.r-bloggers.com/2013/11/">November 2013</a>&nbsp;(241)</li>
+	<li><a href="http://www.r-bloggers.com/2013/10/">October 2013</a>&nbsp;(238)</li>
+	<li><a href="http://www.r-bloggers.com/2013/09/">September 2013</a>&nbsp;(215)</li>
+	<li><a href="http://www.r-bloggers.com/2013/08/">August 2013</a>&nbsp;(235)</li>
+	<li><a href="http://www.r-bloggers.com/2013/07/">July 2013</a>&nbsp;(271)</li>
+	<li><a href="http://www.r-bloggers.com/2013/06/">June 2013</a>&nbsp;(287)</li>
+	<li><a href="http://www.r-bloggers.com/2013/05/">May 2013</a>&nbsp;(261)</li>
+	<li><a href="http://www.r-bloggers.com/2013/04/">April 2013</a>&nbsp;(284)</li>
+	<li><a href="http://www.r-bloggers.com/2013/03/">March 2013</a>&nbsp;(291)</li>
+	<li><a href="http://www.r-bloggers.com/2013/02/">February 2013</a>&nbsp;(307)</li>
+	<li><a href="http://www.r-bloggers.com/2013/01/">January 2013</a>&nbsp;(374)</li>
+	<li><a href="http://www.r-bloggers.com/2012/12/">December 2012</a>&nbsp;(314)</li>
+	<li><a href="http://www.r-bloggers.com/2012/11/">November 2012</a>&nbsp;(287)</li>
+	<li><a href="http://www.r-bloggers.com/2012/10/">October 2012</a>&nbsp;(317)</li>
+	<li><a href="http://www.r-bloggers.com/2012/09/">September 2012</a>&nbsp;(278)</li>
+	<li><a href="http://www.r-bloggers.com/2012/08/">August 2012</a>&nbsp;(272)</li>
+	<li><a href="http://www.r-bloggers.com/2012/07/">July 2012</a>&nbsp;(259)</li>
+	<li><a href="http://www.r-bloggers.com/2012/06/">June 2012</a>&nbsp;(322)</li>
+	<li><a href="http://www.r-bloggers.com/2012/05/">May 2012</a>&nbsp;(292)</li>
+	<li><a href="http://www.r-bloggers.com/2012/04/">April 2012</a>&nbsp;(306)</li>
+	<li><a href="http://www.r-bloggers.com/2012/03/">March 2012</a>&nbsp;(318)</li>
+	<li><a href="http://www.r-bloggers.com/2012/02/">February 2012</a>&nbsp;(269)</li>
+	<li><a href="http://www.r-bloggers.com/2012/01/">January 2012</a>&nbsp;(299)</li>
+	<li><a href="http://www.r-bloggers.com/2011/12/">December 2011</a>&nbsp;(262)</li>
+	<li><a href="http://www.r-bloggers.com/2011/11/">November 2011</a>&nbsp;(277)</li>
+	<li><a href="http://www.r-bloggers.com/2011/10/">October 2011</a>&nbsp;(279)</li>
+	<li><a href="http://www.r-bloggers.com/2011/09/">September 2011</a>&nbsp;(185)</li>
+	<li><a href="http://www.r-bloggers.com/2011/08/">August 2011</a>&nbsp;(265)</li>
+	<li><a href="http://www.r-bloggers.com/2011/07/">July 2011</a>&nbsp;(230)</li>
+	<li><a href="http://www.r-bloggers.com/2011/06/">June 2011</a>&nbsp;(237)</li>
+	<li><a href="http://www.r-bloggers.com/2011/05/">May 2011</a>&nbsp;(338)</li>
+	<li><a href="http://www.r-bloggers.com/2011/04/">April 2011</a>&nbsp;(325)</li>
+	<li><a href="http://www.r-bloggers.com/2011/03/">March 2011</a>&nbsp;(288)</li>
+	<li><a href="http://www.r-bloggers.com/2011/02/">February 2011</a>&nbsp;(251)</li>
+	<li><a href="http://www.r-bloggers.com/2011/01/">January 2011</a>&nbsp;(257)</li>
+	<li><a href="http://www.r-bloggers.com/2010/12/">December 2010</a>&nbsp;(240)</li>
+	<li><a href="http://www.r-bloggers.com/2010/11/">November 2010</a>&nbsp;(210)</li>
+	<li><a href="http://www.r-bloggers.com/2010/10/">October 2010</a>&nbsp;(263)</li>
+	<li><a href="http://www.r-bloggers.com/2010/09/">September 2010</a>&nbsp;(228)</li>
+	<li><a href="http://www.r-bloggers.com/2010/08/">August 2010</a>&nbsp;(237)</li>
+	<li><a href="http://www.r-bloggers.com/2010/07/">July 2010</a>&nbsp;(205)</li>
+	<li><a href="http://www.r-bloggers.com/2010/06/">June 2010</a>&nbsp;(203)</li>
+	<li><a href="http://www.r-bloggers.com/2010/05/">May 2010</a>&nbsp;(183)</li>
+	<li><a href="http://www.r-bloggers.com/2010/04/">April 2010</a>&nbsp;(176)</li>
+	<li><a href="http://www.r-bloggers.com/2010/03/">March 2010</a>&nbsp;(201)</li>
+	<li><a href="http://www.r-bloggers.com/2010/02/">February 2010</a>&nbsp;(159)</li>
+	<li><a href="http://www.r-bloggers.com/2010/01/">January 2010</a>&nbsp;(151)</li>
+	<li><a href="http://www.r-bloggers.com/2009/12/">December 2009</a>&nbsp;(147)</li>
+	<li><a href="http://www.r-bloggers.com/2009/11/">November 2009</a>&nbsp;(78)</li>
+	<li><a href="http://www.r-bloggers.com/2009/10/">October 2009</a>&nbsp;(107)</li>
+	<li><a href="http://www.r-bloggers.com/2009/09/">September 2009</a>&nbsp;(93)</li>
+	<li><a href="http://www.r-bloggers.com/2009/08/">August 2009</a>&nbsp;(86)</li>
+	<li><a href="http://www.r-bloggers.com/2009/07/">July 2009</a>&nbsp;(90)</li>
+	<li><a href="http://www.r-bloggers.com/2009/06/">June 2009</a>&nbsp;(70)</li>
+	<li><a href="http://www.r-bloggers.com/2009/05/">May 2009</a>&nbsp;(44)</li>
+	<li><a href="http://www.r-bloggers.com/2009/04/">April 2009</a>&nbsp;(52)</li>
+	<li><a href="http://www.r-bloggers.com/2009/03/">March 2009</a>&nbsp;(56)</li>
+	<li><a href="http://www.r-bloggers.com/2009/02/">February 2009</a>&nbsp;(42)</li>
+	<li><a href="http://www.r-bloggers.com/2009/01/">January 2009</a>&nbsp;(47)</li>
+	<li><a href="http://www.r-bloggers.com/2008/12/">December 2008</a>&nbsp;(18)</li>
+	<li><a href="http://www.r-bloggers.com/2008/11/">November 2008</a>&nbsp;(19)</li>
+	<li><a href="http://www.r-bloggers.com/2008/10/">October 2008</a>&nbsp;(13)</li>
+	<li><a href="http://www.r-bloggers.com/2008/09/">September 2008</a>&nbsp;(10)</li>
+	<li><a href="http://www.r-bloggers.com/2008/08/">August 2008</a>&nbsp;(13)</li>
+	<li><a href="http://www.r-bloggers.com/2008/07/">July 2008</a>&nbsp;(8)</li>
+	<li><a href="http://www.r-bloggers.com/2008/06/">June 2008</a>&nbsp;(13)</li>
+	<li><a href="http://www.r-bloggers.com/2008/05/">May 2008</a>&nbsp;(11)</li>
+	<li><a href="http://www.r-bloggers.com/2008/04/">April 2008</a>&nbsp;(5)</li>
+	<li><a href="http://www.r-bloggers.com/2008/03/">March 2008</a>&nbsp;(9)</li>
+	<li><a href="http://www.r-bloggers.com/2008/02/">February 2008</a>&nbsp;(9)</li>
+	<li><a href="http://www.r-bloggers.com/2008/01/">January 2008</a>&nbsp;(12)</li>
+	<li><a href="http://www.r-bloggers.com/2007/12/">December 2007</a>&nbsp;(3)</li>
+	<li><a href="http://www.r-bloggers.com/2007/11/">November 2007</a>&nbsp;(7)</li>
+	<li><a href="http://www.r-bloggers.com/2007/10/">October 2007</a>&nbsp;(12)</li>
+	<li><a href="http://www.r-bloggers.com/2007/09/">September 2007</a>&nbsp;(9)</li>
+	<li><a href="http://www.r-bloggers.com/2007/08/">August 2007</a>&nbsp;(27)</li>
+	<li><a href="http://www.r-bloggers.com/2007/07/">July 2007</a>&nbsp;(12)</li>
+	<li><a href="http://www.r-bloggers.com/2007/06/">June 2007</a>&nbsp;(3)</li>
+	<li><a href="http://www.r-bloggers.com/2007/05/">May 2007</a>&nbsp;(6)</li>
+	<li><a href="http://www.r-bloggers.com/2007/04/">April 2007</a>&nbsp;(1)</li>
+	<li><a href="http://www.r-bloggers.com/2007/03/">March 2007</a>&nbsp;(6)</li>
+	<li><a href="http://www.r-bloggers.com/2007/02/">February 2007</a>&nbsp;(4)</li>
+	<li><a href="http://www.r-bloggers.com/2007/01/">January 2007</a>&nbsp;(1)</li>
+	<li><a href="http://www.r-bloggers.com/2006/11/">November 2006</a>&nbsp;(1)</li>
+	<li><a href="http://www.r-bloggers.com/2006/10/">October 2006</a>&nbsp;(5)</li>
+	<li><a href="http://www.r-bloggers.com/2006/08/">August 2006</a>&nbsp;(6)</li>
+	<li><a href="http://www.r-bloggers.com/2006/07/">July 2006</a>&nbsp;(2)</li>
+	<li><a href="http://www.r-bloggers.com/2006/06/">June 2006</a>&nbsp;(2)</li>
+	<li><a href="http://www.r-bloggers.com/2006/05/">May 2006</a>&nbsp;(5)</li>
+	<li><a href="http://www.r-bloggers.com/2006/04/">April 2006</a>&nbsp;(2)</li>
+	<li><a href="http://www.r-bloggers.com/2006/03/">March 2006</a>&nbsp;(2)</li>
+	<li><a href="http://www.r-bloggers.com/2006/02/">February 2006</a>&nbsp;(7)</li>
+	<li><a href="http://www.r-bloggers.com/2006/01/">January 2006</a>&nbsp;(1)</li>
+	<li><a href="http://www.r-bloggers.com/2005/10/">October 2005</a>&nbsp;(2)</li>
+	<li><a href="http://www.r-bloggers.com/2005/09/">September 2005</a>&nbsp;(5)</li>
+	<li><a href="http://www.r-bloggers.com/2005/05/">May 2005</a>&nbsp;(1)</li>
+		</ul>
+</div>    </div>
+<!-- end sidebar -->	<div id="leftcontent">
+	
+		
+
+	<div id="post-93399" class="post-93399 post type-post status-publish format-standard hentry category-r-bloggers">
+						<h2><a href="http://www.r-bloggers.com/jasp/" title="Permalink to JASP" rel="bookmark">JASP</a></h2>
+				<div class="meta"><div class="date">March 3, 2015</div>By <a href="http://www.r-bloggers.com/author/shige/" title="Posts by Shige" rel="author">Shige</a></div><div class="entry"><p class="excerpt">JASP
+ is an interesting project. It is based on R with additional facilities 
+and functions such as automatic table generation. There appears to be an
+ R package that provide that functions directly to R users. Very worth 
+checking out.</p><p><a href="http://www.r-bloggers.com/jasp/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+	<div id="twocol">	
+
+	<div id="post-93391" class="post-93391 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost1">
+						<h2><a href="http://www.r-bloggers.com/a-linear-congruential-generator-lcg-in-r/" title="Permalink to A Linear Congruential Generator (LCG) in R" rel="bookmark">A Linear Congruential Generator (LCG) in R</a></h2>
+				<div class="meta"><div class="date">March 3, 2015</div>By <a href="http://www.r-bloggers.com/author/nicole-radziwill/" title="Posts by Nicole Radziwill" rel="author">Nicole Radziwill</a></div><div class="entry"><a href="http://www.r-bloggers.com/a-linear-congruential-generator-lcg-in-r/" title="A Linear Congruential Generator (LCG) in R"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/lcg.jpg" class="alignleft" alt="A Linear Congruential Generator (LCG) in R" height="110" width="209"></a>
+
+<p class="excerpt">In my simulation classes, we talk about how to 
+generate random numbers. One of the techniques we talk about is the 
+Linear Congruential Generator (LCG). Starting with a seed,...</p><p><a href="http://www.r-bloggers.com/a-linear-congruential-generator-lcg-in-r/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93407" class="post-93407 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost2">
+						<h2><a href="http://www.r-bloggers.com/plotly-graphs-with-dominos-new-r-notebook/" title="Permalink to Plotly Graphs with Domino’s New R Notebook" rel="bookmark">Plotly Graphs with Domino’s New R Notebook</a></h2>
+				<div class="meta"><div class="date">March 3, 2015</div>By <a href="http://www.r-bloggers.com/author/joseph-rickert/" title="Posts by Joseph Rickert" rel="author">Joseph Rickert</a></div><div class="entry"><a href="http://www.r-bloggers.com/plotly-graphs-with-dominos-new-r-notebook/" title="Plotly Graphs with Domino’s New R Notebook"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/5bYoZlk.gif" class="alignleft" alt="Plotly Graphs with Domino’s New R Notebook" height="110" width="209"></a>
+
+<p class="excerpt">by Matt Sundquist co-founder of Plotly Domino's new R
+ Notebook and Plotly's R API let you code, make interactive R and 
+ggplot2 graphs, and collaborate entirely online. Here is...</p><p><a href="http://www.r-bloggers.com/plotly-graphs-with-dominos-new-r-notebook/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93377" class="post-93377 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/google-summer-of-code-2015/" title="Permalink to Google Summer of Code 2015" rel="bookmark">Google Summer of Code 2015</a></h2>
+				<div class="meta"><div class="date">March 3, 2015</div>By <a href="http://www.r-bloggers.com/author/joshua-ulrich/" title="Posts by Joshua Ulrich" rel="author">Joshua Ulrich</a></div><div class="entry"><a href="http://www.r-bloggers.com/google-summer-of-code-2015/" title="Google Summer of Code 2015"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/gsoc2015-300x270.jpg" class="alignleft" alt="Google Summer of Code 2015" height="110" width="209"></a>
+
+<p class="excerpt">The R Project has once again been selected as 
+a&nbsp;mentoring organization&nbsp;for this year's&nbsp;Google Summer of
+ Code&nbsp;(GSoC). &nbsp;If you're not familiar with...</p><p><a href="http://www.r-bloggers.com/google-summer-of-code-2015/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93370" class="post-93370 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/next-kolner-r-user-meeting-friday-6-march-2014/" title="Permalink to Next Kölner R User Meeting: Friday, 6 March 2014" rel="bookmark">Next Kölner R User Meeting: Friday, 6 March 2014</a></h2>
+				<div class="meta"><div class="date">March 3, 2015</div>By <a href="http://www.r-bloggers.com/author/markus-gesmann/" title="Posts by Markus Gesmann" rel="author">Markus Gesmann</a></div><div class="entry"><a href="http://www.r-bloggers.com/next-kolner-r-user-meeting-friday-6-march-2014/" title="Next Kölner R User Meeting: Friday, 6 March 2014"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/global_114619252.png" class="alignleft" alt="Next Kölner R User Meeting: Friday, 6 March 2014" height="110" width="209"></a>
+
+<p class="excerpt">The next Cologne R user group meeting is scheduled 
+for this Friday, 6 March 2014 and we have an exciting agenda with two 
+talks, followed...</p><p><a href="http://www.r-bloggers.com/next-kolner-r-user-meeting-friday-6-march-2014/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93394" class="post-93394 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/supervised-classification-logistic-and-multinomial/" title="Permalink to Supervised Classification, Logistic and Multinomial" rel="bookmark">Supervised Classification, Logistic and Multinomial</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/arthur-charpentier/" title="Posts by arthur charpentier" rel="author">arthur charpentier</a></div><div class="entry"><a href="http://www.r-bloggers.com/supervised-classification-logistic-and-multinomial/" title="Supervised Classification, Logistic and Multinomial"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/binom.png" class="alignleft" alt="Supervised Classification, Logistic and Multinomial" height="110" width="209"></a>
+
+<p class="excerpt">We will start, in our Data Science course,&nbsp; to 
+discuss classification techniques (in the context of supervised models).
+ Consider the following case, with 10 points, and two classes (red...</p><p><a href="http://www.r-bloggers.com/supervised-classification-logistic-and-multinomial/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93357" class="post-93357 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/scheduler-receives-big-update/" title="Permalink to scheduleR receives big update" rel="bookmark">scheduleR receives big update</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/fishyoperations/" title="Posts by FishyOperations" rel="author">FishyOperations</a></div><div class="entry"><a href="http://www.r-bloggers.com/scheduler-receives-big-update/" title="scheduleR receives big update"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/mh1Yeyw.png" class="alignleft" alt="scheduleR receives big update" height="110" width="209"></a>
+
+<p class="excerpt">For the newcomers; scheduleR is a framework to 
+deploy/schedule R tasks, reports and Shiny apps. The tool has an 
+integrated logging and notification system to ease the maintenance...</p><p><a href="http://www.r-bloggers.com/scheduler-receives-big-update/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93350" class="post-93350 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/computerworlds-r-for-beginners-hands-on-guide/" title="Permalink to ComputerWorld’s R for Beginners Hands-On Guide" rel="bookmark">ComputerWorld’s R for Beginners Hands-On Guide</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/david-smith/" title="Posts by David Smith" rel="author">David Smith</a></div><div class="entry"><p class="excerpt">Computerworld's
+ Sharon Machlis has done a great service for the R community — and R 
+especially novices — by creating the on-line Beginner's Guide to R. You 
+can read...</p><p><a href="http://www.r-bloggers.com/computerworlds-r-for-beginners-hands-on-guide/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93344" class="post-93344 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/at-the-aps-observer-a-profile-of-jasp/" title="Permalink to At the APS Observer: a profile of JASP" rel="bookmark">At the APS Observer: a profile of JASP</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/richard-morey/" title="Posts by Richard Morey" rel="author">Richard Morey</a></div><div class="entry"><p class="excerpt">The
+ APS Observer has just published a profile of JASP, a graphical user 
+interface designed to make statistics easier. It includes Bayesian 
+procedures by means of the R and...</p><p><a href="http://www.r-bloggers.com/at-the-aps-observer-a-profile-of-jasp/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93336" class="post-93336 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/experiments-in-time-series-clustering/" title="Permalink to Experiments in Time Series Clustering" rel="bookmark">Experiments in Time Series Clustering</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/klr/" title="Posts by klr" rel="author">klr</a></div><div class="entry"><p class="excerpt">Last
+ night I spotted this tweet about the R package TSclust.  Thank you 
+Pablo and Jose for #TSclust - time series clustering package in #rstats !
+ http://t.co/GBQtQnQ8Lr— Pasha...</p><p><a href="http://www.r-bloggers.com/experiments-in-time-series-clustering/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93338" class="post-93338 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/so-what-can-text-analysis-do-for-you/" title="Permalink to So What Can Text Analysis Do for You?" rel="bookmark">So What Can Text Analysis Do for You?</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/tony-hirst/" title="Posts by Tony Hirst" rel="author">Tony Hirst</a></div><div class="entry"><a href="http://www.r-bloggers.com/so-what-can-text-analysis-do-for-you/" title="So What Can Text Analysis Do for You?"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/concordance.png" class="alignleft" alt="So What Can Text Analysis Do for You?" height="110" width="209"></a>
+
+<p class="excerpt">Despite believing we can treat anything we can 
+represent in digital form as “data”, I’m still pretty flakey on 
+understanding what sorts of analysis we can easily do with...</p><p><a href="http://www.r-bloggers.com/so-what-can-text-analysis-do-for-you/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93304" class="post-93304 post type-post status-publish format-standard hentry category-r-guest-posts twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/electric-power-system-simulations-using-r/" title="Permalink to Electric Power System simulations using R" rel="bookmark">Electric Power System simulations using R</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/rlover/" title="Posts by Tal Galili" rel="author">Tal Galili</a></div><div class="entry"><a href="http://www.r-bloggers.com/electric-power-system-simulations-using-r/" title="Electric Power System simulations using R"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/pflow-300x168.png" class="alignleft" alt="Electric Power System simulations using R" height="110" width="209"></a>
+
+<p class="excerpt">This is a guest post by&nbsp;Ben Ubah. The field of 
+electric power systems engineering relies heavily on computer 
+simulations for analysis because of its nature. These computer 
+simulations aid...</p><p><a href="http://www.r-bloggers.com/electric-power-system-simulations-using-r/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93333" class="post-93333 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/silhouettes/" title="Permalink to Silhouettes" rel="bookmark">Silhouettes</a></h2>
+				<div class="meta"><div class="date">March 2, 2015</div>By <a href="http://www.r-bloggers.com/author/aschinchon/" title="Posts by aschinchon" rel="author">aschinchon</a></div><div class="entry"><a href="http://www.r-bloggers.com/silhouettes/" title="Silhouettes"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/states-in-two-words-v1.jpg" class="alignleft" alt="Silhouettes" height="110" width="209"></a>
+
+<p class="excerpt">Romeo, Juliet, balcony in silhouette, makin o’s with 
+her cigarette, it’s juliet (Flapper Girl, The Lumineers) Two weeks ago I
+ published this post&nbsp;for which&nbsp;designed&nbsp;two different 
+visualizations. At the end,...</p><p><a href="http://www.r-bloggers.com/silhouettes/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93291" class="post-93291 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/r-markdown-tutorial-by-rstudio-and-datacamp/" title="Permalink to R Markdown Tutorial by RStudio and DataCamp" rel="bookmark">R Markdown Tutorial by RStudio and DataCamp</a></h2>
+				<div class="meta"><div class="date">March 1, 2015</div>By <a href="http://www.r-bloggers.com/author/datacamp/" title="Posts by DataCamp" rel="author">DataCamp</a></div><div class="entry"><a href="http://www.r-bloggers.com/r-markdown-tutorial-by-rstudio-and-datacamp/" title="R Markdown Tutorial by RStudio and DataCamp"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/R-Markdown-Launch-e1425238469935.png" class="alignleft" alt="R Markdown Tutorial by RStudio and DataCamp" height="110" width="209"></a>
+
+<p class="excerpt">In collaboration with Garrett Grolemund, RStudio’s 
+teaching specialist, DataCamp has developed a new interactive course to 
+facilitate reproducible reporting of your R analyses. R Markdown enables
+ you to generate...</p><p><a href="http://www.r-bloggers.com/r-markdown-tutorial-by-rstudio-and-datacamp/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93320" class="post-93320 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/using-tables-for-statistics-on-large-vectors/" title="Permalink to Using Tables for Statistics on Large Vectors" rel="bookmark">Using Tables for Statistics on Large Vectors</a></h2>
+				<div class="meta"><div class="date">March 1, 2015</div>By <a href="http://www.r-bloggers.com/author/strictlystat/" title="Posts by strictlystat" rel="author">strictlystat</a></div><div class="entry"><a href="http://www.r-bloggers.com/using-tables-for-statistics-on-large-vectors/" title="Using Tables for Statistics on Large Vectors"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/latex.png" class="alignleft" alt="Using Tables for Statistics on Large Vectors" height="110" width="209"></a>
+
+<p class="excerpt">This is the first post I’ve written in a while. I 
+have been somewhat radio silent on social media, but I’m jumping back 
+in. Now, I work with brain...</p><p><a href="http://www.r-bloggers.com/using-tables-for-statistics-on-large-vectors/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93283" class="post-93283 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/drat-0-0-2-improved-support-for-lightweight-r-repositories/" title="Permalink to drat 0.0.2: Improved Support for Lightweight R Repositories" rel="bookmark">drat 0.0.2: Improved Support for Lightweight R Repositories</a></h2>
+				<div class="meta"><div class="date">March 1, 2015</div>By <a href="http://www.r-bloggers.com/author/thinking-inside-the-box/" title="Posts by Thinking inside the box" rel="author">Thinking inside the box</a></div><div class="entry"><p class="excerpt">
+ 
+A few weeks ago we introduced the drat package. Its name stands for drat
+ R Archive Template, and it helps with easy-to-create and easy-to-use 
+repositories for R packages....</p><p><a href="http://www.r-bloggers.com/drat-0-0-2-improved-support-for-lightweight-r-repositories/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93273" class="post-93273 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/should-i-use-premium-diesel-setup/" title="Permalink to Should I use premium Diesel? Setup" rel="bookmark">Should I use premium Diesel? Setup</a></h2>
+				<div class="meta"><div class="date">March 1, 2015</div>By <a href="http://www.r-bloggers.com/author/wingfeet/" title="Posts by Wingfeet" rel="author">Wingfeet</a></div><div class="entry"><a href="http://www.r-bloggers.com/should-i-use-premium-diesel-setup/" title="Should I use premium Diesel? Setup"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/diesdens.png" class="alignleft" alt="Should I use premium Diesel? Setup" height="110" width="209"></a>
+
+<p class="excerpt">Since I drive quite a lot, I have some interest in 
+getting the most km out every Euro spent on fuel. One thing to change is
+ the fuel. The...</p><p><a href="http://www.r-bloggers.com/should-i-use-premium-diesel-setup/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93251" class="post-93251 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/dose-an-rbioconductor-package-for-disease-ontology-semantic-and-enrichment-analysis/" title="Permalink to DOSE: an R/Bioconductor package for Disease Ontology Semantic and Enrichment analysis" rel="bookmark">DOSE: an R/Bioconductor package for Disease Ontology Semantic and Enrichment analysis</a></h2>
+				<div class="meta"><div class="date">February 28, 2015</div>By <a href="http://www.r-bloggers.com/author/ygc/" title="Posts by ygc" rel="author">ygc</a></div><div class="entry"><a href="http://www.r-bloggers.com/dose-an-rbioconductor-package-for-disease-ontology-semantic-and-enrichment-analysis/" title="DOSE: an R/Bioconductor package for Disease Ontology Semantic and Enrichment analysis"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/Screenshot-2015-03-01-12.html" class="alignleft" alt="DOSE: an R/Bioconductor package for Disease Ontology Semantic and Enrichment analysis" height="110" width="209"></a>
+
+<p class="excerpt">My R/Bioconductor package, DOSE, published in 
+Bioinformatics.
+
+
+
+Summary: Disease ontology (DO) annotates human genes in the context of 
+disease. DO is important annotation in translating molecular findings 
+from high-throughput data...</p><p><a href="http://www.r-bloggers.com/dose-an-rbioconductor-package-for-disease-ontology-semantic-and-enrichment-analysis/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93236" class="post-93236 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/book-review-mastering-scientific-computing-with-r/" title="Permalink to Book Review:  Mastering Scientific Computing with R" rel="bookmark">Book Review:  Mastering Scientific Computing with R</a></h2>
+				<div class="meta"><div class="date">February 28, 2015</div>By <a href="http://www.r-bloggers.com/author/arnold-salvacion/" title="Posts by Arnold Salvacion" rel="author">Arnold Salvacion</a></div><div class="entry"><a href="http://www.r-bloggers.com/book-review-mastering-scientific-computing-with-r/" title="Book Review:  Mastering Scientific Computing with R"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/3528_Mastering%2520Scientific%2520Computing%2520with%2520R.jpg" class="alignleft" alt="Book Review:  Mastering Scientific Computing with R" height="110" width="209"></a>
+
+<p class="excerpt">PACKT marketing guys again contact me to review their
+ new book Mastering Scientific Computing with R.&nbsp; The book 432 
+pages (including covers) book is consist of 10 chapters which...</p><p><a href="http://www.r-bloggers.com/book-review-mastering-scientific-computing-with-r/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93238" class="post-93238 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/one-weird-trick-to-compile-multipartite-dynamic-documents-with-rmarkdown/" title="Permalink to One weird trick to compile multipartite dynamic documents with Rmarkdown" rel="bookmark">One weird trick to compile multipartite dynamic documents with Rmarkdown</a></h2>
+				<div class="meta"><div class="date">February 28, 2015</div>By <a href="http://www.r-bloggers.com/author/biochemistries/" title="Posts by biochemistries" rel="author">biochemistries</a></div><div class="entry"><a href="http://www.r-bloggers.com/one-weird-trick-to-compile-multipartite-dynamic-documents-with-rmarkdown/" title="One weird trick to compile multipartite dynamic documents with Rmarkdown"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/tumblr_nkiba7Iu081styhl4o2_r1_1280.png" class="alignleft" alt="One weird trick to compile multipartite dynamic documents with Rmarkdown" height="110" width="209"></a>
+
+<p class="excerpt">
+
+This afternoon I stumbled across this one weird trick an undocumented 
+part of the YAML headers that get processed when you click the ‘knit’ 
+button in...</p><p><a href="http://www.r-bloggers.com/one-weird-trick-to-compile-multipartite-dynamic-documents-with-rmarkdown/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93221" class="post-93221 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/playing-around-with-rstats-twitter-data/" title="Permalink to Playing around with #rstats twitter data" rel="bookmark">Playing around with #rstats twitter data</a></h2>
+				<div class="meta"><div class="date">February 28, 2015</div>By <a href="http://www.r-bloggers.com/author/tony-fischettigmail-com/" title="Posts by tony.fischetti@gmail.com" rel="author">tony.fischetti@gmail.com<script cf-hash="f9e31" type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script></a></div><div class="entry"><a href="http://www.r-bloggers.com/playing-around-with-rstats-twitter-data/" title="Playing around with #rstats twitter data"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/facebook.png" class="alignleft" alt="Playing around with #rstats twitter data" height="110" width="209"></a>
+
+<p class="excerpt">As a bit of weekend fun, I decided to briefly look 
+into the #rstats twitter data that Stephen Turner collected and made 
+available (thanks!). Essentially, this data set contains...</p><p><a href="http://www.r-bloggers.com/playing-around-with-rstats-twitter-data/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93229" class="post-93229 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/tools-in-tandem-sql-and-ggplot-but-is-it-really-r/" title="Permalink to Tools in Tandem – SQL and ggplot. But is it Really R?" rel="bookmark">Tools in Tandem – SQL and ggplot. But is it Really R?</a></h2>
+				<div class="meta"><div class="date">February 28, 2015</div>By <a href="http://www.r-bloggers.com/author/tony-hirst/" title="Posts by Tony Hirst" rel="author">Tony Hirst</a></div><div class="entry"><a href="http://www.r-bloggers.com/tools-in-tandem-sql-and-ggplot-but-is-it-really-r/" title="Tools in Tandem – SQL and ggplot. But is it Really R?"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/lapsled_demo.png" class="alignleft" alt="Tools in Tandem – SQL and ggplot. But is it Really R?" height="110" width="209"></a>
+
+<p class="excerpt">Increasingly I find that I have fallen into using 
+not-really-R whilst playing around with Formula One stats data. Instead,
+ I seem to be using a hybrid of SQL to...</p><p><a href="http://www.r-bloggers.com/tools-in-tandem-sql-and-ggplot-but-is-it-really-r/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93231" class="post-93231 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/scalable-machine-learning-for-big-data-using-r-and-h2o/" title="Permalink to Scalable Machine Learning for Big Data Using R and H2O" rel="bookmark">Scalable Machine Learning for Big Data Using R and H2O</a></h2>
+				<div class="meta"><div class="date">February 28, 2015</div>By <a href="http://www.r-bloggers.com/author/daniel-emaasit/" title="Posts by Daniel Emaasit" rel="author">Daniel Emaasit</a></div><div class="entry"><p class="excerpt">Part
+ I Part II H2O is an open source parallel processing engine for machine 
+learning on Big Data. This prediction engine is designed by, h20, a 
+Mountain View-based startup...</p><p><a href="http://www.r-bloggers.com/scalable-machine-learning-for-big-data-using-r-and-h2o/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93223" class="post-93223 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/rcppeigen-0-3-2-4-0/" title="Permalink to RcppEigen 0.3.2.4.0" rel="bookmark">RcppEigen 0.3.2.4.0</a></h2>
+				<div class="meta"><div class="date">February 28, 2015</div>By <a href="http://www.r-bloggers.com/author/thinking-inside-the-box/" title="Posts by Thinking inside the box" rel="author">Thinking inside the box</a></div><div class="entry"><p class="excerpt">
+ 
+A new release of RcppEigen is now on CRAN and in Debian. It synchronizes
+ the Eigen code with the 3.2.4 upstream release, and updates the 
+RcppEigen.package.skeleton() package creation...</p><p><a href="http://www.r-bloggers.com/rcppeigen-0-3-2-4-0/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93225" class="post-93225 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/john-snow-and-google-maps/" title="Permalink to John Snow, and Google Maps" rel="bookmark">John Snow, and Google Maps</a></h2>
+				<div class="meta"><div class="date">February 27, 2015</div>By <a href="http://www.r-bloggers.com/author/arthur-charpentier/" title="Posts by arthur charpentier" rel="author">arthur charpentier</a></div><div class="entry"><a href="http://www.r-bloggers.com/john-snow-and-google-maps/" title="John Snow, and Google Maps"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/Rplot-18.png" class="alignleft" alt="John Snow, and Google Maps" height="110" width="209"></a>
+
+<p class="excerpt">In my previous post, I discussed how to use 
+OpenStreetMaps (and standard plotting functions of R) to visualize John 
+Snow’s dataset. But it is also possible to use Google...</p><p><a href="http://www.r-bloggers.com/john-snow-and-google-maps/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93227" class="post-93227 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/john-snow-and-openstreetmap/" title="Permalink to John Snow, and OpenStreetMap" rel="bookmark">John Snow, and OpenStreetMap</a></h2>
+				<div class="meta"><div class="date">February 27, 2015</div>By <a href="http://www.r-bloggers.com/author/arthur-charpentier/" title="Posts by arthur charpentier" rel="author">arthur charpentier</a></div><div class="entry"><a href="http://www.r-bloggers.com/john-snow-and-openstreetmap/" title="John Snow, and OpenStreetMap"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/johnsnowillustration.png" class="alignleft" alt="John Snow, and OpenStreetMap" height="110" width="209"></a>
+
+<p class="excerpt">While I was working for a training on data 
+visualization, I wanted to get a nice visual for John Snow’s cholera 
+dataset. This dataset can actually be found in...</p><p><a href="http://www.r-bloggers.com/john-snow-and-openstreetmap/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93198" class="post-93198 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/data-sciencestatisticsr-google/" title="Permalink to Data Science/Statistics/R @Google" rel="bookmark">Data Science/Statistics/R @Google</a></h2>
+				<div class="meta"><div class="date">February 27, 2015</div>By <a href="http://www.r-bloggers.com/author/szilard-pafka/" title="Posts by Szilard Pafka" rel="author">Szilard Pafka</a></div><div class="entry"><p class="excerpt">This meetup will be hosted by Google and we’ll have Peter Lipman and Pete Meyer...</p><p><a href="http://www.r-bloggers.com/data-sciencestatisticsr-google/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93179" class="post-93179 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost3">
+						<h2><a href="http://www.r-bloggers.com/career-nba-the-road-least-traveled/" title="Permalink to Career NBA: The Road Least Traveled" rel="bookmark">Career NBA: The Road Least Traveled</a></h2>
+				<div class="meta"><div class="date">February 27, 2015</div>By <a href="http://www.r-bloggers.com/author/patrick-rhodes/" title="Posts by Patrick Rhodes" rel="author">Patrick Rhodes</a></div><div class="entry"><a href="http://www.r-bloggers.com/career-nba-the-road-least-traveled/" title="Career NBA: The Road Least Traveled"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/nba_article_logo_FINAL_280.png" class="alignleft" alt="Career NBA: The Road Least Traveled" height="110" width="209"></a>
+
+<p class="excerpt">The bell rings - time to go to practice.&nbsp;Jarnell
+ Stokes&nbsp;heads over to the gym, changes, and starts warming up with 
+his teammates. It's his Junior year in high school....</p><p><a href="http://www.r-bloggers.com/career-nba-the-road-least-traveled/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+		
+
+	<div id="post-93182" class="post-93182 post type-post status-publish format-standard hentry category-r-bloggers twopost twopost4">
+						<h2><a href="http://www.r-bloggers.com/does-balancing-classes-improve-classifier-performance/" title="Permalink to Does Balancing Classes Improve Classifier Performance?" rel="bookmark">Does Balancing Classes Improve Classifier Performance?</a></h2>
+				<div class="meta"><div class="date">February 27, 2015</div>By <a href="http://www.r-bloggers.com/author/nina-zumel/" title="Posts by Nina Zumel" rel="author">Nina Zumel</a></div><div class="entry"><a href="http://www.r-bloggers.com/does-balancing-classes-improve-classifier-performance/" title="Does Balancing Classes Improve Classifier Performance?"><img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/NewImage.png" class="alignleft" alt="Does Balancing Classes Improve Classifier Performance?" height="110" width="209"></a>
+
+<p class="excerpt">It’s a folk theorem I sometimes hear from colleagues 
+and clients: that you must balance the class prevalence before training a
+ classifier. Certainly, I believe that classification tends to...</p><p><a href="http://www.r-bloggers.com/does-balancing-classes-improve-classifier-performance/" class="more-link">Read more »</a></p></div>
+
+	</div><!-- #post-## -->
+
+
+
+   	
+       
+</div><div class="pagination">
+<span class="pages">Page 1 of 584</span><span class="current">1</span><a href="http://www.r-bloggers.com/page/2/" class="page" title="2">2</a><a href="http://www.r-bloggers.com/page/3/" class="page" title="3">3</a><a href="http://www.r-bloggers.com/page/4/" class="page" title="4">4</a><a href="http://www.r-bloggers.com/page/5/" class="page" title="5">5</a><span class="extend">...</span><a href="http://www.r-bloggers.com/page/584/" class="last" title="Last Page">584</a><a href="http://www.r-bloggers.com/page/2/">»</a></div>
+	</div>
+    <!-- begin second sidebar -->
+    <div id="secondsidebar">
+
+		
+		<div class="side-widget"><h2>Top 3 Posts from the past 2 days</h2><ul>				<li>
+										<a href="http://www.r-bloggers.com/scheduler-receives-big-update/" class="bump-view" data-bump-view="tp">
+						scheduleR receives big update					</a>
+									</li>
+							<li>
+										<a href="http://www.r-bloggers.com/scatterplots/" class="bump-view" data-bump-view="tp">
+						Scatterplots					</a>
+									</li>
+							<li>
+										<a href="http://www.r-bloggers.com/so-what-can-text-analysis-do-for-you/" class="bump-view" data-bump-view="tp">
+						So What Can Text Analysis Do for You?					</a>
+									</li>
+			</ul></div><div class="side-widget"><form method="get" id="searchform" action="http://www.r-bloggers.com/">
+<div>
+<input class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == 'Search &amp; Hit Enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search &amp; Hit Enter';}" type="text">
+<input id="searchsubmit" type="hidden">
+</div>
+</form></div><div class="side-widget"><h2>Top 9 articles of the week</h2>
+<ol class="wppp_list">
+	<li><a href="http://www.r-bloggers.com/how-to-learn-r-a-flow-chart/" title="How to learn R: A flow chart">How to learn R: A flow chart</a></li>
+	<li><a href="http://www.r-bloggers.com/installing-r-packages/" title="Installing R packages">Installing R packages</a></li>
+	<li><a href="http://www.r-bloggers.com/visualization-series-insight-from-cleveland-and-tufte-on-plotting-numeric-data-by-groups/" title="Visualization series: Insight from Cleveland and Tufte on plotting numeric data by groups">Visualization series: Insight from Cleveland and Tufte on plotting numeric data by groups</a></li>
+	<li><a href="http://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/" title="In-depth introduction to machine learning in 15 hours of expert videos">In-depth introduction to machine learning in 15 hours of expert videos</a></li>
+	<li><a href="http://www.r-bloggers.com/using-apply-sapply-lapply-in-r/" title="Using apply, sapply, lapply in R">Using apply, sapply, lapply in R</a></li>
+	<li><a href="http://www.r-bloggers.com/scatterplots/" title="Scatterplots">Scatterplots</a></li>
+	<li><a href="http://www.r-bloggers.com/basics-of-histograms/" title="Basics of Histograms">Basics of Histograms</a></li>
+	<li><a href="http://www.r-bloggers.com/announcing-introduction-to-data-science-video-course/" title="Announcing: Introduction to Data Science video course">Announcing: Introduction to Data Science video course</a></li>
+	<li><a href="http://www.r-bloggers.com/john-snow-and-openstreetmap/" title="John Snow, and OpenStreetMap">John Snow, and OpenStreetMap</a></li>
+</ol>
+</div><div class="side-widget"><h2>Sponsors</h2>			<div class="textwidget"><a href="http://www.mango-solutions.com/" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/R-Bloggers-ad.jpg" alt="Mango solutions">
+</a>
+
+<br><hr>
+
+<a href="http://www.highstat.com/" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/highland_stat_banner_300_1251.jpg" alt="Zero Inflated Models and Generalized Linear Mixed Models with R">
+</a>
+
+
+<br><hr>
+
+<a href="http://www.quantide.com/" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/quantide4rbloggers.png" alt="Quantide: statistical consulting and training">
+</a>
+
+
+<br><hr>
+
+<a href="http://www.rstudio.org/" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/R-Bloggernoanima.png" alt="RStudio homepage">
+</a>
+
+<br><hr>
+
+<a href="http://www.revolutionanalytics.com/" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/Revolution-Analytics-Ad.png" alt="REvolution analytics">
+</a>
+
+
+
+
+<br><hr>
+
+<a href="http://www.eoda.de/en/" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/R-Bloggers-Logo-ohne-Rahmen.png" alt="http://www.eoda.de">
+</a>
+
+
+<br><hr>
+
+<a href="https://plot.ly/api/r/" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/plotly_ad_r_bloggers.jpg" alt="" title="Plotly">
+Plotly: collaborative, publication-quality graphing.
+</a>
+
+<br><hr>
+
+
+
+<a href="http://www.statisticsviews.com/view/index.html?utm_source=RBlogger&amp;utm_medium=banner&amp;utm_term=StatViews&amp;utm_content=StatViewsAd&amp;utm_campaign=webbanner" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/SVbanner300x125.jpg">
+</a>
+
+
+<br><hr>
+<a href="http://intuitics.com/?utm_source=rblg&amp;utm_medium=banner&amp;utm_campaign=v1" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/r-blg-ad-v1.png">
+</a>
+
+<br><hr>
+<a href="http://www.datacamp.com/?utm_source=R-bloggers&amp;utm_medium=Add&amp;utm_content=The%20r-blogger%20add&amp;utm_campaign=R-bloggers-add" rel="nofollow">
+<img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/DataCamp_banner_rbloggers.jpg">
+</a>
+
+<br><hr>
+<a href="http://rapporter.net/" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/rapporter-300x1252.png" alt="rapporter.net: An R based reporting and data analysis platform in the cloud" title="An R based reporting and data analysis platform in the cloud">
+</a>
+
+
+
+
+<br><hr>
+<a href="http://www.nycdatascience.com/" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/NYC_Data_Academy_RBLOGGER_bootcamp.png" alt="" title="">
+</a>
+
+
+
+<br><hr>
+<a href="http://www.dotplot.com/data_analysis_signup/" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/dotplot_banner300x150_1a.png" alt="" title="dotplot">
+</a>
+
+
+<br><hr>
+<a href="http://www.statworx.de/r-statistik/" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/STATWORX-R-Bloggers.png" alt="" title="STATWORX">
+</a>
+
+
+<br><hr>
+<a href="http://yottamine.com/try-yottamine-now" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/R-Blog_Speed.png" alt="" title="yottamine">
+</a>
+
+
+
+<br><hr>
+<a href="http://www.simplilearn.com/big-data-and-analytics/all-in-one-big-data-and-analytics-training?utm_source=R-bloggers&amp;utm_medium=affiliate-cpm&amp;utm_campaign=NC-OS-ONLIN-0229-16-05012015-rbloggers#/osl" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/Big-Data-and-Analytics-300x125.png" alt="" title="simplilearn.com">
+</a>
+
+
+
+<br><hr>
+<a href="https://intellipaat.com/all-courses/data-science/?utm_source=rblog&amp;utm_medium=banner&amp;utm_campaign=rblogger&amp;utm_term=datasci" rel="nofollow">
+    <img src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/datasciencermahout_300x125_1.jpg" alt="" title="intellipaat.com">
+</a>
+
+
+</div>
+		</div><div class="side-widget"><form method="get" id="searchform" action="http://www.r-bloggers.com/">
+<div>
+<input class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == 'Search &amp; Hit Enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search &amp; Hit Enter';}" type="text">
+<input id="searchsubmit" type="hidden">
+</div>
+</form></div><div class="side-widget"><h2>Contributing Blogs</h2>
+	<ul class="xoxo blogroll">
+<li><a href="http://biologyforfun.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://biologyforfun.wordpress.com', 'biologyforfun » R']);" rel="nofollow">biologyforfun » R</a></li>
+<li><a href="http://www.klittlepage.com/categories/r/atom.xml" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.klittlepage.com/categories/r/atom.xml', 'Category: r | Kelly Littlepage']);" rel="nofollow">Category: r | Kelly Littlepage</a></li>
+<li><a href="http://www.numbertheory.nl/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.numbertheory.nl', 'NumberTheory » R stuff']);" rel="nofollow">NumberTheory » R stuff</a></li>
+<li><a href="http://www.gagetheory.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.gagetheory.com', 'Gage Theory']);" rel="nofollow">Gage Theory</a></li>
+<li><a href="http://www.quantide.com/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.quantide.com/R', 'Quantide | R consulting | R training | R everywhere']);" rel="nofollow">Quantide | R consulting | R training | R everywhere</a></li>
+<li><a href="http://www.onthelambda.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.onthelambda.com/', 'On The Lambda']);" rel="nofollow">On The Lambda</a></li>
+<li><a href="http://r-group.mifit.ru/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://r-group.mifit.ru', 'peRm R group » peRm R group']);" rel="nofollow">peRm R group » peRm R group</a></li>
+<li><a href="http://www.win-vector.com/blog" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.win-vector.com/blog', 'Win-Vector Blog » R']);" rel="nofollow">Win-Vector Blog » R</a></li>
+<li><a href="http://mpastell.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://mpastell.com', 'mpastell.com » R']);" rel="nofollow">mpastell.com » R</a></li>
+<li><a href="http://watchdoglabs.org/blog" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://watchdoglabs.org/blog', 'Watchdog Labs » R-Blogger']);" rel="nofollow">Watchdog Labs » R-Blogger</a></li>
+<li><a href="http://bc.bojanorama.pl/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://bc.bojanorama.pl', 'Brokering Closure » R']);" rel="nofollow">Brokering Closure » R</a></li>
+<li><a href="http://tata-box-blog.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://tata-box-blog.blogspot.com/search/label/R', 'Computational Biology Blog in fasta format']);" rel="nofollow">Computational Biology Blog in fasta format</a></li>
+<li><a href="http://lejeunedirichlet.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://lejeunedirichlet.wordpress.com', 'Clustering epigenetic data using a Dirichlet process prior » R']);" rel="nofollow">Clustering epigenetic data using a Dirichlet process prior » R</a></li>
+<li><a href="http://planetflux.adamwilson.us/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://planetflux.adamwilson.us/search/label/R', 'PlanetFlux']);" rel="nofollow">PlanetFlux</a></li>
+<li><a href="http://rtutorialseries.blogspot.com/" rel="nofollow" title="&lt;p&gt;&lt;strong&gt;By &lt;a href=&quot;http://www.johnmquick.com&quot;&gt;John M Quick&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The R Tutorial Series provides a collection of user-friendly guides to researchers, students, and others who want to learn how to use R for their statistical analyses.&lt;/p&gt;">R Tutorial Series</a></li>
+<li><a href="http://www.geomorph.net/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.geomorph.net/', 'geomorph']);" rel="nofollow">geomorph</a></li>
+<li><a href="http://programming-r-pro-bro.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://programming-r-pro-bro.blogspot.com/search/label/R', 'We think therefore we R']);" rel="nofollow">We think therefore we R</a></li>
+<li><a href="http://rulesofreason.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://rulesofreason.wordpress.com', 'Rules of Reason » R']);" rel="nofollow">Rules of Reason » R</a></li>
+<li><a href="http://rocknrblog.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://rocknrblog.wordpress.com', 'Rock ‘n’ R » R']);" rel="nofollow">Rock ‘n’ R » R</a></li>
+<li><a href="http://www.paradigm4.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.paradigm4.com/', 'Paradigm4, Inc. » R']);" rel="nofollow">Paradigm4, Inc. » R</a></li>
+<li><a href="http://yusung.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://yusung.blogspot.com/search/label/R', 'Yu-Sung Su’s Blog']);" rel="nofollow">Yu-Sung Su’s Blog</a></li>
+<li><a href="http://www.brodrigues.co/atom.xml" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.brodrigues.co/atom.xml', 'Econometrics and Free Software']);" rel="nofollow">Econometrics and Free Software</a></li>
+<li><a href="http://xianblog.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://xianblog.wordpress.com', 'Xi’an’s Og » R']);" rel="nofollow" title="an attempt at bloggin, from scratch…">Xi’an’s Og » R</a></li>
+<li><a href="http://daspringate.github.io/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://daspringate.github.io/', 'What is this? David Springate’s personal blog :: R']);" rel="nofollow">What is this? David Springate’s personal blog :: R</a></li>
+<li><a href="http://davegiles.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://davegiles.blogspot.com/search/label/R', 'Econometrics Beat: Dave Giles’ Blog']);" rel="nofollow">Econometrics Beat: Dave Giles’ Blog</a></li>
+<li><a href="http://bridgewater.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://bridgewater.wordpress.com', 'Jesse S.A. Bridgewater » rstats']);" rel="nofollow">Jesse S.A. Bridgewater » rstats</a></li>
+<li><a href="http://justanotherdatablog.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://justanotherdatablog.blogspot.com/search/label/R', 'Just Another Data Blog']);" rel="nofollow">Just Another Data Blog</a></li>
+<li><a href="http://vasishth-statistics.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://vasishth-statistics.blogspot.com/search/label/R', 'Shravan Vasishth’s Slog (Statistics blog)']);" rel="nofollow">Shravan Vasishth’s Slog (Statistics blog)</a></li>
+<li><a href="http://stronginstruments.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://stronginstruments.com', 'TC » R']);" rel="nofollow">TC » R</a></li>
+<li><a href="http://d8aism.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://d8aism.com/', 'dataism » R']);" rel="nofollow">dataism » R</a></li>
+<li><a href="http://blog.fosstrading.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://blog.fosstrading.com/', 'FOSS Trading']);" rel="nofollow" title="Algorithmic Trading with Free Open Source Software">FOSS Trading</a></li>
+<li><a href="http://rtricks.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://rtricks.wordpress.com', '[R] tricks']);" rel="nofollow" title="Some tricks regarding [R]">[R] tricks</a></li>
+<li><a href="http://bmb-common.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://bmb-common.blogspot.com/search/label/R', 'BMB’s commonplace']);" rel="nofollow">BMB’s commonplace</a></li>
+<li><a href="http://rscriptsandtips.blogspot.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://rscriptsandtips.blogspot.com/', 'R by Emmanuel Jjunju']);" rel="nofollow">R by Emmanuel Jjunju</a></li>
+<li><a href="http://bio7.org/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://bio7.org/', 'bio7 (R)']);" rel="nofollow">bio7 (R)</a></li>
+<li><a href="http://bayesianbiologist.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://bayesianbiologist.com', 'bayesianbiologist » Rstats']);" rel="nofollow">bayesianbiologist » Rstats</a></li>
+<li><a href="http://www.lindonslog.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.lindonslog.com', 'Lindons Log » R']);" rel="nofollow">Lindons Log » R</a></li>
+<li><a href="http://www.jottr.org/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.jottr.org/search/label/R', 'jottR']);" rel="nofollow">jottR</a></li>
+<li><a href="http://chem-bla-ics.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://chem-bla-ics.blogspot.com/search/label/R', 'chem-bla-ics']);" rel="nofollow">chem-bla-ics</a></li>
+<li><a href="http://vijaybarve.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://vijaybarve.wordpress.com', 'Vijay Barve']);" rel="nofollow">Vijay Barve</a></li>
+<li><a href="http://drunks-and-lampposts.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://drunks-and-lampposts.com', 'Drunks&amp;Lampposts » R']);" rel="nofollow">Drunks&amp;Lampposts » R</a></li>
+<li><a href="http://chrisladroue.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://chrisladroue.com', 'Christophe Ladroue » R']);" rel="nofollow">Christophe Ladroue » R</a></li>
+<li><a href="http://www.decisionsciencenews.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.decisionsciencenews.com', 'Decision Science News » R']);" rel="nofollow" title="A website about decision research in Decision Science News is a website about decision research in Marketing, Psychology, Economics, Behavioral Economics, Finance, Medicine, Law, Management, Public Policy, Statistics, Computer Science &amp; Interaction Design">Decision Science News » R</a></li>
+<li><a href="http://www.michaelbommarito.com/blog" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.michaelbommarito.com/blog', 'Michael Bommarito » r']);" rel="nofollow">Michael Bommarito » r</a></li>
+<li><a href="http://thinkinator.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://thinkinator.com', 'Thinkinator » Rblog']);" rel="nofollow">Thinkinator » Rblog</a></li>
+<li><a href="http://starlinq.livejournal.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://starlinq.livejournal.com/', 'Hidden Treasures']);" rel="nofollow">Hidden Treasures</a></li>
+<li><a href="http://brainchronicle.blogspot.com/search/label/R" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://brainchronicle.blogspot.com/search/label/R', 'Brain Chronicle']);" rel="nofollow">Brain Chronicle</a></li>
+<li><a href="http://matloff.wordpress.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://matloff.wordpress.com', 'Mad (Data) Scientist']);" rel="nofollow">Mad (Data) Scientist</a></li>
+<li><a href="http://pages.opencpu.org/atom.xml" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://pages.opencpu.org/atom.xml', 'OpenCPU']);" rel="nofollow">OpenCPU</a></li>
+<li><a href="http://freigeist.devmag.net/category/r/feed" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://freigeist.devmag.net/category/r/feed', 'freigeist.devmag.net/category/r/feed']);" rel="nofollow">freigeist.devmag.net/category/r/feed</a></li>
+
+	</ul>
+</div>
+<div class="side-widget">			<div class="textwidget"><strong><a href="http://www.r-bloggers.com/blogs-list/">Full list of contributing R-bloggers</a></strong></div>
+		</div>    </div>
+<!-- end second sidebar --></div>
+<!-- begin footer -->
+<div id="footer">
+	<strong><a href="http://www.r-bloggers.com/">R-bloggers</a></strong> was founded by <a href="http://www.r-statistics.com/about/">Tal Galili</a>, with gratitude to the <a href="http://www.r-project.org/">R</a> community.  <br>
+    Is powered by <a href="http://www.wordpress.org/">WordPress</a> using a <a href="http://themes.bavotasan.com/" rel="nofollow">bavotasan.com</a> design.<br>
+    Copyright © 2015 <strong>R-bloggers</strong>. All Rights Reserved. <a href="http://www.r-bloggers.com/terms/">Terms and Conditions</a> for this website<br>
+</div>
+<span id="bruteprotect_uptime_check_string" style="display:none;">7ads6x98y</span>
+<!--
+TPC! Memory Usage (http://webjawns.com)
+Memory Usage: 81928064
+Memory Peak Usage: 82231824
+WP Memory Limit: 520M
+PHP Memory Limit: 512M
+Checkpoints: 13
+-->
+
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shCore.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushBash.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushClojure.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushCss.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushFSharp.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushJava.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushLatex.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushMatlabKey.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushObjC.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushPython.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushR.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushScala.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushSql.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushVb.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/shBrushXml.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/effects.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/photon.js"></script>
+<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/devicepx-jetpack.js"></script>
+	<div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/rFG58m7xAig.html" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" scrolling="no" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0"></iframe><iframe src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/rFG58m7xAig_002.html" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" scrolling="no" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+	<script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/widgets.js"></script><script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/all.js"></script><script gapi_processed="true" type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/plusone.js"></script><script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/in.js"></script>
+	<script src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/e-201510.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.3',blog:'11524731',post:'0',tz:'-6'});
+	var load_cmc = function(){linktracker_init(11524731,0,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/g.gif"><script type="text/javascript" src="R-bloggers%20%7C%20R%20news%20and%20tutorials%20contributed%20by%20%28573%29%20R%20bloggers_files/effects_002.js"></script> 
+<script type="text/javascript">
+/* <![CDATA[ */
+jQuery(function(){
+	jQuery("ul.sf-menu").supersubs({ 
+		minWidth:    12,
+		maxWidth:    27,
+		extraWidth:  1
+	}).superfish({ 
+		delay:       100,
+		speed:       250 
+	});	});
+/* ]]> */
+</script>
+
+
+
+
+
+
+
+
+</body></html>
+<!-- Dynamic page generated in 1.360 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2015-03-04 01:30:05 -->
+<!-- Compression = gzip -->

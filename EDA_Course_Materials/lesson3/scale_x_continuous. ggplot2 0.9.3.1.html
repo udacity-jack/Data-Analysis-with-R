@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+<title>scale_x_continuous. ggplot2 0.9.3.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="scale_x_continuous.%20ggplot2%200.9.3.1_files/bootstrap.css" rel="stylesheet">
+<link href="scale_x_continuous.%20ggplot2%200.9.3.1_files/bootstrap-responsive.css" rel="stylesheet">
+<link href="scale_x_continuous.%20ggplot2%200.9.3.1_files/highlight.css" rel="stylesheet">
+<link href="scale_x_continuous.%20ggplot2%200.9.3.1_files/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script src="scale_x_continuous.%20ggplot2%200.9.3.1_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-67989-15']);
+  _gaq.push(['_setDomainName', 'ggplot2.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">ggplot2 0.9.3.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="http://docs.ggplot2.org/current/index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Continuous position scales (x &amp; y).</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre>scale_x_continuous(..., expand = waiver())
+
+scale_y_continuous(..., expand = waiver())
+
+scale_x_log10(...)
+
+scale_y_log10(...)
+
+scale_x_reverse(...)
+
+scale_y_reverse(...)
+
+scale_x_sqrt(...)
+
+scale_y_sqrt(...)</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>...</dt>
+      <dd>common continuous scale parameters:
+  <code>name</code>, <code>breaks</code>, <code>labels</code>,
+  <code>na.value</code>, <code>limits</code> and <code>trans</code>.  See
+  <code><a href="http://docs.ggplot2.org/current/continuous_scale.html">continuous_scale</a></code> for more details</dd>
+      <dt>expand</dt>
+      <dd>a numeric vector of length two giving
+  multiplicative and additive expansion constants. These
+  constants ensure that the data is placed some distance
+  away from the axes.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Continuous position scales (x &amp; y).</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class="input">
+(m &lt;- qplot(rating, votes, data=subset(movies, votes &gt; 1000),
+  na.rm = TRUE))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-2.png" alt="" height="400" width="400"></p>
+<div class="input">
+# Manipulating the default position scales lets you:
+
+#  * change the axis labels
+m + scale_y_continuous("number of votes")
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-4.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_y_continuous(expression(votes^alpha))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-6.png" alt="" height="400" width="400"></p>
+<div class="input">
+#  * modify the axis limits
+m + scale_y_continuous(limits=c(0, 5000))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-8.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_y_continuous(limits=c(1000, 10000))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-10.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_x_continuous(limits=c(7, 8))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-12.png" alt="" height="400" width="400"></p>
+<div class="input">
+# you can also use the short hand functions xlim and ylim
+m + ylim(0, 5000)
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-14.png" alt="" height="400" width="400"></p>
+<div class="input">m + ylim(1000, 10000)
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-16.png" alt="" height="400" width="400"></p>
+<div class="input">m + xlim(7, 8)
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-18.png" alt="" height="400" width="400"></p>
+<div class="input">
+#  * choose where the ticks appear
+m + scale_x_continuous(breaks=1:10)
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-20.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_x_continuous(breaks=c(1,3,7,9))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-22.png" alt="" height="400" width="400"></p>
+<div class="input">
+#  * manually label the ticks
+m + scale_x_continuous(breaks=c(2,5,8), labels=c("two", "five", "eight"))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-24.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_x_continuous(breaks=c(2,5,8), labels=c("horrible", "ok", "awesome"))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-26.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_x_continuous(breaks=c(2,5,8), labels=expression(Alpha, Beta, Omega))
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-28.png" alt="" height="400" width="400"></p>
+<div class="input">
+# There are a few built in transformation that you can use:
+m + scale_y_log10()
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-30.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_y_sqrt()
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-32.png" alt="" height="400" width="400"></p>
+<div class="input">m + scale_y_reverse()
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-34.png" alt="" height="400" width="400"></p>
+<div class="input"># You can also create your own and supply them to the trans argument.
+# See ?scale::trans_new
+
+# You can control the formatting of the labels with the formatter
+# argument.  Some common formats are built into the scales package:
+x &lt;- rnorm(10) * 100000
+y &lt;- seq(0, 1, length = 10)
+p &lt;- qplot(x, y)
+library(scales)
+p + scale_y_continuous(labels = percent)
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-36.png" alt="" height="400" width="400"></p>
+<div class="input">p + scale_y_continuous(labels = dollar)
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-38.png" alt="" height="400" width="400"></p>
+<div class="input">p + scale_x_continuous(labels = comma)
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-40.png" alt="" height="400" width="400"></p>
+<div class="input">
+# qplot allows you to do some of this with a little less typing:
+#   * axis limits
+qplot(rating, votes, data=movies, ylim=c(1e4, 5e4))
+</div>
+<strong class="warning">Warning message:
+Removed 58018 rows containing missing values (geom_point).</strong>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-43.png" alt="" height="400" width="400"></p>
+<div class="input">#   * axis labels
+qplot(rating, votes, data=movies, xlab="My x axis", ylab="My y axis")
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-45.png" alt="" height="400" width="400"></p>
+<div class="input">#   * log scaling
+qplot(rating, votes, data=movies, log="xy")
+</div>
+<p><img src="scale_x_continuous.%20ggplot2%200.9.3.1_files/scale_continuous-47.png" alt="" height="400" width="400"></p>
+<div class="input"></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>scale_x_continuous</li><li>scale_x_log10</li><li>scale_x_reverse</li><li>scale_x_sqrt</li><li>scale_y_continuous</li><li>scale_y_log10</li><li>scale_y_reverse</li><li>scale_y_sqrt</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other position scales: <code><a href="http://docs.ggplot2.org/current/scale_date.html">scale_x_date</a></code>,
+  <code><a href="http://docs.ggplot2.org/current/scale_datetime.html">scale_x_datetime</a></code>,
+  <code><a href="http://docs.ggplot2.org/current/scale_discrete.html">scale_x_discrete</a></code>,
+  <code><a href="http://docs.ggplot2.org/current/scale_date.html">scale_y_date</a></code>,
+  <code><a href="http://docs.ggplot2.org/current/scale_datetime.html">scale_y_datetime</a></code>,
+  <code><a href="http://docs.ggplot2.org/current/scale_discrete.html">scale_y_discrete</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p class="feedback">What do you think of the documentation?  <a href="http://hadley.wufoo.com/forms/documentation-feedback/def/field0=scale_x_continuous">Please let me know by filling out this short online survey</a>.</p>
+
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  
+</body></html>

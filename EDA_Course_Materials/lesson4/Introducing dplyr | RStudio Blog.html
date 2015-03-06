@@ -1,0 +1,2316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><!--
+	generated in 0.819 seconds
+	131504 bytes batcached for 300 seconds
+--><head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Introducing dplyr | RStudio Blog</title>
+	<link rel="pingback" href="http://blog.rstudio.org/xmlrpc.php">
+			<script src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/remote-login.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="RStudio Blog » Feed" href="http://blog.rstudio.org/feed/">
+<link rel="alternate" type="application/rss+xml" title="RStudio Blog » Comments Feed" href="http://blog.rstudio.org/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="RStudio Blog » Introducing dplyr Comments Feed" href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" id="all-css-0" href="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/a.css" type="text/css" media="all">
+<link rel="stylesheet" id="print-css-0" href="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/print.css" type="text/css" media="print">
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/a_002.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://rstudioblog.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="roxygen2 3.0.0" href="http://blog.rstudio.org/2013/12/09/roxygen2-3-0-0/">
+<link rel="next" title="roxygen2 3.1.0" href="http://blog.rstudio.org/2014/01/30/roxygen2-3-1-0/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/">
+<link rel="shortlink" href="http://wp.me/p1h48z-i5">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=http%3A%2F%2Fblog.rstudio.org%2F2014%2F01%2F17%2Fintroducing-dplyr%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=http%3A%2F%2Fblog.rstudio.org%2F2014%2F01%2F17%2Fintroducing-dplyr%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing dplyr">
+<meta property="og:url" content="http://blog.rstudio.org/2014/01/17/introducing-dplyr/">
+<meta property="og:description" content="dplyr is a new package which provides a set of tools for efficiently manipulating datasets in R. dplyr is the next iteration of plyr, focussing on only data frames. dplyr is faster, has a more cons...">
+<meta property="article:published_time" content="2014-01-17T19:00:58+00:00">
+<meta property="article:modified_time" content="2014-01-17T19:01:43+00:00">
+<meta property="article:author" content="http://blog.rstudio.org/author/hadleywickham/">
+<meta property="og:site_name" content="RStudio Blog">
+<meta property="og:image" content="http://1.gravatar.com/blavatar/3f031d721d8b60a7cb8e1ef230fd4615?s=200">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:site" content="@rstudio">
+<meta name="twitter:image" content="http://1.gravatar.com/blavatar/3f031d721d8b60a7cb8e1ef230fd4615?s=240">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@rstudio">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/5ca61dd8a61f125a031bcd060da076e5?s=16" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/5ca61dd8a61f125a031bcd060da076e5?s=16" sizes="16x16">
+<link rel="apple-touch-icon-precomposed" href="http://1.gravatar.com/blavatar/3f031d721d8b60a7cb8e1ef230fd4615?s=114">
+<link rel="openid.server" href="http://rstudioblog.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://rstudioblog.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://blog.rstudio.org/osd.xml" title="RStudio Blog">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<meta name="application-name" content="RStudio Blog"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://blog.rstudio.org/feed/;icon-uri=http://1.gravatar.com/blavatar/5ca61dd8a61f125a031bcd060da076e5?s=16"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><style type="text/css" id="syntaxhighlighteranchor"></style>
+		<link rel="stylesheet" id="custom-css-css" type="text/css" href="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/a_002.css">
+		<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/services.css"></head>
+
+<body class="single single-post postid-1121 single-format-standard center mp6 typekit-enabled customizer-styles-applied highlander-enabled highlander-light"><div id="wrapper">
+
+<div id="header">
+
+		<div id="header-image">
+		<a title="Return to front page" href="http://blog.rstudio.org/"><img alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/greytree.jpg"></a>	</div>
+	
+	<div id="title">
+		<a title="Return to front page" href="http://blog.rstudio.org/"><span id="blog-title">RStudio Blog</span></a>			</div>
+
+	<div id="navigation">
+		<ul id="nav-1">
+	<li><a title="Return to front page" href="http://blog.rstudio.org/">Home</a></li>
+	</ul>
+
+		<ul id="nav-2">
+			<li><a class="feed" title="Subscribe to the RStudio Blog feed" href="http://blog.rstudio.org/feed/">Subscribe to feed</a></li>
+		</ul>
+	</div>
+
+</div>
+
+<div id="content">
+
+<div id="primary">
+
+
+
+	<div class="entry">
+	<div class="post-meta">
+		<h1 class="post-title" id="post-1121">Introducing dplyr</h1>
+		<p class="post-metadata">January 17, 2014 in <a href="http://blog.rstudio.org/category/packages/" rel="category tag">Packages</a>		</p>
+	</div>
+	<div class="post-content">
+		<p><code>dplyr</code> is a new package which provides a set of tools for efficiently manipulating datasets in R. <code>dplyr</code> is the next iteration of <code>plyr</code>, focussing on only data frames. <code>dplyr</code> is faster, has a more consistent API and should be easier to use. There are three key ideas that underlie <code>dplyr</code>:</p>
+<ol style="list-style-type:decimal;">
+<li>Your time is important, so <a href="http://romainfrancois.blog.free.fr/">Romain Francois</a> has written the key pieces in <a href="http://www.rcpp.org/">Rcpp</a>
+ to provide blazing fast performance. Performance will only get better 
+over time, especially once we figure out the best way to make the most 
+of multiple processors.</li>
+<li>Tabular data is tabular data regardless of where it lives, so you should use the same functions to work with it. With <code>dplyr</code>,
+ anything you can do to a local data frame you can also do to a remote 
+database table. PostgreSQL, MySQL, SQLite and Google bigquery support is
+ built-in; adding a new backend is a matter of implementing a handful of
+ S3 methods.</li>
+<li>The bottleneck in most data analyses is the time it takes for you to
+ figure out what to do with your data, and dplyr makes this easier by 
+having individual functions that correspond to the most common 
+operations (<code>group_by</code>, <code>summarise</code>, <code>mutate</code>, <code>filter</code>, <code>select</code> and <code>arrange</code>). Each function does one only thing, but does it well.</li>
+</ol>
+<p>Lets compare <code>plyr</code> and <code>dplyr</code> with a little example, using the <code>Batting</code> dataset from the fantastic <a href="http://cran.us.r-project.org/web/packages/Lahman/"><code>Lahman</code></a>
+ package which makes the complete Lahman baseball database easily 
+accessible from R. Pretend we want to find the five players who have 
+batted in the most games in all of baseball history.</p>
+<p>In <code>plyr</code>, we might write code like this:</p>
+<pre class="sourceCode R"><code class="sourceCode r"><span class="kw">library</span>(Lahman)
+<span class="kw">library</span>(plyr)
+
+games &lt;- <span class="kw">ddply</span>(Batting, <span class="st">"playerID"</span>, summarise, <span class="dt">total =</span> <span class="kw">sum</span>(G))
+<span class="kw">head</span>(<span class="kw">arrange</span>(games, <span class="kw">desc</span>(total)), <span class="dv">5</span>)</code></pre>
+<p>We use <code>ddply()</code> to break up the <code>Batting</code> dataframe into pieces according to the <code>playerID</code> variable, then apply <code>summarise()</code> to reduce the player data to a single row. Each row in <code>Batting</code> represents one year of data for one player, so we figure out the total number of games with <code>sum(G)</code> and save it in a new variable called <code>total</code>. We sort the result so the most games come at the top and then use <code>head()</code> to pull off the first five.</p>
+<p>In <code>dplyr</code>, the code is similar:</p>
+<pre class="sourceCode R"><code class="sourceCode r"><span class="kw">library</span>(Lahman)
+<span class="kw">library</span>(dplyr)
+
+players &lt;- <span class="kw">group_by</span>(Batting, playerID)
+games &lt;- <span class="kw">summarise</span>(players, <span class="dt">total =</span> <span class="kw">sum</span>(G))
+<span class="kw">head</span>(<span class="kw">arrange</span>(games, <span class="kw">desc</span>(total)), <span class="dv">5</span>)</code></pre>
+<p>But now grouping is now a top level operation performed by <code>group_by()</code>, and <code>summarise()</code> works directly on the grouped data, rather than being called from inside another function. The other big difference is speed. <code>plyr</code> took about 7s on my computer, and <code>dplyr</code>
+ took 0.2s, a 35x speed-up. This is common when switching from plyr to 
+dplyr, and for many operations you’ll see a 20x-1000x speedup.</p>
+<p><code>dplyr</code> provides another innovation over <code>plyr</code>: the ability to chain operations together from left to right with the <code>%.%</code> operator. This makes <code>dplyr</code> behave a little like a grammar of data manipulation:</p>
+<pre class="sourceCode R"><code class="sourceCode r">Batting %.%
+<span class="kw">  group_by</span>(playerID) %.%
+<span class="kw">  summarise</span>(<span class="dt">total =</span> <span class="kw">sum</span>(G)) %.%
+<span class="kw">  arrange</span>(<span class="kw">desc</span>(total)) %.%
+<span class="kw">  head</span>(<span class="dv">5</span>)</code></pre>
+<p>Read more about it in the help, <code>?"%.%"</code>.</p>
+<p>If this small example has whet your interest, you can learn more from the built-in vignettes. First install <code>dplyr</code> with <code>install.packages("dplyr")</code>, then run:</p>
+<ul>
+<li><a href="http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html"><code>vignette("introduction", package = "dplyr")</code></a> to learn how the main verbs of <code>dplyr</code> work with data frames.</li>
+<li><a href="http://cran.rstudio.com/web/packages/dplyr/vignettes/databases.html"><code>vignette("databases", package = "dplyr")</code></a> to learn how to work with databases from dplyr.</li>
+</ul>
+<p>You can track development progress at <a href="http://github.com/hadley/dplyr">http://github.com/hadley/dplyr</a>, report bugs at <a href="http://github.com/hadley/dplyr/issues">http://github.com/hadley/dplyr/issues</a> and get help with data manipulation challenges at <a href="https://groups.google.com/group/manipulatr">https://groups.google.com/group/manipulatr</a>. If you ask a question specifically about <code>dplyr</code> on StackOverflow, please tag it with <code>dplyr</code> and I’ll make sure to read it.</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-reddit"><a rel="nofollow" class="share-reddit sd-button share-icon" href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/?share=reddit&amp;nb=1" title="Click to share on Reddit"><span>Reddit</span></a></li><li><a href="#" class="sharing-anchor sd-button share-more"><span>More</span></a></li><li class="share-end"></li></ul><div class="sharing-hidden"><div class="inner" style="display: none;"><ul><li class="share-email share-service-visible"><a rel="nofollow" class="share-email sd-button share-icon" href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/?share=email&amp;nb=1" title="Click to email this to a friend"><span>Email</span></a></li><li class="share-facebook"><a rel="nofollow" class="share-facebook sd-button share-icon" href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/?share=facebook&amp;nb=1" title="Share on Facebook" id="sharing-facebook-1121"><span>Facebook<span class="share-count">202</span></span></a></li><li class="share-end"></li><li class="share-print"><a rel="nofollow" class="share-print sd-button share-icon" href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#print" title="Click to print"><span>Print</span></a></li><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon" href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/?share=twitter&amp;nb=1" title="Click to share on Twitter" id="sharing-twitter-1121"><span>Twitter<span class="share-count">323</span></span></a></li><li class="share-end"></li><li class="share-end"></li></ul></div></div></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-18843819-1121-54f9407a29408" data-src="//widgets.wp.com/likes/#blog_id=18843819&amp;post_id=1121&amp;origin=rstudioblog.wordpress.com&amp;obj_id=18843819-1121-54f9407a29408" data-name="like-post-frame-18843819-1121-54f9407a29408"><h3 class="sd-title">Like this:</h3><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height:55px"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-18843819-1121-54f9407a29408" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/a.html" frameborder="0" height="55px" width="100%"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div>
+<div style="display: block;" id="jp-relatedposts" class="jp-relatedposts">
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-minimal"><p class="jp-relatedposts-post jp-relatedposts-post0" data-post-id="1703" data-post-format="false"><span class="jp-relatedposts-post-title"><a data-position="0" data-origin="1121" rel="nofollow" title="dplyr 0.4.0
+
+I’m very pleased to announce that dplyr 0.4.0 is now available from CRAN. Get the latest version by running: install.packages(&quot;dplyr&quot;) dplyr 0.4.0 includes over 80 minor improvements and bug fixes, which are described in detail in the release notes. Here I wanted to draw your attention to two areas that…" href="http://blog.rstudio.org/2015/01/09/dplyr-0-4-0/" class="jp-relatedposts-post-a">dplyr 0.4.0</a></span><span class="jp-relatedposts-post-context">With 25 comments</span></p><p class="jp-relatedposts-post jp-relatedposts-post1" data-post-id="1276" data-post-format="false"><span class="jp-relatedposts-post-title"><a data-position="1" data-origin="1121" rel="nofollow" title="dplyr 0.2
+
+I’m very excited to announce dplyr 0.2. It has three big features: improved piping courtesy of the magrittr package a vastly more useful implementation of do() five new verbs: sample_n(), sample_frac(), summarise_each(), mutate_each and glimpse(). These features are described in more detail below. To learn more about the 35 new…" href="http://blog.rstudio.org/2014/05/21/dplyr-0-2/" class="jp-relatedposts-post-a">dplyr 0.2</a></span><span class="jp-relatedposts-post-context">In "Packages"</span></p><p class="jp-relatedposts-post jp-relatedposts-post2" data-post-id="1618" data-post-format="false"><span class="jp-relatedposts-post-title"><a data-position="2" data-origin="1121" rel="nofollow" title="Learn dplyr with RStudio and Datacamp
+
+RStudio has teamed up with Datacamp to create a new, interactive way to learn dplyr. Dplyr is an R package that provides a fast, intuitive way to transform data sets with R. It introduces five functions, optimized in C++, that can handle ~90% of data manipulation tasks. These functions are…" href="http://blog.rstudio.org/2014/10/20/learn-dplyr-with-rstudio-and-datacamp/" class="jp-relatedposts-post-a">Learn dplyr with RStudio and Datacamp</a></span><span class="jp-relatedposts-post-context">In "Packages"</span></p></div></div></div>	</div>
+		</div>
+
+</div>
+<div id="secondary">
+
+<div class="widgets">
+
+<div id="search-4" class="widget widget_search"><h3>Search</h3><div class="searchbox">
+	<form method="get" id="searchform" action="/"><fieldset>
+		<input name="s" id="s" tabindex="21" type="text">
+		<input id="searchsubmit" value="Search" tabindex="22" type="submit">
+	</fieldset></form>
+</div></div><div id="linkcat-2200" class="widget widget_links"><h3>Links</h3>
+	<ul class="xoxo blogroll">
+<li><a href="mailto:info@rstudio.com" title="Contact us" target="_blank">Contact Us</a></li>
+<li><a href="http://github.com/rstudio/rstudio">Development @ Github</a></li>
+<li><a href="https://support.rstudio.com/">RStudio Support</a></li>
+<li><a href="http://www.rstudio.com/">RStudio Website</a></li>
+<li><a href="http://www.r-bloggers.com/">R-bloggers</a></li>
+
+	</ul>
+</div>
+<div id="categories-5" class="widget widget_categories"><h3>Categories</h3>		<ul>
+	<li class="cat-item cat-item-35890"><a href="http://blog.rstudio.org/category/featured/">Featured</a>
+</li>
+	<li class="cat-item cat-item-103"><a href="http://blog.rstudio.org/category/news/">News</a>
+</li>
+	<li class="cat-item cat-item-65759"><a href="http://blog.rstudio.org/category/packages/" title="Announcements of package updates">Packages</a>
+</li>
+	<li class="cat-item cat-item-221694028"><a href="http://blog.rstudio.org/category/rstudio-ide/">RStudio IDE</a>
+</li>
+	<li class="cat-item cat-item-108989"><a href="http://blog.rstudio.org/category/shiny/">Shiny</a>
+</li>
+	<li class="cat-item cat-item-943"><a href="http://blog.rstudio.org/category/training/">Training</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.rstudio.org/category/uncategorized/">Uncategorized</a>
+</li>
+		</ul>
+</div><div id="archives-5" class="widget widget_archive"><h3>Archives</h3>		<ul>
+	<li><a href="http://blog.rstudio.org/2015/03/">March 2015</a></li>
+	<li><a href="http://blog.rstudio.org/2015/02/">February 2015</a></li>
+	<li><a href="http://blog.rstudio.org/2015/01/">January 2015</a></li>
+	<li><a href="http://blog.rstudio.org/2014/12/">December 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/11/">November 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/10/">October 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/09/">September 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/08/">August 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/07/">July 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/06/">June 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/05/">May 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/04/">April 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/03/">March 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/02/">February 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2014/01/">January 2014</a></li>
+	<li><a href="http://blog.rstudio.org/2013/12/">December 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2013/11/">November 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2013/10/">October 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2013/09/">September 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2013/06/">June 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2013/04/">April 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2013/02/">February 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2013/01/">January 2013</a></li>
+	<li><a href="http://blog.rstudio.org/2012/12/">December 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2012/11/">November 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2012/10/">October 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2012/09/">September 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2012/08/">August 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2012/06/">June 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2012/05/">May 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2012/01/">January 2012</a></li>
+	<li><a href="http://blog.rstudio.org/2011/10/">October 2011</a></li>
+	<li><a href="http://blog.rstudio.org/2011/06/">June 2011</a></li>
+	<li><a href="http://blog.rstudio.org/2011/04/">April 2011</a></li>
+	<li><a href="http://blog.rstudio.org/2011/02/">February 2011</a></li>
+		</ul>
+</div><div id="text-4" class="widget widget_text">			<div class="textwidget"><a href="http://twitter.com/rstudio"><img style="margin-top:5px;" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/twitterbutton.png"></a>
+
+
+<a href="http://blog.rstudio.org/feed/"><img style="margin-top:15px;" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/rssbutton.png"></a>
+</div>
+		</div><div id="blog_subscription-5" class="widget widget_blog_subscription"><h3><label for="subscribe-field">Email Subscription</label></h3>
+				<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="subscribe-blog">
+											<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+<p>Join 12,405 other followers</p>
+						<p><input name="email" style="width: 95%; padding: 1px 2px" placeholder="Enter your email address" id="subscribe-field" type="text"></p>
+					
+					<p>
+						<input name="action" value="subscribe" type="hidden">
+						<input name="blog_id" value="18843819" type="hidden">
+						<input name="source" value="http://blog.rstudio.org/2014/01/17/introducing-dplyr/" type="hidden">
+						<input name="sub-type" value="widget" type="hidden">
+						<input name="redirect_fragment" value="blog_subscription-5" type="hidden">
+						<input id="_wpnonce" name="_wpnonce" value="aca6ec21ad" type="hidden">						<input value="Sign me up!" type="submit">
+					</p>
+				</form>
+			
+</div><div id="image-3" class="widget widget_image"><div style="overflow:hidden;"><div style="width: 175px" class="wp-caption alignleft"><a href="http://www.foastat.org/"><img src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/foas.jpg" height="73" width="165"></a><p class="wp-caption-text">RStudio is an affiliated project of the Foundation for Open Access Statistics</p></div></div>
+</div>
+</div>
+
+</div>
+
+<div id="comments" class="commentlist">
+
+
+	
+		<div id="comments-meta">
+			<h2 class="comments-title">85 comments</h2>
+		</div>
+
+	
+		
+	<div class="comment even thread-even depth-1 vcard parent highlander-comment" id="comment-5288">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5288" title="Permalink to this comment">January 17, 2014 at 3:10 pm</a></p>
+			<p class="comment-author"><strong class="fn">Stefan</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-541b04414f428357fe6b7179b7768604-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/541b04414f428357fe6b7179b7768604.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Dude, you took my operator, sob sob! See <a href="https://github.com/smbache/magrittr" rel="nofollow">https://github.com/smbache/magrittr</a> </p>
+<p>But I’m pretty sure you made it better (but my “slogan” is better ;-))</p>
+<p>I look forward to trying this package out! Looks great, and speedup is always nice!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor odd alt depth-2 vcard highlander-comment" id="comment-5289">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5289" title="Permalink to this comment">January 17, 2014 at 4:26 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Cool! I love the package and slogan <span class="wp-smiley wp-emoji wp-emoji-smile" title=":)">:)</span></p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-konradrudolph even depth-2 vcard parent highlander-comment" id="comment-5376">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5376" title="Permalink to this comment">January 30, 2014 at 8:50 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://klmr.me/" rel="external nofollow" class="url">klmr</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-fdd630f72eef3790bfb4ef38d08c7f85-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/fdd630f72eef3790bfb4ef38d08c7f85.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>There’s
+ definitely a convergent evolution of programming concepts here. But 
+it’s a pity (although not surprising) that everybody seems to reinvent 
+this in an *incompatible* way. For instance, I’m using <code>%|%</code> (hey, it’s a pipe!) and reserve <code>%.%</code> for function composition (<code>(f %.% g)(x)</code>),
+ so I won’t be able to use my package and dplyr at the same time … 
+(well; I can rename one of the operators in the client code, but that’s 
+hardly perfect).</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor odd alt depth-3 vcard highlander-comment" id="comment-5377">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5377" title="Permalink to this comment">January 30, 2014 at 9:04 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>FWIW, the next version of dplyr will depend on <a href="https://github.com/smbache/magrittr" rel="nofollow">https://github.com/smbache/magrittr</a>, slightly reducing the scope of this problem.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+</ul><!-- .children -->
+	
+	<div class="comment byuser comment-author-vpoortinga even thread-odd thread-alt depth-1 vcard parent highlander-comment" id="comment-5291">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5291" title="Permalink to this comment">January 18, 2014 at 1:47 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://dividendinsight.wordpress.com/" rel="external nofollow" class="url">vpoortinga</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-37a7cd7132d56694c20933e20fe351bf-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/37a7cd7132d56694c20933e20fe351bf.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Quick performance test on a data set I’m working on:</p>
+<p>[1] “dplyr:”<br>
+user system elapsed<br>
+0.008 0.000 0.009<br>
+[1] “ddply:”<br>
+user system elapsed<br>
+0.892 0.000 0.896</p>
+<p>Over 100 times faster! Bravo!</p>
+<p>I like the syntax – nice and clean. I also really like that it only 
+uses data frames. As a long time SAS user, this simplifies learning R. 
+Base R has a lot more data structures than SAS (vectors, lists, etc.), 
+while important to know eventually, creates a substantial learning curve
+ from SAS. R data frames are a lot like SAS data sets, and having an 
+easy to use package that work with data frames is huge plus.</p>
+<p>If I could make one suggestion / request: Please add a transpose() 
+function to the package. This is a very common operation I use in data 
+munging before and after analytics.</p>
+<p>Something like:</p>
+<p>before:<br>
+A X<br>
+a 1<br>
+a 2<br>
+b 3<br>
+b 4</p>
+<p>groups &lt;- group_by(before, A)<br>
+after &lt;- transpose(groups, X)</p>
+<p>after:<br>
+A X.1 X.2<br>
+a 1 2<br>
+b 3 4</p>
+<p>It's also useful to have a column that can be used as the new variable names:</p>
+<p>before:<br>
+A X J<br>
+a 1 m<br>
+a 2 n<br>
+b 3 m<br>
+b 4 p</p>
+<p>groups &lt;- group_by(before, A)<br>
+after &lt;- transpose(groups, X, id=J)</p>
+<p>after:<br>
+A m n p<br>
+a 1 2 NA<br>
+b 3 NA 4</p>
+<p>Only a suggestion of course.</p>
+<p>Great package! I'll use it a lot!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor odd alt depth-2 vcard highlander-comment" id="comment-5297">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5297" title="Permalink to this comment">January 18, 2014 at 10:30 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-2" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>See
+ reshape2 for a package that implements something like your transpose 
+operator. At some point in the next year, I’ll probably rethink how 
+reshape2 can better fit in with dplyr and tidy data (and work faster 
+with big data)</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment even thread-even depth-1 vcard parent highlander-comment" id="comment-5294">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5294" title="Permalink to this comment">January 18, 2014 at 5:44 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://gravatar.com/nowgis" rel="external nofollow" class="url">jot_en</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-6bda584dd6458fbd97d55b0fed9e9942-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/6bda584dd6458fbd97d55b0fed9e9942.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Hi Hadley,<br>
+is dplyr is faster/slower than a data.table? Did you make that comparision?</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor odd alt depth-2 vcard parent highlander-comment" id="comment-5298">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5298" title="Permalink to this comment">January 18, 2014 at 10:34 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-3" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>It’s
+ always hard to make statements about performance in general, but I’d 
+say dplyr and data.table are roughly equivalent. There are few places 
+where dplyr is faster, and there are a few where data.table is faster, 
+but by and large the performance should be similar. </p>
+<p>There are some performance benchmarks at <a href="http://cran.r-project.org/web/packages/dplyr/vignettes/benchmark-baseball.html" rel="nofollow">http://cran.r-project.org/web/packages/dplyr/vignettes/benchmark-baseball.html</a>,
+ but since writing them I’ve come to better understand data table so I 
+think I could do better with the data.table performance. But data.table 
+and dplyr do have different goals, and performance will change over 
+time, so take it all with a grain of salt.  If performance is really a 
+concern, you’ll need to benchmark on your own data.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment even depth-3 vcard highlander-comment" id="comment-5300">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5300" title="Permalink to this comment">January 18, 2014 at 10:59 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://gravatar.com/nowgis" rel="external nofollow" class="url">nowgis</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-6bda584dd6458fbd97d55b0fed9e9942-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/6bda584dd6458fbd97d55b0fed9e9942.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Thanks, that’s the answer I was expecting.<br>
+I’d been thinking about learning data.table syntax, mostly because of 
+it’s performance. Normally, I’ve been using plyr package, but it’s not 
+the best in terms of big csv files. </p>
+<p>So – right now, I think, I will switch to dplyr;)</p>
+<p>Cheers</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment odd alt depth-2 vcard parent highlander-comment" id="comment-5299">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5299" title="Permalink to this comment">January 18, 2014 at 10:51 am</a></p>
+			<p class="comment-author"><strong class="fn">David OBrien</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-26861056e5c4d3a78d5ad80e2aae1b0a-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/26861056e5c4d3a78d5ad80e2aae1b0a.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>From
+ the introduction vignette: “dplyr also provides data table methods for 
+all verbs. While data.table is extremely, fast, the current benchmarks 
+suggest that dplyr is 2-3x faster for most single operations, and up to 
+10x faster for grouped summaries (see the benchmark-baseball vignette 
+for more details).” </p>
+<p>This is really really really exciting. I can’t wait to try this package out!! Yay for Hadley and collaborators!!!!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-3 vcard highlander-comment" id="comment-5301">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5301" title="Permalink to this comment">January 18, 2014 at 11:00 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-4" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Ooops,
+ I forgot to remove that statement from the vignette. That was based on 
+some initial benchmarks when I didn’t understand data.table that well.  
+I’d now claim that dplyr and data.table are pretty similar for most 
+operations. Sometimes data.table is faster, sometimes dplyr is faster.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt depth-3 vcard highlander-comment" id="comment-5302">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5302" title="Permalink to this comment">January 18, 2014 at 11:15 am</a></p>
+			<p class="comment-author"><strong class="fn">David OBrien</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-26861056e5c4d3a78d5ad80e2aae1b0a-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/26861056e5c4d3a78d5ad80e2aae1b0a.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Well
+ that highlights part of the problem with data.table. It’s syntax is so 
+different than any other R package, it takes a while for even seasoned R
+ programmers to get the most out of it. But tons of people are already 
+familiar with plyr syntax, plus the improvements you guys have made 
+seems like it will be even more intuitive.</p>
+<p>That’s not to say I don’t like the data.table syntax, it’s really 
+grown on me as I’ve been learning it, and I enjoy it a lot. Perhaps 
+there will be a place for both packages for a while. Especially if they 
+continue to develop the time series aspects of data.table.</p>
+<p>If I ever meet you Hadley, I owe you a six-pack at the very least. 
+You’re packages have made my job/life so much easier. I hope I can 
+contribute half as much to the open source community one day.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-3 vcard highlander-comment" id="comment-5303">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5303" title="Permalink to this comment">January 18, 2014 at 11:59 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-5" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Thanks David!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+</ul><!-- .children -->
+	
+	<div class="comment odd alt thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5295">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5295" title="Permalink to this comment">January 18, 2014 at 6:58 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="https://plus.google.com/102007731686046833792" rel="external nofollow" class="url">edzer pebesma</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/photo.jpg" class="avatar avatar-32" height="32" width="32">			<p>Nice! Reminds me of |STAT, <a href="http://hcibib.org/perlman/stat/" rel="nofollow">http://hcibib.org/perlman/stat/</a> , which I used in the early 90s.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-even depth-1 vcard highlander-comment" id="comment-5296">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5296" title="Permalink to this comment">January 18, 2014 at 8:15 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://saltydrip.wordpress.com/2014/01/18/using-the-plyr-package-in-r/" rel="external nofollow" class="url">using the plyr package in R | Salty Drip</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] package called dplry, which centres more closely on data frames and offers many new features; see <a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/" rel="nofollow">http://blog.rstudio.org/2014/01/17/introducing-dplyr/</a> for a blog item introducing […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt thread-odd thread-alt depth-1 vcard parent highlander-comment" id="comment-5304">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5304" title="Permalink to this comment">January 18, 2014 at 1:31 pm</a></p>
+			<p class="comment-author"><strong class="fn">Dave K</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-eb3640e66e92fe6a3315007455d645d7-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/eb3640e66e92fe6a3315007455d645d7.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Is
+ this package available on CRAN yet? When I try to use install.packages 
+to install it I’m getting a message that it’s not available.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-rstudioblog even depth-2 vcard parent highlander-comment" id="comment-5305">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5305" title="Permalink to this comment">January 18, 2014 at 1:42 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://rstudioblog.wordpress.com/" rel="external nofollow" class="url">jjallaire</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-a8449d62acadb27e691d4134a309a49a-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/a8449d62acadb27e691d4134a309a49a.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>It’s up there: <a href="http://cran.r-project.org/web/packages/dplyr/index.html" rel="nofollow">http://cran.r-project.org/web/packages/dplyr/index.html</a></p>
+<p>It may be that your mirror just doesn’t have it yet.</p>
+<p>J.J.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-davekincaid odd alt depth-3 vcard parent highlander-comment" id="comment-5306">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5306" title="Permalink to this comment">January 18, 2014 at 1:44 pm</a></p>
+			<p class="comment-author"><strong class="fn">davekincaid</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-eb3640e66e92fe6a3315007455d645d7-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/eb3640e66e92fe6a3315007455d645d7.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Thanks! That’s quite ironic since I’m using RStudio’s CRAN mirror! I’ll keep waiting.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-rstudioblog even depth-3 vcard parent highlander-comment" id="comment-5309">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5309" title="Permalink to this comment">January 18, 2014 at 1:50 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://rstudioblog.wordpress.com/" rel="external nofollow" class="url">jjallaire</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-a8449d62acadb27e691d4134a309a49a-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/a8449d62acadb27e691d4134a309a49a.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Interesting,
+ I just successfully installed it from the RStudio mirror. It may be due
+ to the version of R you are running (dplyr requires R &gt;= 3.0.2). 
+Could that be it?</p>
+<p>J.J.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-davekincaid odd alt depth-3 vcard highlander-comment" id="comment-5310">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5310" title="Permalink to this comment">January 18, 2014 at 1:53 pm</a></p>
+			<p class="comment-author"><strong class="fn">davekincaid</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-eb3640e66e92fe6a3315007455d645d7-2" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/eb3640e66e92fe6a3315007455d645d7.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Yes. That’s the problem! Ugh, I hate R upgrades.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment even depth-2 vcard parent highlander-comment" id="comment-5307">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5307" title="Permalink to this comment">January 18, 2014 at 1:44 pm</a></p>
+			<p class="comment-author"><strong class="fn">David OBrien</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-26861056e5c4d3a78d5ad80e2aae1b0a-2" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/26861056e5c4d3a78d5ad80e2aae1b0a.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Yes, it’s available on cran. Installed fine for me with install.packages just like any other package</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment odd alt depth-3 vcard highlander-comment" id="comment-5308">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5308" title="Permalink to this comment">January 18, 2014 at 1:48 pm</a></p>
+			<p class="comment-author"><strong class="fn">Stefan</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-541b04414f428357fe6b7179b7768604-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/541b04414f428357fe6b7179b7768604.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>On my work windoze machine it installed fine, but on OSX it did not — here I just grabbed it from github.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+</ul><!-- .children -->
+	
+	<div class="comment even thread-even depth-1 vcard highlander-comment" id="comment-5311">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5311" title="Permalink to this comment">January 18, 2014 at 4:25 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="https://www.facebook.com/galili" rel="external nofollow" class="url">Tal Galili</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-f5e789b2b75c42b109dab265927045ff-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/f5e789b2b75c42b109dab265927045ff.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Fantastic work Hadley!<br>
+I remember seeing your presentation in the recent useR, and getting very
+ excited about this new package – thank you for this work!</p>
+<p>With regards,<br>
+Tal</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5313">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5313" title="Permalink to this comment">January 18, 2014 at 5:52 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://www.sandertimmer.nl/2014/01/this-sounds-extremely-promising-for-those-using-data-frames-in-r/" rel="external nofollow" class="url">This sounds extremely promising for those using data frames in R! | Sander Timmer</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] &nbsp;http://blog.rstudio.org/2014/01/17/introducing-dplyr/﻿ […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment even thread-even depth-1 vcard parent highlander-comment" id="comment-5314">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5314" title="Permalink to this comment">January 18, 2014 at 6:34 pm</a></p>
+			<p class="comment-author"><strong class="fn">DerekH</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-4cdd755a41a18728ae324850840bc32a-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/4cdd755a41a18728ae324850840bc32a.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Hadley,
+ I’m not sure you can ever know how much tangible value you have added 
+to the world with your work.  I had started to go down the data.table 
+path, but with this innovation I can reuse what I’ve done and still get 
+the benefits of what I feel to be the most elegant data manipulation 
+scheme I’ve seen.</p>
+<p>Given that plyr is so ubiquitous (at least in my code!), I hope you 
+can get the two to coexist soon.  Barring that, is it really necessary 
+to detach plyr each time you call dplyr?</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor odd alt depth-2 vcard parent highlander-comment" id="comment-5323">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5323" title="Permalink to this comment">January 20, 2014 at 9:23 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-6" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Thanks Derek! </p>
+<p>I think I may have overstated how bad the interference between plyr 
+and dplyr is. You can have both loaded at the same time, and it 
+shouldn’t cause any problems with packages that use plyr (e.g. ggplot2).
+ You’ll just need to be careful that you call the fast dplyr functions 
+not the slow plyr functions. Probably the easiest way to do that is to 
+load plyr first.</p>
+<p>If you do run into problems, please let me know so I can fix them.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-jhmaind even depth-3 vcard highlander-comment" id="comment-12610">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-12610" title="Permalink to this comment">July 25, 2014 at 4:38 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://jhmaind.wordpress.com/" rel="external nofollow" class="url">jhmaind</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-486d55cb25a52c79c3c39748d7b05807-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/486d55cb25a52c79c3c39748d7b05807.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>For using the summarise() function, one does need to attach<br>
+plyr before dplyr, or else specify dplyr::summarise90<br>
+This with plyr_1.8.1 and dplyr_0.2<br>
+Otherwise the object passed to summarise() is treated as a<br>
+dataframe, not as agrouped_df.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-jhmaind odd alt depth-3 vcard highlander-comment" id="comment-12718">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-12718" title="Permalink to this comment">July 26, 2014 at 4:39 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://jhmaind.wordpress.com/" rel="external nofollow" class="url">jhmaind</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-486d55cb25a52c79c3c39748d7b05807-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/486d55cb25a52c79c3c39748d7b05807.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Re
+ the summarise(0 issue, I take it there is some reason (efficiency) why 
+summarise() cannot be a generic function with a method for grouped_df 
+onjects?</p>
+<p>Another possibility is to make available an alias for dplyr::summarise(), e.g., gpsummary() or gpsummarise().</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+</ul><!-- .children -->
+	
+	<div class="comment byuser comment-author-carloscinelli even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5318">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5318" title="Permalink to this comment">January 19, 2014 at 1:55 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://analisereal.wordpress.com/" rel="external nofollow" class="url">Carlos Cinelli</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-e9eb441e77a15589b1bff1210bde0587-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/e9eb441e77a15589b1bff1210bde0587.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Reblogged this on <a href="http://analisereal.com/2014/01/19/introducing-dplyr/" rel="nofollow">Análise Real</a>.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt thread-even depth-1 vcard parent highlander-comment" id="comment-5320">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5320" title="Permalink to this comment">January 20, 2014 at 4:08 am</a></p>
+			<p class="comment-author"><strong class="fn">Troy</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-43a380b91b140b509ee0f320ea3da0d5-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/43a380b91b140b509ee0f320ea3da0d5.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>This
+ package is EXTREMELY useful. I really like the chaining function, I 
+think it adds a lot to code utility. Thanks for doing such a fantastic 
+job.</p>
+<p>I also think specifically that tbl_cube is brilliant and will have 
+some great applications for risk and scenario modelling. I really like 
+to consistent syntax for manipulating flat and n-d data.</p>
+<p>I’m also impressed with the way that you can add derived measures on the fly:</p>
+<p>testa &lt;- array(<br>
+  runif(8),<br>
+  dim=c(2,2,2),<br>
+  dimnames=list(<br>
+    x=paste0("x",1:2),<br>
+    y=paste0("y",1:2),<br>
+    z=paste0("z",1:2)<br>
+    ))</p>
+<p>testa.cube&lt;-as.tbl_cube(testa)</p>
+<p>as.data.frame(testa.cube)</p>
+<p>#   x    y   z           testa<br>
+#1 x1 y1 z1 0.9500548<br>
+#2 x2 y1 z1 0.2361163<br>
+#3 x1 y2 z1 0.9674838<br>
+#4 x2 y2 z1 0.4812317<br>
+#5 x1 y1 z2 0.2548407<br>
+#6 x2 y1 z2 0.6345788<br>
+#7 x1 y2 z2 0.7315046<br>
+#8 x2 y2 z2 0.8002611</p>
+<p>testa.cube$mets$testa1&lt;-testa.cube$mets$testa+1</p>
+<p>as.data.frame(testa.cube)</p>
+<p>#     x   y   z          testa      testa1<br>
+#1 x1 y1 z1 0.9500548 1.950055<br>
+#2 x2 y1 z1 0.2361163 1.236116<br>
+#3 x1 y2 z1 0.9674838 1.967484<br>
+#4 x2 y2 z1 0.4812317 1.481232<br>
+#5 x1 y1 z2 0.2548407 1.254841<br>
+#6 x2 y1 z2 0.6345788 1.634579<br>
+#7 x1 y2 z2 0.7315046 1.731505<br>
+#8 x2 y2 z2 0.8002611 1.800261</p>
+<p>but I have been tinkering with cube$dims$ to try and update dimensions dynamically and keep ending up with corrupt cubes.</p>
+<p>So I'm wondering if there's an easy way to clone dimensions in a 
+tbl_cube, or an easy way to convert the tbl_cube back to a 
+multidimensional array in order to do so?</p>
+<p>Also wondering if it's possible to update the dimension list (e.g. 
+add "y3" to dimension "y" above as a copy of "y2") without corrupting 
+the tbl_cube?</p>
+<p>NB – appreciate this might be by design, and dimensions should be 
+known in advance, but I can see some benefits of being able to clone 
+them, etc.</p>
+<p>Thanks again for a great job!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard parent highlander-comment" id="comment-5324">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5324" title="Permalink to this comment">January 20, 2014 at 9:25 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-7" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Would
+ you mind sending your question to the manipulatr mailing list? I can 
+answer in more depth there.  I’m excited that someone is using tbl_cube,
+ as I quickly whacked it together as an experiment. I’d love to hear 
+more about what features it needs to be really useful.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment odd alt depth-3 vcard highlander-comment" id="comment-5325">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5325" title="Permalink to this comment">January 20, 2014 at 10:42 am</a></p>
+			<p class="comment-author"><strong class="fn">Troy</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-43a380b91b140b509ee0f320ea3da0d5-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/43a380b91b140b509ee0f320ea3da0d5.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Yes will do that now…</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+</ul><!-- .children -->
+	
+	<div class="comment even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5328">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5328" title="Permalink to this comment">January 20, 2014 at 3:08 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="https://plus.google.com/+JeroenOoms" rel="external nofollow" class="url">Jeroen Ooms</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/photo_003.jpg" class="avatar avatar-32" height="32" width="32">			<p>Cool
+ stuff! Some of my colleagues over at CS are obsessed with this idea of a
+ UNIX pipeline like system for data manipulation. Small, modular, 
+flexible tools that can be combined to perform complex operations, as 
+easy as grep | sed | wc, either locally or remotely.</p>
+<p>This vision has been one of the use cases of the OpenCPU framework. 
+However I have always told them that actual data is much more complex 
+than a stream of characters and that it would be very difficult to 
+design a system where you can just feed the output of one function into 
+the next, and achieve something meaningful. But maybe I was wrong.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-5329">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5329" title="Permalink to this comment">January 20, 2014 at 7:34 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://fromdata.org/2014/01/21/fast-data-frame-modification-in-r/" rel="external nofollow" class="url">Fast Data Frame Modification in R | FromData</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] Introducing dplyr […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5331">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5331" title="Permalink to this comment">January 20, 2014 at 9:43 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://bioinfo-bloggers.com/mark/r/?p=893" rel="external nofollow" class="url">» Note from 1/20/1014 to …MarkR</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] * 4. Introducing dplyr […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt thread-even depth-1 vcard parent highlander-comment" id="comment-5332">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5332" title="Permalink to this comment">January 21, 2014 at 7:09 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://gravatar.com/caneff" rel="external nofollow" class="url">caneff</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-6ed741a4f747b43e9a9a13ede1e3ad39-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/6ed741a4f747b43e9a9a13ede1e3ad39.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Hadely, why does the benchmarking for dplyr versus data.table seem to show such large slowdowns for dplyr on a data.table?  </p>
+<p>I’m really excited about dplyr, but I’m so ingrained to the data.table way.  Hard decision…</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard parent highlander-comment" id="comment-5333">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5333" title="Permalink to this comment">January 21, 2014 at 7:57 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-8" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Some
+ of it is because I’m still trying to figure out the best way to use 
+data.tables. Some of it is that dplyr and data table do work in 
+fundamentally different ways. </p>
+<p>However, unless you’re working with _really_ large data (10s of 
+millions) you’re not going to see much effective difference in speed. 
+Even a 2x-3x speed difference should only be a few seconds.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment odd alt depth-3 vcard highlander-comment" id="comment-5334">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5334" title="Permalink to this comment">January 21, 2014 at 10:20 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://gravatar.com/caneff" rel="external nofollow" class="url">caneff</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-6ed741a4f747b43e9a9a13ede1e3ad39-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/6ed741a4f747b43e9a9a13ede1e3ad39.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>I
+ am often working with data sets that size.  You seem to mention in 
+other comments that the vignette comparing data.table to dplyr isn’t 
+really a fair comparsion any more.  If that is the case why post it at 
+all?</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-3 vcard highlander-comment" id="comment-5336">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5336" title="Permalink to this comment">January 21, 2014 at 10:24 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-9" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>It was an oversight, and I’ve filed a bug to remind me to fix it for the next version: <a href="https://github.com/hadley/dplyr/issues/193" rel="nofollow">https://github.com/hadley/dplyr/issues/193</a></p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt depth-3 vcard highlander-comment" id="comment-5342">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5342" title="Permalink to this comment">January 22, 2014 at 2:50 pm</a></p>
+			<p class="comment-author"><strong class="fn">Arun</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-9298e2576b5987ca29e519a1be7e10b4-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/9298e2576b5987ca29e519a1be7e10b4.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Caneff, Matthew Dowle and I have rank the benchmark again and added our response to dplyr’s benchmark vignette here: <a href="http://arunsrinivasan.github.io/dplyr_benchmark/" rel="nofollow">http://arunsrinivasan.github.io/dplyr_benchmark/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard highlander-comment" id="comment-5344">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5344" title="Permalink to this comment">January 22, 2014 at 3:10 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-10" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Looks great – thanks for putting this together, Arun.  </p>
+<p>Would be great to do a similar comparison for what you think is a 
+reasonably sized dataset, outside of the limitations of a vignette.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment odd alt thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5337">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5337" title="Permalink to this comment">January 21, 2014 at 3:15 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="https://plus.google.com/102564725150183579541" rel="external nofollow" class="url">Carl Witthoft</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/photo.png" class="avatar avatar-32" height="32" width="32">			<p>Interesting – the first thing I thought of when reading about the chain op “%.%”  was Ruby <span class="wp-smiley wp-emoji wp-emoji-smile" title=":-)">:-)</span> .</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment even thread-even depth-1 vcard highlander-comment" id="comment-5343">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5343" title="Permalink to this comment">January 22, 2014 at 3:08 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="https://plus.google.com/104480323144119284713" rel="external nofollow" class="url">Paul Hiemstra</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/photo_002.jpg" class="avatar avatar-32" height="32" width="32">			<p>Wow,
+ this experience in using dplyr is comparable to starting to use 
+ggplot2, awesome work Hadley! I redid some log file processing, and the 
+dplyr code was 1000x faster (100s vs 0.1s).</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5345">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5345" title="Permalink to this comment">January 22, 2014 at 3:44 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://www.numbertheory.nl/2014/01/22/the-performance-of-dplyr-blows-plyr-out-of-the-water/" rel="external nofollow" class="url">The performance of dplyr blows plyr out of the water | NumberTheory</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] Hadley has released the successor to plyr: dplyr. dplyr 
+provides the kind of performance you would expect from data.table, but 
+with a […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-even depth-1 vcard highlander-comment" id="comment-5347">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5347" title="Permalink to this comment">January 23, 2014 at 3:28 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://pokrovka11.wordpress.com/2014/01/23/%d1%81%d1%82%d0%b0%d1%82%d0%b8%d1%81%d1%82%d0%b8%d1%87%d0%b5%d1%81%d0%ba%d0%b8%d0%b5-%d0%b2%d0%ba%d1%83%d1%81%d0%bd%d0%be%d1%81%d1%82%d0%b8/" rel="external nofollow" class="url">Статистические вкусности… | Pokrovka11's Blog</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] dplyr — новый пакет R для обработки данных […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-andydolman odd alt thread-odd thread-alt depth-1 vcard parent highlander-comment" id="comment-5349">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5349" title="Permalink to this comment">January 23, 2014 at 1:54 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://odguk.wordpress.com/" rel="external nofollow" class="url">andydolman</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-c1d5240f7044aad9a9d5fd991c9969c6-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/c1d5240f7044aad9a9d5fd991c9969c6.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Am
+ I correct in thinking that you can’t operate on more than one column 
+yet with dplyr, i.e. use functions like colwise and numcolwise like you 
+can with ddply?</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard highlander-comment" id="comment-5350">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5350" title="Permalink to this comment">January 23, 2014 at 2:04 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-11" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Correct. That’s planned for a future version.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment odd alt thread-even depth-1 vcard parent highlander-comment" id="comment-5356">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5356" title="Permalink to this comment">January 25, 2014 at 12:31 am</a></p>
+			<p class="comment-author"><strong class="fn">Gary M</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-398c9e5fcb5f88efca33ae873a77b0bf-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/398c9e5fcb5f88efca33ae873a77b0bf.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>To
+ me, when Hadley comes out with a new package, it’s like Tarantino 
+releasing a new film. Some honest feedback from a dual fan of Hadley and
+ RStudio: I’m trying to love dplyr as much as I have grown to love plyr,
+ but the only thing I like better so far is speed…(in certain cases, 
+that’s enough!). I lament losing lists! I would surely be praising the 
+new syntax if I had not first grown to love the original plyr’s elegant 
+syntax. Thanks for the awesome contribution.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard parent highlander-comment" id="comment-5357">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5357" title="Permalink to this comment">January 25, 2014 at 11:05 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-12" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Working
+ with lists in dplyr is definitely on the to do list, and yesterday I 
+think I came up with an idea that’s going to be substantially nicer than
+ dlply/ldply.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment odd alt depth-3 vcard highlander-comment" id="comment-5369">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5369" title="Permalink to this comment">January 28, 2014 at 2:33 pm</a></p>
+			<p class="comment-author"><strong class="fn">Gary M</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-398c9e5fcb5f88efca33ae873a77b0bf-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/398c9e5fcb5f88efca33ae873a77b0bf.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>I’m warming up to dplyr – great to know lists are in the works!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+</ul><!-- .children -->
+	
+	<div class="pingback even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-5359">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5359" title="Permalink to this comment">January 25, 2014 at 9:40 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://nextgenseek.com/2014/01/nextgenseek-stories-to-read-this-week-1242014-x-inactivation-dplyr-reproducible-research-skills-and-nygcs-new-toy/" rel="external nofollow" class="url">NextGenSeek Stories To Read This Week (1/24/2014): X inactivation, dplyr, reproducible research skills, and NYGC’s New Toy</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] dplyr […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-5363">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5363" title="Permalink to this comment">January 26, 2014 at 12:03 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://strata.oreilly.com/2014/01/what-i-use-for-data-visualization.html" rel="external nofollow" class="url">What I use for data visualization - Data</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] Wickham1, the creator of ggplot2, is speaking on two new 
+domain specific languages (ggvis and dplyr) that make it easy for R 
+users to declaratively create interactive web graphics. As Hadley […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment even thread-odd thread-alt depth-1 vcard parent highlander-comment" id="comment-5370">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5370" title="Permalink to this comment">January 28, 2014 at 2:38 pm</a></p>
+			<p class="comment-author"><strong class="fn">coltriq</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-8bf08cde2a61c19995ff9cffb04dd78f-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/8bf08cde2a61c19995ff9cffb04dd78f.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Can/will dplyr be released for R 2.15.3 ?</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor odd alt depth-2 vcard highlander-comment" id="comment-5371">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5371" title="Permalink to this comment">January 28, 2014 at 2:52 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-13" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>To
+ get good perform dplyr requires the use of C++ code and R internals. We
+ don’t currently have the resources to make sure that dplyr works on 
+both the most current version of R and previous versions. It’s hopefully
+ something we’ll be able to do in the future.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="pingback even thread-even depth-1 vcard highlander-comment" id="comment-5403">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5403" title="Permalink to this comment">January 31, 2014 at 5:03 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://patient2earn.com/introduction-to-dplyr-data-manipulation-made-easyer-and-funer/" rel="external nofollow" class="url">Introduction to dplyr: data manipulation made easy(er) and fun(er) | Patient 2 Earn</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] me concentrate less on getting R to do things, and more on 
+my research questions. The package is dplyr, a reboot of an earlier 
+package called […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt thread-odd thread-alt depth-1 vcard parent highlander-comment" id="comment-5413">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5413" title="Permalink to this comment">January 31, 2014 at 9:03 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://gravatar.com/mikelwrnc" rel="external nofollow" class="url">mikelwrnc</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-cb35fd8fac931defd873e14809385a35-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/cb35fd8fac931defd873e14809385a35.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Any plans to include parallelism as with the .parallel argument to plyr::ddply?</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard highlander-comment" id="comment-5484">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5484" title="Permalink to this comment">February 2, 2014 at 5:05 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-14" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Yes, but the implementation will probably be in c++ and mostly automated. Hopefully by the end of the year.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment odd alt thread-even depth-1 vcard parent highlander-comment" id="comment-5887">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5887" title="Permalink to this comment">February 13, 2014 at 6:46 pm</a></p>
+			<p class="comment-author"><strong class="fn">ethan Xu</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-fd572423e602da6349840b2050ab1834-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/fd572423e602da6349840b2050ab1834.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>I’d
+ like to share my honest opinion. First of all, thanks much for 
+developing all your wonderful packages. However I will be hesitated to 
+use the new package, mainly because it involves many customary classes, 
+and grammar changes (pipes). I truly believe the new additions are 
+convenient, fast and useful, but they are not strictly “standard” (?).</p>
+<p>1. It would be hard to explain what I’m doing to people who don’t know your package well, even if they know R. </p>
+<p>2. It would not be straight forward to apply other packages and my own functions which take data.frame in to results of dplyr.</p>
+<p>3. following 2– with plyr, data.frame in data.frame out — then I can 
+do many things since everyone’s familiar with data.frame. One can argue 
+dplyr does all those things better. But one may not have time and energy
+ to learn and remember the new additions, even if they are more 
+convenient.  </p>
+<p>I hope your packages become standard in bigger R community, so 
+everyone knows it and can communicate in your (wonderful) dialect of R 
+language.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard parent highlander-comment" id="comment-5891">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5891" title="Permalink to this comment">February 13, 2014 at 7:32 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-15" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>I agree that the pipes are confusing until you understand what’s going on – that’s why they’re optional <span class="wp-smiley wp-emoji wp-emoji-smile" title=":)">:)</span>  2 and 3 is a work in progress, and there will eventually be an API in dplyr for doing more general operations.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-ethanyxu odd alt depth-3 vcard highlander-comment" id="comment-5894">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-5894" title="Permalink to this comment">February 13, 2014 at 7:59 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://ethanyxu.wordpress.com/" rel="external nofollow" class="url">ethanyxu</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-fd572423e602da6349840b2050ab1834-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/fd572423e602da6349840b2050ab1834.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Looking forward to new development of your new package!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+</ul><!-- .children -->
+	
+	<div class="comment even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-6051">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-6051" title="Permalink to this comment">February 18, 2014 at 11:46 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://twitter.com/johngoldin" rel="external nofollow" class="url">John Goldin (@johngoldin)</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-f7dd8b52bc092b4e50e9324381b02d67-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/f7dd8b52bc092b4e50e9324381b02d67.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>I use the whole Wickham suite of packages, so I immediately dived into dplyr.</p>
+<p>One problem so far is that filter seems to do something strange if 
+one filters on a column that contains missing values. I get what I 
+expect with subset and something bizarre with filter.  </p>
+<p>Here’s an attempt at an example:<br>
+&gt; summary(filter(baseball, gidp &gt; 3)$gidp)<br>
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA’s<br>
+   4.00    6.00    9.00   10.27   13.00   30.00    5271<br>
+&gt; summary(subset(baseball, gidp &gt; 3)$gidp)<br>
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.<br>
+   4.00    6.00    9.00   10.15   13.00   36.00</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor odd alt thread-even depth-1 vcard highlander-comment" id="comment-6052">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-6052" title="Permalink to this comment">February 18, 2014 at 12:02 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-16" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Thats fixed in the dev version, which will be on its way to CRAN later this week. Thanks for trying it out.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment even thread-odd thread-alt depth-1 vcard parent highlander-comment" id="comment-6666">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-6666" title="Permalink to this comment">March 7, 2014 at 7:24 pm</a></p>
+			<p class="comment-author"><strong class="fn">Cyrus</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-11c34064cde1e628e5c2d1b6503547b9-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/11c34064cde1e628e5c2d1b6503547b9.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>I
+ had no problem using dplyr for sometime now (before it was on CRAN) but
+ recently the select() and filter() operations have been giving me 
+errors:</p>
+<p>lebanon &lt;- filter(gdelt_hist, ActionGeo_CountryCode == "LE")<br>
+Error in UseMethod("filter") :<br>
+  no applicable method for 'filter' applied to an object of class "c('src_sqlite', 'src_sql', 'src')"</p>
+<p>I get the same error using select as well. Any ideas? Thanks in advance!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment odd alt depth-2 vcard parent highlander-comment" id="comment-6668">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-6668" title="Permalink to this comment">March 7, 2014 at 7:41 pm</a></p>
+			<p class="comment-author"><strong class="fn">Cyrus</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-11c34064cde1e628e5c2d1b6503547b9-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/11c34064cde1e628e5c2d1b6503547b9.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Nvm I got it!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment even depth-3 vcard parent highlander-comment" id="comment-7080">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-7080" title="Permalink to this comment">March 16, 2014 at 2:47 pm</a></p>
+			<p class="comment-author"><strong class="fn">mosga</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-0113995e79333c1d81c2e87016beb3e3-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/0113995e79333c1d81c2e87016beb3e3.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Did you have plural loaded in the search path? I got bit by that.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt depth-3 vcard highlander-comment" id="comment-7084">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-7084" title="Permalink to this comment">March 16, 2014 at 3:32 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://gravatar.com/mosga" rel="external nofollow" class="url">mosga</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-0113995e79333c1d81c2e87016beb3e3-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/0113995e79333c1d81c2e87016beb3e3.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>…not “plural” – plyr.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard highlander-comment" id="comment-7072">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-7072" title="Permalink to this comment">March 16, 2014 at 12:28 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-17" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>I’d
+ recommend restarting R and upgrading the latest version on CRAN. If you
+ still see the problem, please send me a reproducible example and I’ll 
+look into it.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-7573">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-7573" title="Permalink to this comment">March 26, 2014 at 6:38 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://martinsbioblogg.wordpress.com/2014/03/26/using-r-quickly-calculating-summary-statistics-with-dplyr/" rel="external nofollow" class="url">Using R: quickly calculating summary statistics (with dplyr) | There is grandeur in this view of life</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] not the president of his fanclub, but if there is one I’d 
+certainly like to be a member. dplyr is going to be a new and improved 
+ddply: a package that applies functions to, and does other things […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment byuser comment-author-rseeker even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-7668">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-7668" title="Permalink to this comment">March 29, 2014 at 2:45 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://rscrolls.wordpress.com/" rel="external nofollow" class="url">rseeker</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-80ac9ee19c5ece8355fc322214d99568-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/80ac9ee19c5ece8355fc322214d99568.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Reblogged this on <a href="http://desertscrolls.wordpress.com/2014/03/29/introducing-dplyr/" rel="nofollow">deseRt scrolls</a>.</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-7994">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-7994" title="Permalink to this comment">April 9, 2014 at 9:25 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://samclifford.info/2014/04/10/a-few-r-things/" rel="external nofollow" class="url">A few R things | Sam Clifford</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] samplers continue to measure at higher frequencies. Left 
+out of the article is a discussion of dplyr; I’m still using functions 
+from the apply family! Maybe I should also get used to using […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-8053">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-8053" title="Permalink to this comment">April 12, 2014 at 4:02 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://freshbiostats.wordpress.com/2014/04/12/more-on-handling-data-frames-in-r-dplyr-package/" rel="external nofollow" class="url">More on handling data frames in R: dplyr package | FreshBiostats</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] can find general information about the package at 
+the&nbsp;rstudio blog or several other blogs talking about its 
+goodness,&nbsp;here […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-8234">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-8234" title="Permalink to this comment">April 17, 2014 at 11:06 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://fishr.wordpress.com/2014/04/17/dplyr-example-1/" rel="external nofollow" class="url">dplyr Example #1 | fishR</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] Wickam released the dplyr package in January 2014. Since 
+then I have been itching to give it a try as it has been suggested to 
+speed up some data […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-9952">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-9952" title="Permalink to this comment">June 2, 2014 at 10:43 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://prabhasp.com/wp/recently-may/" rel="external nofollow" class="url">prabhasp » Recently: May</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] work, some colleagues and I created a new version of our 
+R-based data processing pipeline using the dplyr package as a 
+foundation. dplyr has been thought through really well; using it, we 
+have been able to […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-10636">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-10636" title="Permalink to this comment">June 16, 2014 at 4:55 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://followthedata.wordpress.com/2014/06/16/hadley-wickham-lecture-ggvis-tidyr-dplyr-and-much-more/" rel="external nofollow" class="url">Hadley Wickham lecture: ggvis, tidyr, dplyr and much more | Follow the Data</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] dplyr – the “next iteration of plyr”, which is faster and 
+focuses on data frames. It uses commands like select, filter, mutate, 
+summarize, arrange. […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-11352">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-11352" title="Permalink to this comment">June 30, 2014 at 7:25 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://gravatar.com/earino" rel="external nofollow" class="url">earino</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-67d5085be0d75bd7a505fbb7383ec439-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/67d5085be0d75bd7a505fbb7383ec439.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>For
+ nice folks reading this blog post, modern versions of dplyr have left 
+behind %.% for the new nice %&gt;%. It’s easier to type and you can 
+actually see direction!</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-11722">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-11722" title="Permalink to this comment">July 8, 2014 at 7:42 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://blog.custora.com/2014/07/custora-pulse-mobile-data/" rel="external nofollow" class="url">Mobile E-Commerce Data: Download Custora's Mobile E-Commerce Report Data | Custora Blog</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] explored the data using a standard pipeline for each of the
+ report’s statistics. Using the dplyr package, we first filtered the 
+date range for the given analysis, as some metric and dimension […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-12887">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-12887" title="Permalink to this comment">July 28, 2014 at 4:00 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://radar.oreilly.com/2014/01/what-i-use-for-data-visualization.html" rel="external nofollow" class="url">What I use for data visualization - O'Reilly Radar</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] Wickham1, the creator of ggplot2, is speaking on two new 
+domain specific languages (ggvis and dplyr) that make it easy for R 
+users to declaratively create interactive web graphics. As Hadley […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-13465">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-13465" title="Permalink to this comment">August 7, 2014 at 12:25 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://radar.oreilly.com/2014/08/scaling-up-data-frames.html" rel="external nofollow" class="url">Scaling up data frames - O'Reilly Radar</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] interactive queries, new R packages dplyr and/or data.table
+ can be used for fast aggregations and joins. dplyr also comes with an 
+operator […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-14246">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-14246" title="Permalink to this comment">August 22, 2014 at 8:00 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://radar.oreilly.com/2014/08/building-pipelines-to-facilitate-data-analysis.html" rel="external nofollow" class="url">Building pipelines to facilitate data analysis - O'Reilly Radar</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] dplyr, pipelines for data wrangling that work not just with
+ in-memory data, but also with remote data stores, like databases and 
+Google’s BigQuery. […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="comment odd alt thread-even depth-1 vcard parent highlander-comment" id="comment-14425">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-14425" title="Permalink to this comment">August 25, 2014 at 9:43 pm</a></p>
+			<p class="comment-author"><strong class="fn">Angus Williams</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-21aa7e615a54acd27af155ac15f5b2eb-0" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/21aa7e615a54acd27af155ac15f5b2eb.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Unable to chain/pipe with my data set.</p>
+<p>Data:<br>
+Originally  two .rds file wrtten to csv as a data frame</p>
+<p>This is a merged data frame, and the error i am getting</p>
+<p>class(scc.nei.vehicles.sv)<br>
+## [1] “data.frame”</p>
+<p>scc.nei.vehicles.sv %.%<br>
+  filter(fips %in% “24510”) %.%<br>
+  select(Emissions, year, EI_Sector) %.%<br>
+  plot(Emissions, col = as.factor(year))</p>
+<p>## Error in get(as.character(FUN), mode = “function”, envir = envir) :<br>
+## object ‘scc.nei.vehicles.sv’ of mode ‘function’ was not found</p>
+<p>ls()<br>
+## [10] “scc.nei.vehicles.balt.year.em” “scc.nei.vehicles.sv”           “scc.nei.vehicles.sv.balt”</p>
+<p>Any help kindly appreciated</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard highlander-comment" id="comment-14427">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-14427" title="Permalink to this comment">August 25, 2014 at 10:13 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-18" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Hi Angus,</p>
+<p>How would you plot it without chaining? You’re effectively doing 
+plot(scc.nei.vehicles.sv %.% filter(fips %in% “24510”) %.% 
+select(Emissions, year, EI_Sector), Emissions, col = as.factor(year)), 
+which I don’t think plot() understands.</p>
+<p>I’d also recommend switching to the newer %&gt;% pipe.</p>
+<p>Hadley</p>
+<p>Hadley</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="comment odd alt thread-odd thread-alt depth-1 vcard parent highlander-comment" id="comment-14531">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-14531" title="Permalink to this comment">August 27, 2014 at 11:55 pm</a></p>
+			<p class="comment-author"><strong class="fn">Angus Williams</strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-21aa7e615a54acd27af155ac15f5b2eb-1" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/21aa7e615a54acd27af155ac15f5b2eb.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Hi hadleywickham,<br>
+Thanks for taking the time  to reply, i really do appreciate it.</p>
+<p>My motivation for my iniitial post was based on the premise of using pipes to type less code, to accomplish a task.</p>
+<p>Therefore this is new to me, and i am experimenting to learn.<br>
+Most of the standalone dplyr functions served me well for my MOOC class projects.</p>
+<p>This is my initial code before attempting to learn piping.</p>
+<p># Question: Which type of mobile vehicle produced min and max pollutants in Baltimore City from 1999 – 2008</p>
+<p>### Data<br>
+dim(nei.df)<br>
+## [1] 6497651       6<br>
+dim(scc.df)<br>
+## [1] 11726    15</p>
+<p>### Extract SCC and EI_Sector for vehicle observations<br>
+# from scc.df data frame<br>
+scc.vehicles &lt;-<br>
+  subset(scc.df,<br>
+         EI_Sector %in% c("Mobile – On-Road Gasoline Light Duty Vehicles",<br>
+                          "Mobile – On-Road Gasoline Heavy Duty Vehicles",<br>
+                          "Mobile – On-Road Diesel Light Duty Vehicles",<br>
+                          "Mobile – On-Road Diesel Heavy Duty Vehicles"),<br>
+         select = c(SCC, EI_Sector))</p>
+<p>### Extract SCC fips Emissions and year from nei.df data frame<br>
+# that matches SCC in scc.df data frame<br>
+scc.nei.vehicles &lt;- subset(nei.df, SCC %in% scc.vehicles$SCC,<br>
+                           select = c (SCC, fips, Emissions, year))</p>
+<p>### Merge data frame by SCC for vehicle observations from<br>
+# both nei.df an scc.df data frames<br>
+scc.nei.vehicles.sv  scc.nei.vehicles.sv$EI_Sector<br>
+gsub(“Mobile – On-Road Gasoline Heavy Duty Vehicles”, “HDV Gasoline”,<br>
+     scc.nei.vehicles.sv$EI_Sector) -&gt; scc.nei.vehicles.sv$EI_Sector<br>
+gsub(“Mobile – On-Road Diesel Light Duty Vehicles”, “LDV Diesel”,<br>
+     scc.nei.vehicles.sv$EI_Sector) -&gt; scc.nei.vehicles.sv$EI_Sector<br>
+gsub(“Mobile – On-Road Diesel Heavy Duty Vehicles”, “HDV Diesel”,<br>
+     scc.nei.vehicles.sv$EI_Sector) -&gt; scc.nei.vehicles.sv$EI_Sector</p>
+<p>### Extract vehicle observations for Baltimore City<br>
+scc.nei.vehicles.sv.balt &lt;-<br>
+  subset(scc.nei.vehicles.sv,fips %in% "24510",<br>
+         select = c(EI_Sector, fips, year, Emissions))</p>
+<p>### Order data by year Emissions and EI_Sector<br>
+snv.sv.balt.o &lt;- arrange(scc.nei.vehicles.sv.balt, year, Emissions, EI_Sector)</p>
+<p>### Group by year and EI_Sector<br>
+snv.sv.balt.grps &lt;- group_by(snv.sv.balt.o, year, EI_Sector)</p>
+<p>### Plot Emissions color by Vehicluar Source<br>
+plot(snv.sv.balt.grps$Emissions, cex = 3,<br>
+     col = as.factor(unique(snv.sv.balt.grps$EI_Sector)), xlab = "", ylab = "PM2.5 Emissions",<br>
+     main = "Pollution In Baltomore City from Mobile Vehicle Sources",<br>
+     sub = "By Heavy and Light Duty Vehicles Using Gasoline abd Diesel Fuels")<br>
+lines(snv.sv.balt.grps$Emissions)<br>
+lines(as.factor(snv.sv.balt.grps$year), col = "purple")<br>
+legend("topright", legend = as.factor(unique(snv.sv.balt.grps$EI_Sector)),<br>
+       pch = 20, cex = 1.5,<br>
+       col = as.factor(unique(snv.sv.balt.grps$EI_Sector))):</p>
+<p>I can get most of this to chain, except for where different data frames are used, substitutions, merging, and plotting.</p>
+<p>Is it possible?</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+<ul class="children">
+	
+	<div class="comment byuser comment-author-hadleywickham bypostauthor even depth-2 vcard highlander-comment" id="comment-14545">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-14545" title="Permalink to this comment">August 28, 2014 at 8:08 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://lookingatdata.wordpress.com/" rel="external nofollow" class="url">hadleywickham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+			<img id="grav-7ba164f40a50bc23dbb2aa825fb7bc16-19" alt="" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/7ba164f40a50bc23dbb2aa825fb7bc16.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			<p>Its not easy to use plot with piping because it doesn’t work very well with data frames. I think you can do </p>
+<p>cc.nei.vehicles.sv %&gt;%<br>
+  filter(fips %in% “24510”) %&gt;%<br>
+   select(Emissions, year, EI_Sector) %&gt;%<br>
+   plot(~ Emissions, data = . , col = as.factor(year))</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+</ul><!-- .children -->
+	
+	<div class="pingback odd alt thread-even depth-1 vcard highlander-comment" id="comment-14572">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-14572" title="Permalink to this comment">August 28, 2014 at 8:26 pm</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://www.markhneedham.com/blog/2014/08/29/r-grouping-by-week-month-quarter/" rel="external nofollow" class="url">R: Grouping by week, month, quarter at Mark Needham</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] was to create a new data frame which grouped the data by 
+those fields. I’ve been learning dplyr as part of Udacity’s EDA course 
+so I thought I’d try and use […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+	
+	<div class="pingback even thread-odd thread-alt depth-1 vcard highlander-comment" id="comment-15572">
+		<div class="comment-metadata">
+			<p class="comment-permalink"><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/#comment-15572" title="Permalink to this comment">September 15, 2014 at 10:54 am</a></p>
+			<p class="comment-author"><strong class="fn"><a href="http://www.sandertimmer.nl/2014/01/this-sounds-extremely-promising-for-those-using-data-frames-in-r-2/" rel="external nofollow" class="url">This sounds extremely promising for those using data frames in R! | Sander Timmer</a></strong></p>
+					</div>
+
+		<div class="comment-content">
+						<p>[…] <a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/" rel="nofollow">http://blog.rstudio.org/2014/01/17/introducing-dplyr/</a> […]</p>
+		</div>
+		<div class="reply">
+						</div>
+	</div>
+
+	<div class="navigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>
+
+	<br>
+
+
+
+</div><!-- #comments --></div>
+
+<div id="footer">
+
+	<div id="miscellany">
+
+	<div class="widgets">
+
+	
+		<div class="searchbox">
+	<form method="get" id="searchform" action="/"><fieldset>
+		<input name="s" id="s" tabindex="21" type="text">
+		<input id="searchsubmit" value="Search" tabindex="22" type="submit">
+	</fieldset></form>
+</div>
+	
+	</div>
+
+	</div>
+
+
+	<div id="about">
+		<div class="navigation">
+							<div class="left"><a href="http://blog.rstudio.org/2013/12/09/roxygen2-3-0-0/" rel="prev"><span>«</span> roxygen2 3.0.0</a></div>
+			<div class="right"><a href="http://blog.rstudio.org/2014/01/30/roxygen2-3-1-0/" rel="next">roxygen2 3.1.0 <span>»</span></a></div>
+				</div>
+	</div>
+
+
+	<div id="theme-info">
+		<div class="primary content">
+			<p><span class="generator"><a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com</a>.</span><span class="designer"><a href="https://wordpress.com/themes/tarski/" title="Learn more about this theme">The Tarski Theme</a>. </span></p>
+		</div>
+		<div class="secondary">
+			<p><a class="feed" title="Subscribe to the RStudio Blog feed" href="http://blog.rstudio.org/feed/">Subscribe to feed.</a></p>
+		</div>
+	</div>
+
+
+</div>
+
+</div><!-- wpcom_wp_footer -->
+<script type="text/javascript" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/wpgroho.js"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-541b04414f428357fe6b7179b7768604">
+	</div>
+	<div class="grofile-hash-map-7ba164f40a50bc23dbb2aa825fb7bc16">
+	</div>
+	<div class="grofile-hash-map-fdd630f72eef3790bfb4ef38d08c7f85">
+	</div>
+	<div class="grofile-hash-map-37a7cd7132d56694c20933e20fe351bf">
+	</div>
+	<div class="grofile-hash-map-6bda584dd6458fbd97d55b0fed9e9942">
+	</div>
+	<div class="grofile-hash-map-26861056e5c4d3a78d5ad80e2aae1b0a">
+	</div>
+	<div class="grofile-hash-map-a705939af0380db4722da91c61536a05">
+	</div>
+	<div class="grofile-hash-map-eb3640e66e92fe6a3315007455d645d7">
+	</div>
+	<div class="grofile-hash-map-a8449d62acadb27e691d4134a309a49a">
+	</div>
+	<div class="grofile-hash-map-eb3640e66e92fe6a3315007455d645d7">
+	</div>
+	<div class="grofile-hash-map-f5e789b2b75c42b109dab265927045ff">
+	</div>
+	<div class="grofile-hash-map-4cdd755a41a18728ae324850840bc32a">
+	</div>
+	<div class="grofile-hash-map-486d55cb25a52c79c3c39748d7b05807">
+	</div>
+	<div class="grofile-hash-map-e9eb441e77a15589b1bff1210bde0587">
+	</div>
+	<div class="grofile-hash-map-43a380b91b140b509ee0f320ea3da0d5">
+	</div>
+	<div class="grofile-hash-map-ee9a642d40e35659c66ea7f3539ddadc">
+	</div>
+	<div class="grofile-hash-map-6ed741a4f747b43e9a9a13ede1e3ad39">
+	</div>
+	<div class="grofile-hash-map-9298e2576b5987ca29e519a1be7e10b4">
+	</div>
+	<div class="grofile-hash-map-fc8b288fb61111aad1f9e962bcca1007">
+	</div>
+	<div class="grofile-hash-map-3787def319e502a67eda19f621b57f02">
+	</div>
+	<div class="grofile-hash-map-c1d5240f7044aad9a9d5fd991c9969c6">
+	</div>
+	<div class="grofile-hash-map-398c9e5fcb5f88efca33ae873a77b0bf">
+	</div>
+	<div class="grofile-hash-map-8bf08cde2a61c19995ff9cffb04dd78f">
+	</div>
+	<div class="grofile-hash-map-cb35fd8fac931defd873e14809385a35">
+	</div>
+	<div class="grofile-hash-map-fd572423e602da6349840b2050ab1834">
+	</div>
+	<div class="grofile-hash-map-fd572423e602da6349840b2050ab1834">
+	</div>
+	<div class="grofile-hash-map-f7dd8b52bc092b4e50e9324381b02d67">
+	</div>
+	<div class="grofile-hash-map-11c34064cde1e628e5c2d1b6503547b9">
+	</div>
+	<div class="grofile-hash-map-0113995e79333c1d81c2e87016beb3e3">
+	</div>
+	<div class="grofile-hash-map-80ac9ee19c5ece8355fc322214d99568">
+	</div>
+	<div class="grofile-hash-map-67d5085be0d75bd7a505fbb7383ec439">
+	</div>
+	<div class="grofile-hash-map-21aa7e615a54acd27af155ac15f5b2eb">
+	</div>
+	</div>
+
+	<div style="bottom: -316px;" id="bit" class="loggedout-follow-normal">
+		<a class="bsub" href="javascript:void(0)"><span id="bsub-text">Follow</span></a>
+		<div id="bitsubscribe">
+
+					<h3><label for="loggedout-follow-field">Follow “RStudio Blog”</label></h3>
+
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+						<p class="bit-follow-count">Join 12,405 other followers</p>
+			<p><input name="email" value="Enter your email address" onfocus='this.value=(this.value=="Enter your email address") ? "" : this.value;' onblur='this.value=(this.value=="") ? "Enter your email address" : this.value;' id="loggedout-follow-field" type="email"></p>
+
+			<input name="action" value="subscribe" type="hidden">
+			<input name="blog_id" value="18843819" type="hidden">
+			<input name="source" value="http://blog.rstudio.org/2014/01/17/introducing-dplyr/" type="hidden">
+			<input name="sub-type" value="loggedout-follow" type="hidden">
+
+			<input id="_wpnonce" name="_wpnonce" value="aca6ec21ad" type="hidden"><input name="_wp_http_referer" value="/2014/01/17/introducing-dplyr/" type="hidden">
+			<p id="bsub-subscribe-button"><input value="Sign me up" type="submit"></p>
+			</form>
+					<div id="bsub-credit"><a href="https://wordpress.com/?ref=lof">Build a website with WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/blog.rstudio.org\/2014\/01\/17\/introducing-dplyr\/":1121}	</script>
+	
+		<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<iframe src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script type="text/javascript">
+		//<![CDATA[
+			var jetpackLikesWidgetQueue = [];
+			var jetpackLikesWidgetBatch = [];
+			var jetpackLikesMasterReady = false;
+
+			function JetpackLikespostMessage( message, target ) {
+				if ( "string" === typeof message ){
+					try{
+						message = JSON.parse( message );
+					}
+					catch(e) {
+						return;
+					}
+				}
+
+				pm( {
+					target: target,
+					type: 'likesMessage',
+					data: message,
+					origin: '*'
+				} );
+			}
+
+			function JetpackLikesBatchHandler() {
+				var requests = [];
+				jQuery( 'div.jetpack-likes-widget-unloaded' ).each( function( i ) {
+					if ( jetpackLikesWidgetBatch.indexOf( this.id ) > -1 )
+						return;
+					jetpackLikesWidgetBatch.push( this.id );
+					var regex = /like-(post|comment)-wrapper-(\d+)-(\d+)-(\w+)/;
+					var match = regex.exec( this.id );
+					if ( ! match || match.length != 5 )
+						return;
+
+					var info = {
+						blog_id: match[2],
+						width:   this.width
+					};
+
+					if ( 'post' == match[1] ) {
+						info.post_id = match[3];
+					} else if ( 'comment' == match[1] ) {
+						info.comment_id = match[3];
+					}
+
+					info.obj_id = match[4];
+
+					requests.push( info );
+				});
+
+				if ( requests.length > 0 ) {
+					JetpackLikespostMessage( { event: 'initialBatch', requests: requests }, window.frames['likes-master'] );
+				}
+			}
+
+			function JetpackLikesMessageListener( event ) {
+				if ( "undefined" == typeof event.event )
+					return;
+
+				if ( 'masterReady' == event.event ) {
+					jQuery( document ).ready( function() {
+						jetpackLikesMasterReady = true;
+
+						var stylesData = {
+								event: 'injectStyles'
+						};
+
+						if ( jQuery( 'iframe.admin-bar-likes-widget' ).length > 0 ) {
+							JetpackLikespostMessage( { event: 'adminBarEnabled' }, window.frames[ 'likes-master' ] );
+
+							stylesData.adminBarStyles = {
+								background: jQuery( '#wpadminbar .quicklinks li#wp-admin-bar-wpl-like > a' ).css( 'background' ),
+								isRtl: ( 'rtl' == jQuery( '#wpadminbar' ).css( 'direction' ) )
+							};
+						}
+
+						if ( !window.addEventListener )
+							jQuery( '#wp-admin-bar-admin-bar-likes-widget' ).hide();
+
+						stylesData.textStyles = {
+							color: jQuery( '.sd-text-color').css( 'color' ),
+							fontFamily: jQuery( '.sd-text-color' ).css( 'font-family' ),
+							fontSize: jQuery( '.sd-text-color' ).css( 'font-size' ),
+							direction: jQuery( '.sd-text-color' ).css( 'direction' ),
+							fontWeight: jQuery( '.sd-text-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-text-color' ).css( 'font-style' ),
+							textDecoration: jQuery( '.sd-text-color' ).css('text-decoration')
+						};
+
+						stylesData.linkStyles = {
+							color: jQuery( '.sd-link-color' ).css('color'),
+							fontFamily: jQuery( '.sd-link-color' ).css('font-family'),
+							fontSize: jQuery( '.sd-link-color' ).css('font-size'),
+							textDecoration: jQuery( '.sd-link-color' ).css('text-decoration'),
+							fontWeight: jQuery( '.sd-link-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-link-color' ).css( 'font-style' )
+						};
+
+						JetpackLikespostMessage( stylesData, window.frames[ 'likes-master' ] );
+
+						JetpackLikesBatchHandler();
+
+						jQuery( document ).on( 'inview', 'div.jetpack-likes-widget-unloaded', function() {
+							jetpackLikesWidgetQueue.push( this.id );
+						});
+					});
+				}
+
+				if ( 'showLikeWidget' == event.event ) {
+					jQuery( '#' + event.id + ' .post-likes-widget-placeholder'  ).fadeOut( 'fast', function() {
+						jQuery( '#' + event.id + ' .post-likes-widget' ).fadeIn( 'fast', function() {
+							JetpackLikespostMessage( { event: 'likeWidgetDisplayed', blog_id: event.blog_id, post_id: event.post_id, obj_id: event.obj_id }, window.frames['likes-master'] );
+						});
+					});
+				}
+
+				if ( 'clickReblogFlair' == event.event ) {
+					wpcom_reblog.toggle_reblog_box_flair( event.obj_id );
+				}
+
+				if ( 'showOtherGravatars' == event.event ) {
+					var $container = jQuery( '#likes-other-gravatars' );
+					var $list = $container.find( 'ul' );
+
+					$container.hide();
+					$list.html( '' );
+
+					$container.find( '.likes-text span' ).text( event.total );
+
+					jQuery.each( event.likers, function( i, liker ) {
+						$list.append( '<li class="' + liker.css_class + '"><a href="' + liker.profile_URL + '" class="wpl-liker" rel="nofollow" target="_parent"><img src="' + liker.avatar_URL + '" alt="' + liker.name + '" width="30" height="30" style="padding-right: 3px;" /></a></li>');
+					} );
+
+					var offset = jQuery( "[name='" + event.parent + "']" ).offset();
+
+					$container.css( 'left', offset.left + event.position.left - 10 + 'px' );
+					$container.css( 'top', offset.top + event.position.top - 33 + 'px' );
+
+					var rowLength = Math.floor( event.width / 37 );
+					var height = ( Math.ceil( event.likers.length / rowLength ) * 37 ) + 13;
+					if ( height > 204 ) {
+						height = 204;
+					}
+
+					$container.css( 'height', height + 'px' );
+					$container.css( 'width', rowLength * 37 - 7 + 'px' );
+
+					$list.css( 'width', rowLength * 37 + 'px' );
+
+					$container.fadeIn( 'slow' );
+
+					var scrollbarWidth = $list[0].offsetWidth - $list[0].clientWidth;
+					if ( scrollbarWidth > 0 ) {
+						$container.width( $container.width() + scrollbarWidth );
+						$list.width( $list.width() + scrollbarWidth );
+					}
+				}
+			}
+
+			pm.bind( 'likesMessage', function(e) { JetpackLikesMessageListener(e); } );
+
+			jQuery( document ).click( function( e ) {
+				var $container = jQuery( '#likes-other-gravatars' );
+
+				if ( $container.has( e.target ).length === 0 ) {
+					$container.fadeOut( 'slow' );
+				}
+			});
+
+			function JetpackLikesWidgetQueueHandler() {
+				var wrapperID;
+				if ( ! jetpackLikesMasterReady ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				if ( jetpackLikesWidgetQueue.length > 0 ) {
+					// We may have a widget that needs creating now
+					var found = false;
+					while( jetpackLikesWidgetQueue.length > 0 ) {
+						// Grab the first member of the queue that isn't already loading.
+						wrapperID = jetpackLikesWidgetQueue.splice( 0, 1 )[0];
+						if ( jQuery( '#' + wrapperID ).hasClass( 'jetpack-likes-widget-unloaded' ) ) {
+							found = true;
+							break;
+						}
+					}
+					if ( ! found ) {
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				} else if ( jQuery( 'div.jetpack-likes-widget-unloaded' ).length > 0 ) {
+					// Grab any unloaded widgets for a batch request
+					JetpackLikesBatchHandler();
+
+					// Get the next unloaded widget
+					wrapperID = jQuery( 'div.jetpack-likes-widget-unloaded' ).first()[0].id;
+					if ( ! wrapperID ) {
+						// Everything is currently loaded
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				}
+
+				if ( 'undefined' === typeof wrapperID ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				var $wrapper = jQuery( '#' + wrapperID );
+				$wrapper.find( 'iframe' ).remove();
+
+				if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='22px' width='68px' frameBorder='0' scrolling='no' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				} else {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='55px' width='100%' frameBorder='0' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				}
+
+				$wrapper.removeClass( 'jetpack-likes-widget-unloaded' ).addClass( 'jetpack-likes-widget-loading' );
+
+				$wrapper.find( 'iframe' ).load( function( e ) {
+					var $iframe = jQuery( e.target );
+					$wrapper.removeClass( 'jetpack-likes-widget-loading' ).addClass( 'jetpack-likes-widget-loaded' );
+
+					JetpackLikespostMessage( { event: 'loadLikeWidget', name: $iframe.attr( 'name' ), width: $iframe.width() }, window.frames[ 'likes-master' ] );
+
+					if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+						$wrapper.find( 'iframe' ).Jetpack( 'resizeable' );
+					}
+				});
+				setTimeout( JetpackLikesWidgetQueueHandler, 250 );
+			}
+			JetpackLikesWidgetQueueHandler();
+		//]]>
+		</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var JetpackEmojiSettings = {"base_url":"http:\/\/s0.wp.com\/wp-content\/mu-plugins\/emoji\/twemoji\/"};
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/a.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/w.js" type="text/javascript" async="" defer="defer"></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'18843819','blog_tz':'-5','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'18843819','v':'wpcom','tz':'-5','user_id':'0','post':'1121','subd':'rstudioblog'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1dzd0tbeWVJayZ2U0g9LzAsWVFHW28/U0JfcD9SNVZobUxCQ0cwP0RJZVpQYUJ0ek81NzZbWi8rSWk3UC9NdHV8OFh8OC1Nbl84cGc3NnVYQX53UGpGeTdbS1JHSXFLT3BoPTddd2xjcVU0SCZfcy82MFk/QzMuQWNhVHNjcVJrT1Y/SkFxMURCRk89U19YV0MtSERzbFRPK2ZSZEh0TTBLLUFuVmhPZ1p6RlFRJUVURmNoTGNKSHp1cFQlSisrWWxxL1loX3RGRldzZkgsKzZXRjUtKy9bbXRYRG1XeUN5XTdNblFZbUEyckhtRWJoS0ppP2ZXMF9XM2VvLC9yTyZ3UHU='}]);
+_stq.push([ 'clickTrackerInit', '18843819', '1121' ]);
+	</script>
+<noscript><img src="http://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script><div id="sharing_email" style="display: none;">
+		<form action="/2014/01/17/introducing-dplyr/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input name="target_email" id="target_email" type="email">
+
+			
+				<label for="source_name">Your Name</label>
+				<input name="source_name" id="source_name" type="text">
+
+				<label for="source_email">Your Email Address</label>
+				<input name="source_email" id="source_email" type="email">
+
+			
+			<div class="recaptcha" id="sharing_recaptcha"></div><input name="recaptcha_public_key" id="recaptcha_public_key" value="6LcYW8MSAAAAADBAuEH9yaPcF7lWh11Iq62ZKtoo" type="hidden">
+			<img style="float: right; display: none" class="loading" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/loading.gif" alt="loading" height="16" width="16">
+			<input value="Send Email" class="sharing_send" type="submit">
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div><img id="wpstats" src="Introducing%20dplyr%20%7C%20RStudio%20Blog_files/g.gif"></body></html>

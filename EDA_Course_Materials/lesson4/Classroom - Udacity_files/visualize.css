@@ -1,0 +1,23 @@
+input[formfillersupport="true"] {
+	background-color: #ffffaa;
+}
+select[formfillersupport="true"] {
+	background-color: #ffffaa;
+}
+
+textarea[formfillersupport="true"] {
+	background-color: #ffffaa;
+}
+
+
+
+input[formfillersupport="true"][formfillerblankfield="true"] {
+	background-color: #aaffff;
+}
+select[formfillersupport="true"][formfillerblankfield="true"] {
+	background-color: #aaffff;
+}
+
+textarea[formfillersupport="true"][formfillerblankfield="true"] {
+	background-color: #aaffff;
+}

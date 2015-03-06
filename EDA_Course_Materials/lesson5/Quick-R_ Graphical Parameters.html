@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>Quick-R: Graphical Parameters</title>
+    <meta name="Description" content="Overview of Graphical Parameters">
+    <meta name="Keywords" content="R, Tutorial, Statistics">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <meta name="Distribution" content="Global">
+    <meta name="Author" content="Robert Kabacoff - robk@statmethods.net">
+    <meta name="Robots" content="index,follow">
+    <meta name="verify-v1" content="mRsSDOT/ebuSJJB2GXuo1UZi3nZ+NsE+JIBwg77QtNE=">
+    <meta name="y_key" content="c94970a1faf084da">
+    <link href="Quick-R_%20Graphical%20Parameters_files/style.css" rel="stylesheet" type="text/css">
+<script src="Quick-R_%20Graphical%20Parameters_files/analytics.js" async=""></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55355690-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+    <div id="header">
+        <a href="http://www.statmethods.net/"><img id="logo" src="Quick-R_%20Graphical%20Parameters_files/logo.gif" alt=""></a>
+        <div id="menu">
+            <ul>
+		        <li><a href="http://www.statmethods.net/index.html">Home</a></li>
+		        <li>|<a href="http://www.statmethods.net/interface/index.html">Interface</a></li>
+		        <li>|<a href="http://www.statmethods.net/input/index.html">Input</a></li>
+		        <li>|<a href="http://www.statmethods.net/management/index.html">Manage</a></li>
+		        <li>|<a href="http://www.statmethods.net/stats/index.html">Stats</a></li>
+			    <li>|<a href="http://www.statmethods.net/advstats/index.html">Adv Stats</a></li>
+			    <li>|<a href="http://www.statmethods.net/graphs/index.html">Graphs</a></li>
+			    <li>|<a href="http://www.statmethods.net/advgraphs/index.html">Adv Graphs</a></li>
+			     <li>|<a href="http://statmethods.wordpress.com/">Blog</a></li>
+            </ul>
+   </div>
+        <h1><a href="http://www.statmethods.net/">Quick-R</a></h1>
+        <p id="subtitle">accessing the power of R </p>
+<form id="search" action="http://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_self">
+            <input name="si" value="23055275" type="hidden">
+			<input name="pid" value="r" type="hidden">
+		    <input name="n" value="0" type="hidden">
+			<input name="_charset_" value="" type="hidden">
+			<input name="bcd" value="÷" type="hidden">
+			<input name="nsb" type="hidden">
+			<input name="css" value="" type="hidden">
+			<input class="text" name="query" type="text">
+			<input name="search" class="submit" value="Search" type="submit">
+        </form>
+</div><!-- header -->
+    <div id="main"><div id="main2">
+            <div id="sidebar">
+                <h2>R Interface</h2>
+                <ul>
+				    <li><a href="http://www.statmethods.net/advgraphs/parameters.html">Graphical Parameters </a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/axes.html">Axes and Text </a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/layout.html">Combining Plots </a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/trellis.html">Lattice Graphs </a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/ggplot2.html">ggplot2 Graphs </a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/probability.html">Probability Plots </a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/mosaic.html">Mosaic Plots </a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/correlograms.html">Correlograms</a></li>
+					<li><a href="http://www.statmethods.net/advgraphs/interactive.html">Interactive Graphs </a></li>
+				</ul>
+                 <h2>R in Action</h2>
+               <div class="box">
+                    <p><a href="http://www.manning.com/kabacoff2/?a_aid=RiA2ed&amp;a_bid=5c2b1e1d"><img src="Quick-R_%20Graphical%20Parameters_files/kabacoff_cover150.jpg" alt="R in Action" class="float-left" height="90" width="73"></a></p>
+                    <p><a href="http://www.manning.com/kabacoff2/?a_aid=RiA2ed&amp;a_bid=5c2b1e1d" target="_blank">R in Action</a> (2nd ed) significantly expands upon this material.
+					Use promo code <strong>ria38</strong> for a 38% discount.</p>
+
+                </div>
+                <h2>Top Menu</h2>
+                <ul>
+                    <li><a href="http://www.statmethods.net/index.html">Home</a></li>
+                    <li><a href="http://www.statmethods.net/interface/index.html">The R Interface</a></li>
+                    <li><a href="http://www.statmethods.net/input/index.html">Data Input</a></li>
+                    <li><a href="http://www.statmethods.net/management/index.html">Data Management</a></li>
+                    <li><a href="http://www.statmethods.net/stats/index.html">Basic Statistics</a></li>
+				    <li><a href="http://www.statmethods.net/advstats/index.html">Advanced Statistics</a></li>
+			        <li><a href="http://www.statmethods.net/graphs/index.html">Basic Graphs</a></li>
+			        <li><a href="http://www.statmethods.net/advgraphs/index.html">Advanced Graphs</a></li>
+			        <li><a href="http://statmethods.wordpress.com/">Blog</a></li>
+                </ul>
+
+            </div><!-- sidebar -->
+            <div id="content">
+<h1>Graphical Parameters</h1>
+				<p>You can customize many features of your graphs (fonts, colors, axes, titles) through graphic options. </p>
+				<p>One way is to  specify these options in through the <strong>par( ) </strong>function.
+  If you set parameter values here, the changes will be in effect for 
+the rest of the session or until you change them again. The format is <strong>par(<em>optionname</em>=</strong><em>value</em><strong>, <em>optionname</em>=</strong><em>value</em><strong>, </strong>...<strong>) </strong></p>
+				<p><code># Set a graphical parameter using par()<br>
+			    <br>
+			    par() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# view current settings<br>
+				  opar &lt;- par() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# make a copy of current settings<br>
+				  par(col.lab="red") # red x and y labels <br>
+				  hist(mtcars$mpg)&nbsp;&nbsp;&nbsp;# create a plot with these new settings <br>
+				  par(opar) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# restore original settings
+</code></p>
+				<p>A second way to specify graphical parameters is by providing  the <em><strong>optionname</strong></em>=<em>value</em> pairs directly to a high level plotting function. In this case, the options are only in effect for that specific graph.</p>
+				<p><code># Set a graphical parameter within the plotting function <br>
+  hist(mtcars$mpg, col.lab="red")</code></p>
+				<p>See the help  for a specific high level plotting function (e.g. 
+plot, hist, boxplot) to determine which graphical parameters can be set 
+this way. </p>
+				<p>The remainder of this section describes some of the more important graphical parameters that you can set. </p>
+				<h2>Text and Symbol Size </h2>
+				<p>The following options can be used to control text and symbol size in graphs.</p>
+				<p>
+				</p><table width="85%">
+				<tbody><tr>
+				<td><strong>option</strong></td>
+				<td><strong>description</strong></td>
+				</tr>
+				<tr>
+				  <td><strong>cex</strong></td>
+				  <td>number indicating the amount by which plotting text and 
+symbols should be scaled relative to the default. 1=default, 1.5 is 50% 
+larger, 0.5 is 50% smaller, etc. </td>
+				  </tr>
+				<tr>
+				  <td><strong>cex.axis</strong></td>
+				  <td>magnification of axis annotation relative to cex </td>
+				  </tr>
+				<tr>
+				  <td><strong>cex.lab</strong></td>
+				  <td>magnification of x and y labels relative to cex </td>
+				  </tr>
+				<tr>
+				  <td><strong>cex.main</strong></td>
+				  <td>magnification of titles relative to cex </td>
+				  </tr>
+				<tr>
+				  <td><strong>cex.sub</strong></td>
+				  <td>magnification of subtitles relative to cex </td>
+				  </tr>
+				</tbody></table>
+				<p></p>
+				<h2>Plotting Symbols </h2>
+				<p>Use the <strong>pch=</strong> option to specify symbols to use 
+when plotting points. For symbols 21 through 25, specify border color 
+(col=) and fill color (bg=). </p>
+				<p><img src="Quick-R_%20Graphical%20Parameters_files/points.png" alt="plotting symbols" height="294" width="290"></p>
+				<p>&nbsp;</p>
+				<h2>Lines</h2>
+				<p>You can change lines using the following options. This is particularly useful for reference lines, axes, and fit lines. </p>
+				<p>
+				</p><table>
+				<tbody><tr>
+				<td><strong>option</strong></td>
+				<td><strong>description</strong></td>
+				</tr>
+				<tr>
+				  <td><strong>lty</strong></td>
+				  <td>line type. see the chart below. </td>
+				  </tr>
+				<tr>
+				  <td><strong>lwd</strong></td>
+				  <td>line width relative to the default (default=1). 2 is twice as wide. </td>
+				  </tr>
+				</tbody></table>
+				<p>
+				</p><p><img src="Quick-R_%20Graphical%20Parameters_files/lines.png" alt="line types" height="217" width="366"> </p>
+				<p>&nbsp;</p>
+				<h2>Colors</h2>
+				<p>Options that specify colors include the following.</p>
+				<p>
+				</p><table width="85%">
+				<tbody><tr>
+				<td><strong>option</strong></td>
+				<td><strong>description</strong></td>
+				</tr>
+				<tr>
+				  <td><strong>col</strong></td>
+				  <td>Default plotting color. Some functions (e.g. lines) accept a vector of values that are recycled. </td>
+				  </tr>
+				<tr>
+				  <td><strong>col.axis</strong></td>
+				  <td>color for axis annotation </td>
+				  </tr>
+				<tr>
+				  <td><strong>col.lab</strong></td>
+				  <td>color for x and y labels </td>
+				  </tr>
+				<tr>
+				  <td><strong>col.main</strong></td>
+				  <td>color for titles </td>
+				  </tr>
+				<tr>
+				  <td><strong>col.sub</strong></td>
+				  <td>color for subtitles </td>
+				  </tr>
+				<tr>
+				  <td><strong>fg</strong></td>
+				  <td>plot foreground color (axes, boxes - also sets col= to same) </td>
+				  </tr>
+				<tr>
+				  <td><strong>bg</strong></td>
+				  <td>plot background color </td>
+				  </tr>
+				</tbody></table>
+				<p></p>
+				<p>You can specify colors in <strong>R</strong> by index, name, hexadecimal, or RGB.<br>
+			    For example <strong>col=1</strong>, <strong>col="white"</strong>, and <strong>col="#FFFFFF"</strong> are equivalent. </p>
+				<p>The following chart was produced with code developed by Earl F. Glynn. See his <a href="http://research.stowers-institute.org/efg/R/Color/Chart/index.htm"><strong>Color Chart</strong></a> for all the details you would ever need about using colors in <strong>R</strong>. </p>
+			  <p><img src="Quick-R_%20Graphical%20Parameters_files/colorchart.png" alt="R color chart" height="416" width="466"></p>
+				<p>You can also create a vector of <em>n</em> contiguous colors using the functions <strong>rainbow(</strong><em>n</em><strong>)</strong>, <strong>heat.colors(</strong><em>n</em><strong>)</strong>, <strong>terrain.colors(</strong><em>n</em><strong>)</strong>, <strong>topo.colors(</strong><em>n</em><strong>)</strong>, and <strong>cm.colors(</strong><em>n</em><strong>)</strong>. </p>
+				<p><strong>colors() </strong>returns all available color names. </p>
+				<h2>Fonts</h2>
+				<p>You can easily set font size and style, but font family is a bit more complicated.</p>
+				<p>
+				</p><table width="85%">
+				<tbody><tr>
+				<td><strong>option</strong></td>
+				<td><strong>description</strong></td>
+				</tr>
+				<tr>
+				  <td><strong>font</strong></td>
+				  <td>Integer specifying font to use for text. <br>
+			      1=plain, 2=bold, 3=italic, 4=bold italic, 5=symbol </td>
+				  </tr>
+				<tr>
+				  <td><strong>font.axis</strong></td>
+				  <td>font for axis annotation </td>
+				  </tr>
+				<tr>
+				  <td><strong>font.lab</strong></td>
+				  <td>font for x and y labels </td>
+				  </tr>
+				<tr>
+				  <td><strong>font.main</strong></td>
+				  <td>font for titles </td>
+				  </tr>
+				<tr>
+				  <td><strong>font.sub</strong></td>
+				  <td>font for subtitles </td>
+				  </tr>
+				<tr>
+				  <td><strong>ps</strong></td>
+				  <td>font point size (roughly 1/72 inch)<br>
+			      text size=ps*cex</td>
+				  </tr>
+				<tr>
+				  <td><strong>family</strong></td>
+				  <td>font family for drawing text. Standard values are "serif", "sans", "mono", "symbol". Mapping is device dependent. </td>
+				  </tr>
+				</tbody></table>
+				<p></p>
+				<p>In windows, mono is mapped to "TT Courier New", serif is mapped 
+to"TT Times New Roman", sans is mapped to "TT Arial", mono is mapped to 
+"TT Courier New", and symbol is mapped to "TT Symbol" (TT=True Type). 
+You can add your own mappings. </p>
+				<p><code># Type family examples - creating new mappings <br>
+				plot(1:10,1:10,type="n")<br>
+				  windowsFonts(<br>
+&nbsp;			    A=windowsFont("Arial Black"),<br>
+				  &nbsp;&nbsp;B=windowsFont("Bookman Old Style"),<br>
+				  &nbsp;&nbsp;C=windowsFont("Comic Sans MS"),<br>
+				  &nbsp;&nbsp;D=windowsFont("Symbol")<br>
+			    )<br>
+				  text(3,3,"Hello World Default")<br>
+				  text(4,4,family="A","Hello World from Arial Black")<br>
+				  text(5,5,family="B","Hello World from Bookman Old Style")<br>
+text(6,6,family="C","Hello World from Comic Sans MS")<br>
+text(7,7,family="D", "Hello World from Symbol")
+		  </code></p>
+				<p><a href="http://www.statmethods.net/advgraphs/images/fonts.png"><img src="Quick-R_%20Graphical%20Parameters_files/smfonts.jpg" alt="font example" height="103" width="103"></a> click to view </p>
+				<h2>Margins and Graph Size </h2>
+				<p>You can control the margin size using the following parameters.</p>
+				<p>
+				</p><table width="85%">
+				<tbody><tr>
+				<td><strong>option</strong></td>
+				<td><strong>description</strong></td>
+				</tr>
+				<tr>
+				  <td><strong>mar</strong></td>
+				  <td>numerical vector indicating margin size c(bottom, left, top, right) in lines.
+			      default = c(5, 4, 4, 2) + 0.1 </td>
+				  </tr>
+				<tr>
+				  <td><strong>mai</strong></td>
+				  <td>numerical vector indicating margin size c(bottom, left, top, right) in inches </td>
+				  </tr>
+				<tr>
+				  <td><strong>pin</strong></td>
+				  <td>plot dimensions (width, height) in inches </td>
+				  </tr>
+				</tbody></table>
+				<p></p>
+				<p>For complete information on margins, see Earl F. Glynn's <a href="http://research.stowers-institute.org/efg/R/Graphics/Basics/mar-oma/index.htm"><strong>margin tutorial</strong></a>. </p>
+				<h2>Going Further </h2>
+				<p>See <strong>help(par)</strong> for more information on graphical parameters. The customization of plotting axes and text annotations are covered <a href="http://www.statmethods.net/advgraphs/axes.html">next section</a>. </p>
+</div><!-- content -->
+            <div class="clearing">&nbsp;</div>
+    </div></div><!-- main --><!-- main2 -->
+    <div id="footer">
+        <p>Copyright © 2014 <strong><a href="http://www.statmethods.net/about/author.html">Robert I. Kabacoff, Ph.D.</a></strong> | <a href="http://www.statmethods.net/about/sitemap.html">Sitemap</a><br>Designed by <a href="http://www.webtemplateocean.com/">WebTemplateOcean.com</a></p>
+    </div>
+
+
+</body></html>

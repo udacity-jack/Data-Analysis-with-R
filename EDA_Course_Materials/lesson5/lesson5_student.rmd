@@ -1,5 +1,9 @@
 Lesson 5
 ========================================================
+getwd()
+setwd('/Users/Jack/Dropbox/R/udacity-github/EDA_Course_Materials/lesson5')
+library(ggplot2)
+pf <- read.csv('pseudo_facebook.tsv', sep='\t')
 
 ### Multivariate Data
 Notes:
@@ -16,8 +20,33 @@ Notes:
 
 ```{r Third Qualitative Variable}
 ggplot(aes(x = gender, y = age),
-       data = subset(pf, !is.na(gender))) + geom_histogram()
+       data = subset(pf, !is.na(gender))) + 
+  geom_boxplot() +
+  stat_summary(fun.y='mean', geom='point', shape=5)
+
+
+ggplot(aes(x=age, y=friend_count), data=subset(pf, !is.na(gender))) + 
+  geom_line(aes(color=gender), stat='summary', fun.y='median')
+
+### 
+library(dplyr)
+### chain function together, create new data frame pf.fc_by_age_gender
+
+pf.fc_by_age_gender <- pf %>%
+  filter(!is.na(gender)) %>%
+  group_by(age, gender) %>%
+  summarise(mean_friend_count=mean(friend_count),
+            median_friend_count=quantile(friend_count, .5),
+            n=n()) %>%
+  ungroup() %>%
+  arrange(age)
+
+head(pf.fc_by_age_gender)
+
 ```
+
+
+
 
 ***
 
@@ -25,7 +54,8 @@ ggplot(aes(x = gender, y = age),
 Notes:
 
 ```{r Plotting Conditional Summaries}
-
+ggplot(aes(x=age, y=median_friend_count), data=pf.fc_by_age_gender) + 
+  geom_line(aes(color=gender))
 ```
 
 ***
@@ -44,10 +74,20 @@ Notes:
 Notes:
 
 ```{r}
-install.packages('reshape2')
+#install.packages('reshape2')
 library(reshape2)
-```
+# original data
+head(pf.fc_by_age_gender)
 
+# change to wide with limited column
+pf.fc_by_age_gender.wide <- dcast(pf.fc_by_age_gender, age ~ gender, value.var = 'median_friend_count' )
+head(pf.fc_by_age_gender.wide)
+
+#change to long
+pf.fc_by_age_gender.long <- melt(pf.fc_by_age_gender.wide, id.vars = c("age"))
+head(pf.fc_by_age_gender.long,10)
+tail(pf.fc_by_age_gender.long,10)
+```
 
 ***
 
@@ -55,6 +95,10 @@ library(reshape2)
 Notes:
 
 ```{r Ratio Plot}
+library(ggplot2)
+ggplot(aes(x=age, y=female/male), data=pf.fc_by_age_gender.wide) +
+  geom_line() +
+  geom_hline(yintercept=1, alpha=0.3, linetype=2)
 
 ```
 
@@ -64,7 +108,9 @@ Notes:
 Notes:
 
 ```{r Third Quantitative Variable}
-
+#create variable year_joined and assign it to dataframe to pf
+# that means year_joined will show up on your pf data frame
+pf$year_joined <- 2014 - floor(pf$tenure/365)
 ```
 
 ***
@@ -73,7 +119,13 @@ Notes:
 Notes:
 
 ```{r Cut a Variable}
+summary(pf$year_joined)
+table(pf$year_joined)
 
+?cut
+pf$year_joined.bucket <-cut(pf$year_joined, c(2004, 2009, 2011, 2012, 2014))
+head(pf$year_joined.bucket)
+table(pf$year_joined.bucket, useNA='ifany')
 ```
 
 ***
@@ -82,6 +134,10 @@ Notes:
 Notes:
 
 ```{r Plotting it All Together}
+ggplot(aes(x=age, y=friend_count), data=subset(pf, !is.na(year_joined.bucket)))+
+  geom_line(aes(color=year_joined.bucket),
+            stat='summary', fun.y=median) 
+
 
 ```
 
@@ -92,6 +148,10 @@ Notes:
 
 ```{r Plot the Grand Mean}
 
+ggplot(aes(x=age, y=friend_count), data=subset(pf, !is.na(year_joined.bucket)))+
+  geom_line(aes(color=year_joined.bucket),
+            stat='summary', fun.y=mean) +
+  geom_line(stat='summary', linetype=2, fun.y=mean)
 ```
 
 ***
@@ -100,7 +160,7 @@ Notes:
 Notes:
 
 ```{r Friending Rate}
-
+with(subset(pf, tenure>=1), summary(friend_count/tenure))
 ```
 
 ***
@@ -108,12 +168,14 @@ Notes:
 ### Friendships Initiated
 Notes:
 
-What is the median friend rate?
-
-What is the maximum friend rate?
+What is the median friend rate? 0.22
+ 
+What is the maximum friend rate? 439
 
 ```{r Friendships Initiated}
-
+ggplot(aes(x=tenure, y=friendships_initiated/tenure),
+       data=subset(pf, tenure>=1)) +
+  geom_line(aes(color=year_joined.bucket))
 ```
 
 ***
@@ -123,32 +185,41 @@ Notes:
 
 ```{r Bias-Variance Tradeoff Revisited}
 
-ggplot(aes(x = tenure, y = friendships_initiated / tenure),
+p1 <- ggplot(aes(x = tenure, y = friendships_initiated / tenure),
        data = subset(pf, tenure >= 1)) +
   geom_line(aes(color = year_joined.bucket),
             stat = 'summary',
             fun.y = mean)
 
-ggplot(aes(x = 7 * round(tenure / 7), y = friendships_initiated / tenure),
+p2 <- ggplot(aes(x = 7 * round(tenure / 7), y = friendships_initiated / tenure),
        data = subset(pf, tenure > 0)) +
   geom_line(aes(color = year_joined.bucket),
             stat = "summary",
             fun.y = mean)
 
-ggplot(aes(x = 30 * round(tenure / 30), y = friendships_initiated / tenure),
+p3 <- ggplot(aes(x = 30 * round(tenure / 30), y = friendships_initiated / tenure),
        data = subset(pf, tenure > 0)) +
   geom_line(aes(color = year_joined.bucket),
             stat = "summary",
             fun.y = mean)
 
-ggplot(aes(x = 90 * round(tenure / 90), y = friendships_initiated / tenure),
+p4 <-ggplot(aes(x = 90 * round(tenure / 90), y = friendships_initiated / tenure),
        data = subset(pf, tenure > 0)) +
   geom_line(aes(color = year_joined.bucket),
             stat = "summary",
             fun.y = mean)
+
+
+
+p5 <-ggplot(aes(x = tenure, y = friendships_initiated / tenure),
+       data = subset(pf, tenure > 1)) +
+  geom_smooth(aes(color=year_joined.bucket))
+
+
+library("gridExtra")
+grid.arrange(p1,p2,p3,p4,p5, ncol=1)
 
 ```
-
 ***
 
 ### Sean's NFL Fan Sentiment Study
@@ -157,14 +228,24 @@ Notes:
 ***
 
 ### Introducing the Yogurt Data Set
-Notes:
+Notes: yogurt.csv
+```{r load the Yogurt data}
+getwd()
+yo <-read.csv('yogurt.csv')
+str(yo)
 
+#chang the id from an int to a factor variable
+yo$id <- factor(yo$id)
+str(yo)
+```
 ***
 
 ### Histograms Revisited
 Notes:
 
 ```{r Histograms Revisited}
+qplot(data=yo, x=price, fill=I('#F79420'))
+qplot(data=yo, x=price, fill=I('#F79420'),binwidth=13)
 
 ```
 
@@ -174,7 +255,16 @@ Notes:
 Notes:
 
 ```{r Number of Purchases}
+# summary give you five number data: min, 1st quantile, 3rd, max, mean and median
+summary(yo)
+# table gives you the distribution of the variable
+table(yo$price)
+# length give you the count
+length(unique(yo$price))
 
+# transform can add new variables to the dataframe
+yo <-transform(yo, all.purchase = strawberry + blueberry + pina.colada + plain + mixed.berry)
+summary(yo$all.purchase)
 ```
 
 ***
@@ -183,7 +273,12 @@ Notes:
 Notes:
 
 ```{r Prices over Time}
+ggplot(aes(x=time, y=price), data=yo) +
+  geom_point()
 
+#jitter makes your data a little transparent
+ggplot(aes(x=time, y=price), data=yo) +
+  geom_jitter(alpha=0.25, shape=21, fill=I('#F79420'))
 ```
 
 ***
@@ -196,7 +291,15 @@ Notes:
 ### Looking at Samples of Households
 
 ```{r Looking at Sample of Households}
+# set the seed for reproducible results
+set.seed(100)
+sample.ids <- sample(levels(yo$id), 8)
+sample.ids
 
+ggplot(aes(x=time, y=price), data=subset(yo, id%in% sample.ids)) +
+  facet_wrap(~id) +
+  geom_line() +
+  geom_point(aes(size=all.purchase), pch=1)
 ```
 
 ***
@@ -214,6 +317,20 @@ Notes:
 ### Scatterplot Matrix
 Notes:
 
+```{r Scatterplot Matrix}
+#install.packages("GGally")
+library(GGally)
+theme_set(theme_minimal(20))
+
+#set the seed for reproducbile results
+set.seed(1836)
+pf_subset <- pf[,c(2:15)]
+names(pf_subset)
+ggpairs(pf_subset[sample.int(nrow(pf_subset), 1000), ])
+
+```
+
+
 ***
 
 ### Even More Variables
@@ -226,6 +343,8 @@ Notes:
 
 ```{r}
 nci <- read.table("nci.tsv")
+
+# change the colnames to produce a nicer plot
 colnames(nci) <- c(1:64)
 ```
 

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="wf-ptsans-i4-active wf-ptsans-n4-active wf-ptsans-n7-active wf-active" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>An Introduction to reshape2</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- RSS
+  ================================================== -->
+  <link href="http://seananderson.ca/feed.xml" rel="alternate" type="application/rss+xml" title="Sean Anderson">
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- CSS
+  ================================================== -->
+  <link href="An%20Introduction%20to%20reshape2_files/css.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="An%20Introduction%20to%20reshape2_files/base.css">
+  <link rel="stylesheet" href="An%20Introduction%20to%20reshape2_files/skeleton.css">
+  <link rel="stylesheet" href="An%20Introduction%20to%20reshape2_files/layout.css">
+  <!--<link rel="stylesheet" href="/css2.1.4/tomorrow.css">-->
+  <link rel="stylesheet" href="An%20Introduction%20to%20reshape2_files/syntax2.css">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- Favicons
+  ================================================== -->
+  <link rel="shortcut icon" href="http://seananderson.ca/images/favicon.ico">
+  <link rel="apple-touch-icon" href="http://seananderson.ca/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="http://seananderson.ca/images/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="http://seananderson.ca/images/apple-touch-icon-114x114.png">
+
+  <!-- Typekit
+  ================================================== -->
+  <script src="An%20Introduction%20to%20reshape2_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="An%20Introduction%20to%20reshape2_files/gki1atw.js"></script>
+  <style type="text/css">.date,.footer,.masthead,.tk-pt-sans,body,dt,h1,h2,h3,h4{font-family:"pt-sans",sans-serif;}</style><link href="An%20Introduction%20to%20reshape2_files/d.css" rel="stylesheet"><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  <!-- Lightbox
+  ================================================== -->
+  <script src="An%20Introduction%20to%20reshape2_files/jquery-1.js"></script>
+  <script src="An%20Introduction%20to%20reshape2_files/lightbox-2.js"></script>
+  <link href="An%20Introduction%20to%20reshape2_files/lightbox.css" rel="stylesheet">
+
+  <!-- Altmetric
+  ================================================== -->
+  <script type="text/javascript" src="An%20Introduction%20to%20reshape2_files/embed.js"></script><script src="An%20Introduction%20to%20reshape2_files/altmetric_badges-d99e7772b00f31495fed09fece0b7237.js" id="altmetric-embed-js"></script>
+
+  <!-- MathJax
+  ================================================== -->
+  <script type="text/javascript" src="An%20Introduction%20to%20reshape2_files/MathJax.js">
+  </script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">.MathJax_Preview .MJXc-math {color: inherit!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXc-script {font-size: .8em}
+.MJXc-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXc-bold {font-weight: bold}
+.MJXc-italic {font-style: italic}
+.MJXc-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-largeop {font-size: 150%}
+.MJXc-largeop.MJXc-int {vertical-align: -.2em}
+.MJXc-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXc-display {display: block; text-align: center; margin: 1em 0}
+.MJXc-math span {display: inline-block}
+.MJXc-box {display: block!important; text-align: center}
+.MJXc-box:after {content: " "}
+.MJXc-rule {display: block!important; margin-top: .1em}
+.MJXc-char {display: block!important}
+.MJXc-mo {margin: 0 .15em}
+.MJXc-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXc-denom {display: inline-table!important; width: 100%}
+.MJXc-denom > * {display: table-row!important}
+.MJXc-surd {vertical-align: top}
+.MJXc-surd > * {display: block!important}
+.MJXc-script-box > *  {display: table!important; height: 50%}
+.MJXc-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXc-script-box > *:last-child > * {vertical-align: bottom}
+.MJXc-script-box > * > * > * {display: block!important}
+.MJXc-mphantom {visibility: hidden}
+.MJXc-munderover {display: inline-table!important}
+.MJXc-over {display: inline-block!important; text-align: center}
+.MJXc-over > * {display: block!important}
+.MJXc-munderover > * {display: table-row!important}
+.MJXc-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXc-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXc-mtr {display: table-row!important}
+.MJXc-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXc-mtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-mlabeledtr {display: table-row!important}
+.MJXc-mlabeledtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mlabeledtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXc-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXc-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXc-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXc-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXc-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXc-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXc-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXc-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXc-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXc-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_CHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body><div style="display: none;" id="MathJax_Message"></div>
+
+  <!-- Primary Page Layout
+  ================================================== -->
+
+  <div class="container">
+    <div class="offset-by-three">
+    <div class="ten columns">
+      <div class="masthead">
+        <div class="sean">
+         <a href="http://seananderson.ca/">Sean C. Anderson</a>
+        <br>
+      </div>
+        <a href="http://seananderson.ca/">About</a>
+        <!--<span class="mastdiv">/</span>-->
+        <!--<a href="/portfolio.html">Figures</a>-->
+        <span class="mastdiv">/</span>
+        <a href="http://seananderson.ca/cv.html">CV</a>
+        <span class="mastdiv">/</span>
+        <a href="http://seananderson.ca/blog.html">Blog</a>
+        <span class="mastdiv">/</span>
+        <a href="https://github.com/seananderson">Code</a>
+        <span class="mastdiv">/</span>
+        <a href="http://seananderson.ca/portfolio.html">Figures</a>
+        <span class="mastdiv">/</span>
+        <a href="http://www.flickr.com/photos/seananderson/">Photos</a>
+        <span class="mastdiv">/</span>
+        <a href="http://twitter.com/sean_anderson">Twitter</a>
+        <span class="mastdiv">/</span>
+        <a href="http://seananderson.ca/contact.html">Contact</a>
+      </div>
+
+
+<span class="date">October 19, 2013</span>
+  <h1 class="post-title"><a href="http://seananderson.ca/2013/10/19/reshape.html">An Introduction to reshape2</a></h1>
+  <p><a href="http://cran.r-project.org/web/packages/reshape2/index.html"><code>reshape2</code></a>&nbsp;is an
+<code>R</code>&nbsp;package written by <a href="http://had.co.nz/">Hadley Wickham</a> that makes it easy
+to transform data between wide and long formats.</p>
+
+<h1 id="what-makes-data-wide-or-long?-">What makes data wide or long? </h1>
+
+<p>Wide data has a column for each variable. For example, this is
+wide-format data:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#   ozone   wind  temp
+# 1 23.62 11.623 65.55
+# 2 29.44 10.267 79.10
+# 3 59.12  8.942 83.90
+# 4 59.96  8.794 83.97
+</code></pre></div>
+<p>And this is long-format data:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#    variable  value
+# 1     ozone 23.615
+# 2     ozone 29.444
+# 3     ozone 59.115
+# 4     ozone 59.962
+# 5      wind 11.623
+# 6      wind 10.267
+# 7      wind  8.942
+# 8      wind  8.794
+# 9      temp 65.548
+# 10     temp 79.100
+# 11     temp 83.903
+# 12     temp 83.968
+</code></pre></div>
+<p>Long-format data has a column for possible variable types and a column
+for the values of those variables. Long-format data isn’t necessarily
+only two columns. For example, we might have ozone measurements for each
+day of the year. In that case, we could have another column for day. In
+other words, there are different levels of “longness”. The ultimate
+shape you want to get your data into will depend on what you are doing
+with it.</p>
+
+<p>It turns out that you need wide-format data&nbsp;for some types of data analysis
+and long-format data&nbsp;for others. In reality, you need long-format data&nbsp;much
+more commonly than wide-format data. For example, <code>ggplot2</code>&nbsp;requires
+long-format data 
+(technically <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data</a>),
+<code>plyr</code>&nbsp;requires long-format data, and most modelling functions (such as
+<code>lm()</code>, <code>glm()</code>, and <code>gam()</code>) require long-format data. But people often find
+it easier to record their data in wide format.</p>
+
+<h1 id="the-reshape2&nbsp;package-">The reshape2&nbsp;package </h1>
+
+<p><code>reshape2</code>&nbsp;is based around two key functions: <code>melt</code>&nbsp;and <code>cast</code>:</p>
+
+<p><code>melt</code>&nbsp;takes wide-format data&nbsp;and melts it into long-format data.</p>
+
+<p><code>cast</code>&nbsp;takes long-format data&nbsp;and casts it into wide-format data.</p>
+
+<p>Think of working with metal: if you melt metal, it drips and becomes
+long. If you cast it into a mould, it becomes wide.</p>
+
+<h1 id="wide--to-long-format-data:-the-melt&nbsp;function-">Wide- to long-format data: the melt&nbsp;function </h1>
+
+<p>For this example we’ll work with the <code>airquality</code> dataset that is built
+into <code>R</code>. First we’ll change the column names to lower case to make them
+easier to work with. Then we’ll look at the data:</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">names</span><span class="p">(</span>airquality<span class="p">)</span> <span class="o">&lt;-</span> <span class="kp">tolower</span><span class="p">(</span><span class="kp">names</span><span class="p">(</span>airquality<span class="p">))</span>
+<span class="kp">head</span><span class="p">(</span>airquality<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   ozone solar.r wind temp month day
+# 1    41     190  7.4   67     5   1
+# 2    36     118  8.0   72     5   2
+# 3    12     149 12.6   74     5   3
+# 4    18     313 11.5   62     5   4
+# 5    NA      NA 14.3   56     5   5
+# 6    28      NA 14.9   66     5   6
+</code></pre></div>
+<p>What happens if we run the function <code>melt</code>&nbsp;with all the default argument
+values?</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">aql <span class="o">&lt;-</span> melt<span class="p">(</span>airquality<span class="p">)</span> <span class="c1"># [a]ir [q]uality [l]ong format</span>
+<span class="kp">head</span><span class="p">(</span>aql<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   variable value
+# 1    ozone    41
+# 2    ozone    36
+# 3    ozone    12
+# 4    ozone    18
+# 5    ozone    NA
+# 6    ozone    28
+</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">tail</span><span class="p">(</span>aql<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#     variable value
+# 913      day    25
+# 914      day    26
+# 915      day    27
+# 916      day    28
+# 917      day    29
+# 918      day    30
+</code></pre></div>
+<p>By default, <code>melt</code>&nbsp;has assumed that all columns with numeric values are
+variables with values. Often this is what you want. Maybe here we want
+to know the values of <code>ozone</code>, <code>solar.r</code>, <code>wind</code>, and <code>temp</code> for each
+<code>month</code> and <code>day</code>. We can do that with <code>melt</code>&nbsp;by telling it that we want
+<code>month</code> and <code>day</code> to be “ID variables”. ID variables are the variables
+that identify individual rows of data.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">aql <span class="o">&lt;-</span> melt<span class="p">(</span>airquality<span class="p">,</span> id.vars <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">"month"</span><span class="p">,</span> <span class="s">"day"</span><span class="p">))</span>
+<span class="kp">head</span><span class="p">(</span>aql<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   month day variable value
+# 1     5   1    ozone    41
+# 2     5   2    ozone    36
+# 3     5   3    ozone    12
+# 4     5   4    ozone    18
+# 5     5   5    ozone    NA
+# 6     5   6    ozone    28
+</code></pre></div>
+<p>What if we wanted to control the column names in our long-format data?
+<code>melt</code>&nbsp;lets us set those too all in one step:</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">aql <span class="o">&lt;-</span> melt<span class="p">(</span>airquality<span class="p">,</span> id.vars <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">"month"</span><span class="p">,</span> <span class="s">"day"</span><span class="p">),</span>
+  variable.name <span class="o">=</span> <span class="s">"climate_variable"</span><span class="p">,</span> 
+  value.name <span class="o">=</span> <span class="s">"climate_value"</span><span class="p">)</span>
+<span class="kp">head</span><span class="p">(</span>aql<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   month day climate_variable climate_value
+# 1     5   1            ozone            41
+# 2     5   2            ozone            36
+# 3     5   3            ozone            12
+# 4     5   4            ozone            18
+# 5     5   5            ozone            NA
+# 6     5   6            ozone            28
+</code></pre></div>
+<h1 id="long--to-wide-format-data:-the-cast&nbsp;functions-">Long- to wide-format data: the cast&nbsp;functions </h1>
+
+<p>Whereas going from wide- to long-format data&nbsp;is pretty straightforward,
+going from long- to wide-format data&nbsp;can take a bit more thought. It
+usually involves some head scratching and some trial and error for all
+but the simplest cases. Let’s go through some examples.</p>
+
+<p>In <code>reshape2</code>&nbsp;there are multiple <code>cast</code>&nbsp;functions. Since you will most
+commonly work with <code>data.frame</code> objects, we’ll explore the
+<code>dcast</code>&nbsp;function. (There is also <code>acast</code> to return a vector, matrix, or
+array.)</p>
+
+<p>Let’s take the long-format <code>airquality</code> data and <code>cast</code>&nbsp;it into some
+different wide formats. To start with, we’ll recover the same format we
+started with and compare the two.</p>
+
+<p><code>dcast</code>&nbsp;uses a formula to describe the shape of the data. The arguments
+on the left refer to the ID variables and the arguments on the right
+refer to the measured variables. Coming up with the right formula can
+take some trial and error at first. So, if you’re stuck don’t feel bad
+about just experimenting with formulas. There are usually only so many
+ways you can write the formula.</p>
+
+<p>Here, we need to tell <code>dcast</code>&nbsp;that <code>month</code> and <code>day</code> are the ID
+variables (we want a column for each) and that <code>variable</code> describes the
+measured variables. Since there is only one remaining column,
+<code>dcast</code>&nbsp;will figure out that it contains the values themselves. We could
+explicitly declare this with <code>value.var</code>. (And in some cases it will be
+necessary to do so.)</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">aql <span class="o">&lt;-</span> melt<span class="p">(</span>airquality<span class="p">,</span> id.vars <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">"month"</span><span class="p">,</span> <span class="s">"day"</span><span class="p">))</span>
+aqw <span class="o">&lt;-</span> dcast<span class="p">(</span>aql<span class="p">,</span> month <span class="o">+</span> day <span class="o">~</span> variable<span class="p">)</span>
+<span class="kp">head</span><span class="p">(</span>aqw<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   month day ozone solar.r wind temp
+# 1     5   1    41     190  7.4   67
+# 2     5   2    36     118  8.0   72
+# 3     5   3    12     149 12.6   74
+# 4     5   4    18     313 11.5   62
+# 5     5   5    NA      NA 14.3   56
+# 6     5   6    28      NA 14.9   66
+</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">head</span><span class="p">(</span>airquality<span class="p">)</span> <span class="c1"># original data</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   ozone solar.r wind temp month day
+# 1    41     190  7.4   67     5   1
+# 2    36     118  8.0   72     5   2
+# 3    12     149 12.6   74     5   3
+# 4    18     313 11.5   62     5   4
+# 5    NA      NA 14.3   56     5   5
+# 6    28      NA 14.9   66     5   6
+</code></pre></div>
+<p>So, besides re-arranging the columns, we’ve recovered our original data.</p>
+
+<p>If it isn’t clear to you what just happened there, then have a look at
+this illustration:</p>
+
+<p><img src="An%20Introduction%20to%20reshape2_files/dcast-illustration.png" alt=""></p>
+
+<p>Figure 1: An illustration of the <code>dcast</code> function. The blue shading indicates
+ID variables that we want to represent individual rows. The red shading
+represents variable names that we want to swing into column names. The grey
+shading represents the data values that we want to fill in the cells with.</p>
+
+<p>One confusing “mistake” you might make is casting a dataset in which
+there is more than one value per data cell. For example, this time we
+won’t include <code>day</code> as an ID variable:</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">dcast<span class="p">(</span>aql<span class="p">,</span> month <span class="o">~</span> variable<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   month ozone solar.r wind temp
+# 1     5    31      31   31   31
+# 2     6    30      30   30   30
+# 3     7    31      31   31   31
+# 4     8    31      31   31   31
+# 5     9    30      30   30   30
+</code></pre></div>
+<p>When you run this in <code>R</code>, you’ll notice the warning message:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># Aggregation function missing: defaulting to length
+</code></pre></div>
+<p>And if you look at the output, the cells are filled with the number of
+data rows for each month-climate combination. The numbers we’re seeing
+are the number of days recorded in each month. When you <code>cast</code>&nbsp;your data
+and there are multiple values per cell, you also need to tell
+<code>dcast</code>&nbsp;how to aggregate the data. For example, maybe you want to take
+the <code>mean</code>, or the <code>median</code>, or the <code>sum</code>. Let’s try the last example,
+but this time we’ll take the mean of the climate values. We’ll also pass
+the option <code>na.rm = TRUE</code> through the <code>...</code> argument to remove <code>NA</code>
+values. (The <code>...</code> let’s you pass on additional arguments to your
+<code>fun.aggregate</code> function, here <code>mean</code>.)</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">dcast<span class="p">(</span>aql<span class="p">,</span> month <span class="o">~</span> variable<span class="p">,</span> fun.aggregate <span class="o">=</span> <span class="kp">mean</span><span class="p">,</span> 
+  na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#   month ozone solar.r   wind  temp
+# 1     5 23.62   181.3 11.623 65.55
+# 2     6 29.44   190.2 10.267 79.10
+# 3     7 59.12   216.5  8.942 83.90
+# 4     8 59.96   171.9  8.794 83.97
+# 5     9 31.45   167.4 10.180 76.90
+</code></pre></div>
+<p>Unlike <code>melt</code>, there are some other fancy things you can do with
+<code>dcast</code>&nbsp;that I’m not covering here. It’s worth reading the help file
+<code>?dcast</code>. For example, you can compute summaries for rows and columns,
+subset the columns, and fill in missing cells in one call to <code>dcast</code>.</p>
+
+<h1 id="additional-help-">Additional help </h1>
+
+<p>Read the package help:
+<code>help(package = "reshape2")</code></p>
+
+<p>See the <code>reshape2</code>&nbsp;website:
+<a href="http://had.co.nz/reshape/">http://had.co.nz/reshape/</a></p>
+
+<p>And read the paper on <code>reshape</code>:
+Wickham, H. (2007). Reshaping data with the <code>reshape</code> package.
+21(12):1–20.
+<a href="http://www.jstatsoft.org/v21/i12">http://www.jstatsoft.org/v21/i12</a><br>
+(But note that the paper is written for the <code>reshape</code> package not the
+<code>reshape2</code> package.)</p>
+
+
+
+<div class="end-of-post">
+</div>
+
+<div class="footer">
+        <a href="http://seananderson.ca/colophon.html">Powered by Jekyll and hosted on GitHub</a>
+    <span class="mastdiv">/</span>
+        <a href="http://seananderson.ca/feed.xml">RSS</a>
+    <span class="mastdiv">/</span>
+        <a href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">CC BY-NC Licensed</a>
+</div>
+
+</div>
+</div>
+</div><!-- container -->
+
+<!-- End Document
+================================================== -->
+<script type="text/javascript" src="An%20Introduction%20to%20reshape2_files/retina.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-11566420-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+<div style="display: none;" id="lightboxOverlay" class="lightboxOverlay"></div><div style="display: none;" id="lightbox" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src=""><div class="lb-nav"><a class="lb-prev" href=""></a><a class="lb-next" href=""></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>
